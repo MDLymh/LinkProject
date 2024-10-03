@@ -9,6 +9,6 @@
 <body>
     <div id="root"></div>
 
-    @vite('resources/js/Moduls/Index/Index.jsx')
+    @vite('resources/js/Modules/Index/Index.jsx')
 </body>
 </html>
