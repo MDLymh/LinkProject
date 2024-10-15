@@ -5,13 +5,12 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
     plugins: [
-        [react()],
+        react(),
         laravel({
             input: [...glob.sync('resources/css/**/*.css'), ...glob.sync('resources/js/**/*.js'),...glob.sync('resources/js/**/*.jsx')],
             refresh: true,
         }),
 
-    ],
-    base:'/',
+    ]
 
 });
