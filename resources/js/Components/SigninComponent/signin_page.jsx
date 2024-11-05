@@ -1,22 +1,16 @@
-import React from "react";
+import React, { useState } from 'react';
 
 function signin_page(){
-
-    const studentMailDomain = "@alumnos.udg.mx"
-    const assesorMailDomain = "@academicos.udg.mx"
-
-    const username = "";
-    const password = "";
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // logic
-        console.log(`Username: ${username}, Password: ${password}`);
-      };
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
   
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      // logic
+      console.log(`Username: ${username}, Password: ${password}`);
+    };
 
     return(<>
-                
     <div className="login-container">
       <div className='div_h1_title'>
         <h1> LinkProject </h1>
@@ -33,19 +27,30 @@ function signin_page(){
           />
         </div>
         <div className="form-group">
-         
+          <label>Contraseña:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            placeholder="nueva contraseña"
+          />
+          <checkbox className='check-password'></checkbox>
+        </div>
+        <div className='div_viewpassword' >
+        <label className="switch">
+            <input type="checkbox"/>
+            <span class="slider round"/>
+        </label>
         </div>
         <button type="submit">Registrarse</button>
-        <button >Regresar</button>
-        <div className='div_reset'>
-        </div>
+        <button type="submit">Regresar</button>
+        
       </form>
 
       <br/>
       
     </div>
-
     </>);
 }
 
-export default signin_page
+export default signin_page;
