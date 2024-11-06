@@ -3,11 +3,19 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "watch": "vite build --watch"
     },
     "devDependencies": {
         "axios": "^1.7.4",
         "laravel-vite-plugin": "^1.0",
         "vite": "^5.0"
+    },
+    "dependencies": {
+        "@vitejs/plugin-react": "^4.3.3",
+        "blob": "^0.1.0",
+        "glob": "^11.0.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
     }
 }
