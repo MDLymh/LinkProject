@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 
-function signin_page(){
+function Signin_page(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-  
+    const [type, setType] = useState('password');
+
     const handleSubmit = (event) => {
       event.preventDefault();
       // logic
       console.log(`Username: ${username}, Password: ${password}`);
+    };
+
+    const handleToggleChanged = () => {
+        if(type == 'password')
+            setType('text')
+        else
+            setType('password')
     };
 
     return(<>
@@ -29,18 +37,18 @@ function signin_page(){
         <div className="form-group">
           <label>Contraseña:</label>
           <input
-            type="password"
+            type={type}
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             placeholder="nueva contraseña"
           />
-          <checkbox className='check-password'></checkbox>
         </div>
         <div className='div_viewpassword' >
-        <label className="switch">
-            <input type="checkbox"/>
-            <span class="slider round"/>
-        </label>
+            <label className='label_show_password'>Ver clave</label>
+            <label className="switch" onChange={handleToggleChanged}>
+                <input type="checkbox"/>
+                <span className="slider round"/>
+            </label>
         </div>
         <button type="submit">Registrarse</button>
         <button type="submit">Regresar</button>
@@ -53,4 +61,4 @@ function signin_page(){
     </>);
 }
 
-export default signin_page;
+export default Signin_page;

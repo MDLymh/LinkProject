@@ -2,15 +2,23 @@ import default_image from './assets/default_image.png'
 import React, { useState } from 'react';
 import styles from './pageStyles/login.module.css'
 
-function login_page(){
+function Login_page(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [type, setType] = useState('password');
   
     const handleSubmit = (event) => {
       event.preventDefault();
       // logic
       console.log(`Username: ${username}, Password: ${password}`);
     };
+    
+    const handleToggleChanged = () => {
+      if(type == 'password')
+          setType('text')
+      else
+          setType('password')
+  };
 
   return (
 
@@ -37,10 +45,16 @@ function login_page(){
             onChange={(event) => setPassword(event.target.value)}
             placeholder="ingrese contraseña"
           />
-          <checkbox className='check-password'></checkbox>
+        </div>
+        <div className='div_viewpassword' >
+            <label className='label_show_password'>Ver clave</label>
+            <label className="switch" onChange={handleToggleChanged}>
+                <input type="checkbox"/>
+                <span className="slider round"/>
+            </label>
         </div>
         <button type="submit">Iniciar</button>
-        <button>Registrarse</button>
+        <button type='submit'>Registrarse</button>
         <div className='div_reset'>
           <a className='a_reset_password' href='https://www.google.com'>Olvido contraseña?</a>
         </div>
@@ -52,4 +66,4 @@ function login_page(){
   );
 }
 
-export default login_page;
+export default Login_page;
