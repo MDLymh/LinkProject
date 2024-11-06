@@ -1,0 +1,12 @@
+
+.label_warning{
+    align-items: center;
+    font-size: 2em;
+    color: brown;
+}
+
+.label_message{
+    align-items:start;
+    font-size: medium;
+    color: black;
+}
