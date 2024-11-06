@@ -56,6 +56,20 @@
   button[type="submit"]:hover {
     background-color: #3e8e41;
   }
+
+  .button_register{
+    width: 100%;
+    height: 40px;
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
   
   .div_reset{
     margin-top: 20px;

@@ -1,6 +1,7 @@
-import default_image from './assets/default_image.png'
 import React, { useState } from 'react';
-import styles from './pageStyles/login.module.css'
+import React from "react";
+import ReactDOM from "react-dom";
+import { Csrf } from "../../modelos/";
 
 function Login_page(){
     const [username, setUsername] = useState('');
@@ -12,6 +13,10 @@ function Login_page(){
       // logic
       console.log(`Username: ${username}, Password: ${password}`);
     };
+
+    const handleRegister = () =>{
+
+    }
     
     const handleToggleChanged = () => {
       if(type == 'password')
@@ -54,7 +59,7 @@ function Login_page(){
             </label>
         </div>
         <button type="submit">Iniciar</button>
-        <button type='submit'>Registrarse</button>
+        <button className='button_register'>Registrarse</button>
         <div className='div_reset'>
           <a className='a_reset_password' href='https://www.google.com'>Olvido contraseña?</a>
         </div>
