@@ -24,3 +24,4 @@ resources/jsx/modelos/csrf/csrf.jsx
 resources/jsx/modelos/index.js
 resources/jsx/modulos/plantilla/plantilla.css
 resources/jsx/modulos/plantilla/plantilla.jsx
+resources/views/mails/reset.blade.php
