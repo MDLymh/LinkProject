@@ -10,7 +10,7 @@ function Login_page(){
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      // logic
+      // to do
       console.log(`Username: ${username}, Password: ${password}`);
     };
 
@@ -58,7 +58,7 @@ function Login_page(){
                 <span className="slider round"/>
             </label>
         </div>
-        <button type="submit">Iniciar</button>
+        <button type="submit" onClick={handleSubmit}>Iniciar</button>
         <button className='button_register'>Registrarse</button>
         <div className='div_reset'>
           <a className='a_reset_password' href='https://www.google.com'>Olvido contraseña?</a>
