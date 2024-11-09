@@ -1,7 +1,8 @@
 import Proptypes from "prop-types"
+import "./PopupWarningComponent.css"
 
 //alerta generica
-function Popup_warning(props){
+function PopupWarningComponent(props){
 
     return(
     <>
@@ -24,4 +25,4 @@ Popup_warning.defaultProps = {
     message: ""
 }
 
-export default Popup_warning
+export default PopupWarningComponent

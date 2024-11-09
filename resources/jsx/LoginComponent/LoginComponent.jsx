@@ -1,36 +1,43 @@
 import React, { useState } from 'react';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Csrf } from "../../modelos/";
+import "./LoginComponent.css"
 
-function Signin_page(){
-    const studentDomain = "@educa.udg.mx";
-    const assesorDomain = "@educa.udg.mx";
-
+function LoginComponent(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [type, setType] = useState('password');
-
+  
     const handleSubmit = (event) => {
       event.preventDefault();
-      if(username = ""){
-        
-        return;
-      }
+      // validate user credentials
+      console.log(`Username: ${username}, Password: ${password}`);
     };
 
+    const handleRegister = (event) =>{
+      //call to sign in
+    }
+
+    const handleResetPassword = (event) =>{
+
+    }
+    
     const handleToggleChanged = () => {
-        if(type == 'password')
-            setType('text')
-        else
-            setType('password')
-    };
+      if(type == 'password')
+          setType('text')
+      else
+          setType('password')
+  };
 
-    return(<>
-    <div className="login-container">
+  return (
+    <div className="login_container">
       <div className='div_h1_title'>
         <h1> LinkProject </h1>
       </div>
-      <h2>Registrarse</h2>
+      <h2>Iniciar Sesión</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="form_group">
           <label>Usuario:</label>
           <input
             type="text"
@@ -39,13 +46,13 @@ function Signin_page(){
             placeholder="my_username@domainname.udg.mx"
           />
         </div>
-        <div className="form-group">
+        <div className="form_group">
           <label>Contraseña:</label>
           <input
-            type={type}
+            type="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-            placeholder="nueva contraseña"
+            placeholder="ingrese contraseña"
           />
         </div>
         <div className='div_viewpassword' >
@@ -55,15 +62,16 @@ function Signin_page(){
                 <span className="slider round"/>
             </label>
         </div>
-        <button type="submit">Registrarse</button>
-        <button type="submit">Regresar</button>
-        
+        <button type="submit" onClick={handleSubmit}>Iniciar</button>
+        <button className='button_register'>Registrarse</button>
+        <div className='div_reset'>
+          <a className='a_reset_password' onClick={handleResetPassword}>Olvido contraseña?</a>
+        </div>
       </form>
-
       <br/>
-      
     </div>
-    </>);
+  );
 }
 
-export default Signin_page;
+export default LoginComponent;
+ReactDOM.render(<LoginComponent/>, document.getElementById('root'));
