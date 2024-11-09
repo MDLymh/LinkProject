@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-function SigninComponent(){
+
+export default function SigninComponent(){
     const studentDomain = "@educa.udg.mx";
     const assesorDomain = "@educa.udg.mx";
 
@@ -66,5 +67,4 @@ function SigninComponent(){
     </>);
 }
 
-export default SigninComponent;
 ReactDOM.render(<SigninComponent/>, document.getElementById('root'));

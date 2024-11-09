@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import { Csrf } from "../../modelos/";
 import "./LoginComponent.css"
 
-function LoginComponent(){
+export default function LoginComponent(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [type, setType] = useState('password');
@@ -73,5 +73,4 @@ function LoginComponent(){
   );
 }
 
-export default LoginComponent;
 ReactDOM.render(<LoginComponent/>, document.getElementById('root'));
