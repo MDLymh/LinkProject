@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import React from "react";
 import ReactDOM from "react-dom";
 import { Csrf } from "../../modelos/";
+import "./Login_page.css"
 
 function Login_page(){
     const [username, setUsername] = useState('');
@@ -10,11 +11,15 @@ function Login_page(){
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      // to do
+      // validate user credentials
       console.log(`Username: ${username}, Password: ${password}`);
     };
 
-    const handleRegister = () =>{
+    const handleRegister = (event) =>{
+      //call to sign in
+    }
+
+    const handleResetPassword = (event) =>{
 
     }
     
@@ -26,14 +31,13 @@ function Login_page(){
   };
 
   return (
-
-    <div className="login-container">
+    <div className="login_container">
       <div className='div_h1_title'>
         <h1> LinkProject </h1>
       </div>
       <h2>Iniciar Sesión</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="form_group">
           <label>Usuario:</label>
           <input
             type="text"
@@ -42,7 +46,7 @@ function Login_page(){
             placeholder="my_username@domainname.udg.mx"
           />
         </div>
-        <div className="form-group">
+        <div className="form_group">
           <label>Contraseña:</label>
           <input
             type="password"
@@ -61,12 +65,10 @@ function Login_page(){
         <button type="submit" onClick={handleSubmit}>Iniciar</button>
         <button className='button_register'>Registrarse</button>
         <div className='div_reset'>
-          <a className='a_reset_password' href='https://www.google.com'>Olvido contraseña?</a>
+          <a className='a_reset_password' onClick={handleResetPassword}>Olvido contraseña?</a>
         </div>
       </form>
-
       <br/>
-      
     </div>
   );
 }
