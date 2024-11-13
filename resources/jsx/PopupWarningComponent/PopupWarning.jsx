@@ -1,8 +1,11 @@
+import React from 'react'
 import Proptypes from "prop-types"
-import "./PopupWarningComponent.css"
+import "./PopupWarning.css"
+import ReactDOM from "react-dom";
+import { Csrf } from "../../modelos/";
 
 //alerta generica
-function PopupWarningComponent(props){
+export default function PopupWarning(props){
 
     return(
     <>
@@ -25,4 +28,4 @@ Popup_warning.defaultProps = {
     message: ""
 }
 
-export default PopupWarningComponent
+ReactDOM.render(<PopupWarning/>, document.getElementById('root'));

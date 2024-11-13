@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import './SignIn.css'
+import ReactDOM from "react-dom";
+import { Csrf } from "../../modelos/";
 
-
-export default function SigninComponent(){
+export default function SignIn(){
     const studentDomain = "@educa.udg.mx";
     const assesorDomain = "@educa.udg.mx";
 
@@ -58,13 +60,10 @@ export default function SigninComponent(){
         </div>
         <button type="submit">Registrarse</button>
         <button type="submit">Regresar</button>
-        
       </form>
-
       <br/>
-      
     </div>
     </>);
 }
 
-ReactDOM.render(<SigninComponent/>, document.getElementById('root'));
+ReactDOM.render(<SignIn/>, document.getElementById('root'));

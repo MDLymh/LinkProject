@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
 import React from "react";
+import React, { useState } from 'react';
+import "./Login.css"
 import ReactDOM from "react-dom";
 import { Csrf } from "../../modelos/";
-import "./LoginComponent.css"
 
-export default function LoginComponent(){
+export default function Login(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [type, setType] = useState('password');
@@ -73,4 +73,4 @@ export default function LoginComponent(){
   );
 }
 
-ReactDOM.render(<LoginComponent/>, document.getElementById('root'));
+ReactDOM.render(<Login/>, document.getElementById('root'));
