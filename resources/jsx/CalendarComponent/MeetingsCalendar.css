@@ -1,0 +1,48 @@
+.month-calendar-container {
+    width: 85%;
+    margin: 10px;
+    margin-left: 3.5rem;
+    text-align: center;
+}
+
+.month-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+}
+
+.calendar-day {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+    position: relative;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s;
+}
+
+.calendar-day.has-meeting {
+    background-color: #34d6ff; /* for days with meetings */
+}
+
+.day-number {
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.meetings {
+    margin-top: 5px;
+}
+
+.meeting {
+    background-color: #e0f7fa;
+    padding: 5px;
+    border-radius: 4px;
+    margin-top: 2px;
+    font-size: 14px;
+}
+
+.labelMeetings{
+    font-size: larger;
+    font-weight: bold;
+    font-stretch: expanded;
+}
