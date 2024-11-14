@@ -1,0 +1,11 @@
+.projectsContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: rgba(255, 255, 255, 0.54);
+
+}
+
+.projectsContainer>button{
+    padding: 10px;
+}

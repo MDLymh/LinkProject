@@ -4,6 +4,7 @@ import Sidebar from "../Sidebar/SidebarComponent";
 import UserProfile from "../UserProfileViewerComponent/UserProfile";
 import MeetingsCalendar from "../CalendarComponent/MeetingsCalendar";
 import NotificationComponent from "../NotificationComponent/NotificationComponent";
+import SidebarUserNav from "../SidebarUserNavComponent/SidebarUserNav";
 
 const ProjectsviewerComponent = () =>{
     const notifications = [
@@ -20,7 +21,8 @@ const ProjectsviewerComponent = () =>{
     <div className="main">
         <div className="appglass">
             <div className="leftmenu">
-                <Sidebar props/>
+                {/* <Sidebar props/> */}
+                {SidebarUserNav}
             </div>
             <div className="projectsboard">
                 <UserProfile/>
