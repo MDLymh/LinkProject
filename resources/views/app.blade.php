@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield("Title")</title>
 </head>
+<script>
+    window.__INITIAL_DATA__ = @json(initialData)
+</script>
 <body>
     <div id="root"></div>
 

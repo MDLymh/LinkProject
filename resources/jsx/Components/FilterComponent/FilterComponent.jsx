@@ -74,3 +74,4 @@ export default function FilterComponent(){
     )
 }
 
+ReactDOM.render(<FilterComponent/>, document.getElementById('root'));

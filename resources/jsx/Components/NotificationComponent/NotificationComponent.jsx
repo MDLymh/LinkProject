@@ -1,6 +1,6 @@
 import './NotificationComponent.css';
 
-function NotificationComponent({ notifications }){
+export default function NotificationComponent({ notifications }){
 
     return (<>
         <div className="notificationContainer">
@@ -18,5 +18,6 @@ function NotificationComponent({ notifications }){
     </>)
 }
 
-export default NotificationComponent
+ReactDOM.render(<NotificationComponent/>, document.getElementById('root'));
+
 

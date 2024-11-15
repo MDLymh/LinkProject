@@ -3,15 +3,15 @@ import ReactDOM from "react-dom";
 import { Csrf } from "../../modelos/";
 
 //alerta generica
-export default function PopupWarning(props){
+export default function PopupWarning({title, message}){
 
     return(
     <>
     <div>
-        <label className="label_title">{props.title}</label>
+        <label className="label_title">{title}</label>
     </div>
     <div>
-        <label className="label_message">{props.message}</label>
+        <label className="label_message">{message}</label>
     </div>
     </>)
 }

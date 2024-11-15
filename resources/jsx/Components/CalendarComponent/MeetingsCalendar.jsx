@@ -62,3 +62,4 @@ export default function MeetingsCalendar(){
     );
 
 }
+ReactDOM.render(<MeetingsCalendar/>, document.getElementById('root'));

@@ -1,4 +1,3 @@
-import React from "react"
 import './SidebarUserNav.css'
 import Notifications from '../NotificationsComponent/Notifications'
 import FilterComponent from "../FilterComponent/FilterComponent";
@@ -36,3 +35,5 @@ export default function SidebarUserNav({user, current, notifications}){
     </div>
     </>)
 }
+
+ReactDOM.render(<SidebarUserNav/>, document.getElementById('root'));

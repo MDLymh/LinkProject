@@ -6,7 +6,7 @@ import MeetingsCalendar from "../CalendarComponent/MeetingsCalendar";
 import Notifications from "../NotificationsComponent/Notifications";
 import SidebarUserNav from "../SidebarUserNavComponent/SidebarUserNav";
 
-export default function ProjectsviewerComponent () {
+export default function ViewerComponent () {
     
     //recibir el usuario loggeado
     const user = {
@@ -45,3 +45,4 @@ export default function ProjectsviewerComponent () {
     </div>
     </>);
 }
+ReactDOM.render(<ViewerComponent/>, document.getElementById('root'));
