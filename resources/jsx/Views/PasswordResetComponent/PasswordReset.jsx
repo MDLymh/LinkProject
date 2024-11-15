@@ -5,7 +5,9 @@ import { Csrf } from "../../modelos/";
 
 export default function PasswordReset(){
 
-    return (<></>)
+    return (<>
+    
+    </>)
 }
 
 ReactDOM.render(<PasswordReset/>, document.getElementById('root'));

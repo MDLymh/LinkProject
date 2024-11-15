@@ -1,11 +1,53 @@
+.userProfileTitle{
+    margin-left: 1.5rem;
+}
+
+.filtersContainer{
+    width: 100%;
+    height: auto;
+    background: transparent;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+}
+.filtersContainer>label{
+    font-size: 1.2rem;
+    font-weight: bold;
+    word-spacing: 10px;;
+}
+
 .projectsContainer{
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    background-color: rgba(255, 255, 255, 0.54);
-
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 25px;
+    padding-top: .5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 0.5rem;
 }
 
 .projectsContainer>button{
     padding: 10px;
+    border-radius: 15px;
+    background: rgba(233, 170, 44, 0.50);
+    color: black;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.projectsContainer>button:hover{
+    padding: 10px;
+    border-radius: 15px;
+    background: rgba(250, 169, 7, 0.5);
+    color: black;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
 }

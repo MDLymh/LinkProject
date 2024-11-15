@@ -1,37 +1,47 @@
+import React from "react";
 import "./ViewerComponent.css"
-import Sidebar from "../../Components/Sidebar/SidebarComponent";
+import Sidebar from "../Sidebar/SidebarComponent";
 import UserProfile from "../UserProfileViewerComponent/UserProfile";
-import MeetingsCalendar from "../../Components/CalendarComponent/MeetingsCalendar";
-import NotificationComponent from "../../Components/NotificationComponent/NotificationComponent";
-import SidebarUserNav from "../../SidebarUserNavComponent/SidebarUserNav";
+import MeetingsCalendar from "../CalendarComponent/MeetingsCalendar";
+import Notifications from "../NotificationsComponent/Notifications";
+import SidebarUserNav from "../SidebarUserNavComponent/SidebarUserNav";
 
-const ProjectsviewerComponent = () =>{
-    const notifications = [
-        { message: 'New message from John', timestamp: '2023-10-01 10:00 AM' },
-        { message: 'Your order has been shipped', timestamp: '2023-10-01 09:30 AM' },
-        { message: 'Meeting scheduled for tomorrow', timestamp: '2023-10-01 09:00 AM' },
-        { message: 'New comment on your post', timestamp: '2023-10-01 08:45 AM' },
-        { message: 'Password changed successfully', timestamp: '2023-10-01 08:00 AM' },
-        { message: 'New follower: Alice', timestamp: '2023-10-01 07:30 AM' },
+export default function ProjectsviewerComponent () {
+    
+    //recibir el usuario loggeado
+    const user = {
+        user_name: "Pepito",
+        isStudent: false,
+        isLeader: false,
+        id_project: -1
+    }
+    //recibir notificaciones recientes (un arreglo de 20?)
+    let notificacions = [
+        { message: 'Solicitud a unirse', timestamp: '2023-10-01 10:00 AM' },
+        { message: 'Solicitud a unirse', timestamp: '2023-10-01 09:30 AM' },
+        { message: 'Nueva reunion programada', timestamp: '2023-10-01 09:00 AM' },
+        { message: 'Nueva reunion programada', timestamp: '2023-10-01 08:45 AM' },
+        { message: 'Nueva tarea', timestamp: '2023-10-01 08:00 AM' },
+        { message: 'Nueva reunion programada', timestamp: '2023-10-01 07:30 AM' },
     ];
-
 
     return (<>
     <div className="main">
         <div className="appglass">
             <div className="leftmenu">
-                {/* <Sidebar props/> */}
-                {SidebarUserNav}
+                <SidebarUserNav user={user} current={"Proyectos"} notifications={notificacions}/>
             </div>
-            <div className="projectsboard">
+            <div className="mainBoard">
                 <UserProfile/>
             </div>
             <div className="rightmenu">
                 <MeetingsCalendar/>
+                {!user.isStudent ?
+                    (<div className="programMeeting">
+                        <label> SAMPLE </label>
+                    </div>) : null}
             </div>
         </div>
     </div>
     </>);
 }
-
-export default ProjectsviewerComponent

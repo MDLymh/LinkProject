@@ -1,25 +1,42 @@
 
 .main{
-    background: linear-gradient(
-    106.37deg,
-    #ffe1bc 29.63%,
-    #ffcfd1 51.55%,
-    #f3c6f1 90.85%
-  );
-  font-family: "Open Sans", sans-serif;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: linear-gradient(
+  106.37deg,
+  #ffe1bc 29.63%,
+  #ffcfd1 51.55%,
+  #f3c6f1 90.85%
+);
+font-family: "Open Sans", sans-serif;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 
 .appglass{
-    display: grid;
-    height: 95%;
-    width: 95%;
-    border-radius: 2rem;
-    background-color: rgba(255, 255, 255, 0.54);;
-    overflow: hidden;
-    grid-template-columns: 19rem auto 25rem;
-  }
+  display: grid;
+  height: 95%;
+  width: 95%;
+  border-radius: 2rem;
+  background-color: rgba(255, 255, 255, 0.54);;
+  overflow: hidden;
+  grid-template-columns: 16rem auto 25rem;
+}
+
+.leftmenu{
+margin-right: 10px;
+}
+
+.mainBoard{
+width: 95%;
+padding-right: 10px;
+align-items: center;
+}
+
+.rightmenu{
+width: 100%; 
+background-color: transparent;  
+padding-left: 10px;
+padding-right: 10px;
+}

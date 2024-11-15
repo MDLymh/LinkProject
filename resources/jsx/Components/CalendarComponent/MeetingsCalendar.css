@@ -1,48 +1,52 @@
-.month-calendar-container {
-    width: 85%;
-    margin: 10px;
-    margin-left: 3.5rem;
-    text-align: center;
-}
 
-.month-calendar {
+.calendar {
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 2px;
-}
-
-.calendar-day {
+    gap: 5px;
+  }
+  
+  .day {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 5px;
-    position: relative;
-    background-color: #f9f9f9;
-    transition: background-color 0.3s;
-}
+  }
+  
+  .empty {
+    background-color: transparent;
+  }
+  
+  .has-meeting {
+    color: black;
+    font-weight: bolder;
+    background-color: rgb(52, 225, 167);
+  }
 
-.calendar-day.has-meeting {
-    background-color: #34d6ff; /* for days with meetings */
-}
+  .navigateButton{
+    background: rgb(159, 248, 248);
+    border-width: 0;
+    border-radius: 30px;
+    height: 3rem;
+    width: 3rem;
+    font-weight: bolder;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.8rem;
+    align-items: center;
+    padding-left: 1%;
 
-.day-number {
-    font-weight: bold;
-    font-size: 1em;
-}
-
-.meetings {
-    margin-top: 5px;
-}
-
-.meeting {
-    background-color: #e0f7fa;
-    padding: 5px;
-    border-radius: 4px;
-    margin-top: 2px;
-    font-size: 14px;
-}
-
-.labelMeetings{
-    font-size: larger;
-    font-weight: bold;
-    font-stretch: expanded;
-}
+  }
