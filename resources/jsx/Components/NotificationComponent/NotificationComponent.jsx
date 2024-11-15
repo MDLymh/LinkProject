@@ -1,4 +1,6 @@
 import './NotificationComponent.css';
+import ReactDOM from "react-dom";
+import { Csrf } from "../../modelos/";
 
 export default function NotificationComponent({ notifications }){
 

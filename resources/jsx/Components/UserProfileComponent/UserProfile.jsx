@@ -1,7 +1,10 @@
 import { useState } from "react"
 import "./UserProfile.css"
+import Notifications from '../NotificationsComponent/NotificationComponent'
+import FilterComponent from "../FilterComponent/FilterComponent";
 
-export default function UserProfile({current}){
+
+export default function UserProfile({currentUser}){
 // ejemplo usuario
 
 let user = {

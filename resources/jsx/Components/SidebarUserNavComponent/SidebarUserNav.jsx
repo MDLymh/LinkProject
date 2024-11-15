@@ -1,6 +1,9 @@
 import './SidebarUserNav.css'
-import Notifications from '../NotificationsComponent/Notifications'
+import Notifications from '../NotificationsComponent/NotificationComponent'
 import FilterComponent from "../FilterComponent/FilterComponent";
+import ReactDOM from "react-dom";
+import { Csrf } from "../../modelos/";
+
 
 export default function SidebarUserNav({user, current, notifications}){
 
