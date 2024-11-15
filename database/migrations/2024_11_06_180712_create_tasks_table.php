@@ -18,7 +18,7 @@ return new class extends Migration
         $table->string('title');
         $table->text('description');
         $table->timestamp('start_date');
-        $table->timestamp('end_date');
+        $table->timestamp('end_date')->nullable();;
         $table->enum('status', ['pending', 'completed', 'in-progress']);
         $table->timestamps();
     });
