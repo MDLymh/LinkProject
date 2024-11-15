@@ -1,4 +1,3 @@
-import React, { useState } from "react"
 import PropTypes from "prop-types"
 import "./SidebarComponent.css"
 import NotificationComponent from "../NotificationComponent/NotificationComponent"
@@ -93,8 +92,8 @@ const Sidebar = (props) => {
         const selectedId = event.target.value;
         const selectObj = careers.find(career => career.id == selectedId);
         //to do filter projects
-
     }
+
     const notifications = [
         { message: 'Solicitud a unirse', timestamp: '2023-10-01 10:00 AM' },
         { message: 'Solicitud a unirse', timestamp: '2023-10-01 09:30 AM' },

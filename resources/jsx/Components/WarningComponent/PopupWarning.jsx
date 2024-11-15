@@ -1,5 +1,3 @@
-import React from 'react'
-import Proptypes from "prop-types"
 import "./PopupWarning.css"
 import ReactDOM from "react-dom";
 import { Csrf } from "../../modelos/";
@@ -18,14 +16,5 @@ export default function PopupWarning(props){
     </>)
 }
 
-Popup_warning.Proptypes = {
-    title: propTypes.string,
-    message: propTypes.string,
-}
-
-Popup_warning.defaultProps = {
-    title: "Advertencia",
-    message: ""
-}
 
 ReactDOM.render(<PopupWarning/>, document.getElementById('root'));

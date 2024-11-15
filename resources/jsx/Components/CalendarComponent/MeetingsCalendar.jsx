@@ -1,4 +1,3 @@
-import React from "react";
 import { startOfMonth, endOfMonth, eachDayOfInterval, format, isSameDay } from 'date-fns';
 import "./MeetingsCalendar.css"
 

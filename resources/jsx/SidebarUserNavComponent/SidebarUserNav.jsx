@@ -1,4 +1,3 @@
-import React from "react"
 import './SidebarUserNav.css'
 import Notifications from '../NotificationsComponent/Notifications'
 

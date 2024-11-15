@@ -1,4 +1,3 @@
-import React from 'react'
 import './ProjectView.css'
 import ReactDOM from "react-dom";
 import { Csrf } from "../../modelos/";

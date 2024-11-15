@@ -1,4 +1,3 @@
-import React from "react";
 import React, { useState } from 'react';
 import "./PasswordReset.css"
 import ReactDOM from "react-dom";
