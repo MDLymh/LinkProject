@@ -4,8 +4,7 @@
     border: 1px solid #ddd;
     border-radius: 4px;
     overflow-y: auto; /* Enable vertical scrolling */
-    height: 20%;
-    max-height: 100px; /* Set a max height for scrolling */
+    max-height: 210px; /* Set a max height for scrolling */
     padding: 10px;
     background-color: #f9f9f9;
 }
@@ -32,4 +31,11 @@
 .notificationTimestamp {
     font-size: 0.8em;
     color: #888; 
+}
+
+.notificationTitle {
+    font-size: 20px;
+    font-weight: bolder;
+    color: black; 
+    letter-spacing: 3px;
 }

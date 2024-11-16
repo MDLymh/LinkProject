@@ -31,7 +31,16 @@ export default function FilterComponent(){
         {
             id: 1,
             name: "Disruptivo"
-        }
+        },
+        {
+            id: 2,
+            name: "Radical"
+        },
+        {
+            id: 3,
+            name: "De productos/servicios"
+        },
+
     ];
 
     const [selectedInnovations, setSelectedItems] = useState([]);
@@ -50,23 +59,9 @@ export default function FilterComponent(){
         <>
         <div className="filtersContainer">
             <label>Filtrar</label>
-           <div className="careersFilter" >
+            <div className="careersFilter" >
                 <select>
                     {careers.map((item, index)=>{
-                        return (<option>{item.name}</option>);
-                    })}
-                </select>
-           </div>
-           <div className="labsFilter">
-                <select>
-                    {laboratoryLevel.map((item, index)=>{
-                        return (<option>{item.name}</option>);
-                    })}
-                </select>
-           </div>
-           <div className="innovationsFilter">
-                <select multiple={true} value={selectedInnovations} onChange={handleSelectionChange}>
-                    {innovations.map((item, index)=>{
                         return (<option>{item.name}</option>);
                     })}
                 </select>

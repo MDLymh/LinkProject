@@ -1,10 +1,11 @@
 .userProfileTitle{
     margin-left: 1.5rem;
+    font-size: 2rem;
 }
 
 .filtersContainer{
     width: 100%;
-    height: auto;
+    height: 100px;
     background: transparent;
     margin-top: 10px;
     margin-bottom: 20px;
@@ -45,7 +46,7 @@
 .projectsContainer>button:hover{
     padding: 10px;
     border-radius: 15px;
-    background: rgba(250, 169, 7, 0.5);
+    background: rgba(250, 169, 7, 0.758);
     color: black;
     font-size: 1rem;
     font-weight: bold;

@@ -1,5 +1,6 @@
 export * from "./Components/CalendarComponent/MeetingsCalendar"
 export * from "./Components/FilterComponent/FilterComponent"
+export * from "./Components/CreateMeetingComponent/CreateMeeting"
 export * from "./Components/NotificationComponent/NotificationComponent"
 export * from "./Components/NotificationManagerComponent/NotificationsManager"
 export * from "./Components/ProjectsViewComponent/ProjectView"

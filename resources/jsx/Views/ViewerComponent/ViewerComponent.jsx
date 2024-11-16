@@ -7,7 +7,7 @@ import MeetingsCalendar from "../CalendarComponent/MeetingsCalendar";
 import Notifications from "../NotificationsComponent/Notifications";
 import SidebarUserNav from "../SidebarUserNavComponent/SidebarUserNav";
 
-export default function ViewerComponent () {
+export default function ProjectsviewerComponent () {
     
     //recibir el usuario loggeado
     const user = {
@@ -36,14 +36,16 @@ export default function ViewerComponent () {
                 <UserProfile/>
             </div>
             <div className="rightmenu">
+                <label>Proximas reuniones</label>
                 <MeetingsCalendar/>
                 {!user.isStudent ?
                     (<div className="programMeeting">
-                        <label> SAMPLE </label>
+                        <CreateMeeting/>
                     </div>) : null}
             </div>
         </div>
     </div>
     </>);
 }
+
 ReactDOM.render(<ViewerComponent/>, document.getElementById('root'));

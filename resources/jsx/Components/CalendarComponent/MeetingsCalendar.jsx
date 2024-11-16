@@ -6,16 +6,15 @@ import { Csrf } from "../../modelos/";
 
 
 export default function MeetingsCalendar(){
-  
-// pasarme las reuniones de a cuerdo al mes.
+  // pasarme las reuniones de a cuerdo al mes.
   const meetings = [
-        { date: '2024-11-01', time: '10:00 AM'},
-        { date: '2024-11-02', time: '2:00 PM' },
-        { date: '2024-11-05', time: '1:00 PM' },
-        { date: '2024-11-10', time: '11:00 AM' },
-        { date: '2024-11-15', time: '3:00 PM' },
-        { date: '2024-11-20', time: '9:00 AM' },
-        { date: '2024-12-04', time: '9:00 AM' },
+        // { date: '2024-11-01', time: '10:00 AM'},
+        // { date: '2024-11-02', time: '2:00 PM' },
+        // { date: '2024-11-05', time: '1:00 PM' },
+        // { date: '2024-11-10', time: '11:00 AM' },
+        // { date: '2024-11-15', time: '3:00 PM' },
+        // { date: '2024-11-20', time: '9:00 AM' },
+        // { date: '2024-12-04', time: '9:00 AM' },
     ];
 
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -25,13 +24,22 @@ export default function MeetingsCalendar(){
       setCurrentDate(newDate);
     };
   
+    const renderDaysNames = () => {
+      const names = [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'];
+      const blocks = [];
+      names.map((item)=>{
+        blocks.push(<div className="dayBlock">{item}</div>)
+      });
+      return blocks;
+    }
+
     const renderDaysInMonth = () => {
       const year = currentDate.getFullYear();
       const month = currentDate.getMonth();
       const firstDay = new Date(year, month, 1);
       const lastDay = new Date(year, month + 1, 0);
       const days = [];
-  
+
       for (let i = 0; i < firstDay.getDay(); i++) {
         days.push(<div className="day empty" key={`empty-${i}`}></div>);
       }
@@ -54,15 +62,17 @@ export default function MeetingsCalendar(){
     return (
       <div className="calendar">
         <header>
-          <button className="navigateButton" onClick={() => changeMonth(-1)}> {"<"} </button>
+          <button className="navigateButton" onClick={() => changeMonth(-1)}> {"◄"} </button>
           <h1>{currentDate.toLocaleString('default', { month: 'long' })} {currentDate.getFullYear()}</h1>
-          <button className="navigateButton" onClick={() => changeMonth(1)}> {">"} </button>
+          <button className="navigateButton" onClick={() => changeMonth(1)}> {"►"} </button>
         </header>
+        <div className="daysNames">
+          {renderDaysNames()}
+        </div>
         <div className="days">
           {renderDaysInMonth()}
         </div>
       </div>
     );
-
 }
 ReactDOM.render(<MeetingsCalendar/>, document.getElementById('root'));

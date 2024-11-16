@@ -1,52 +1,64 @@
 
 .calendar {
-    width: 300px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
-  }
-  
-  .day {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ddd;
-  }
-  
-  .empty {
-    background-color: transparent;
-  }
-  
-  .has-meeting {
-    color: black;
-    font-weight: bolder;
-    background-color: rgb(52, 225, 167);
-  }
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
 
-  .navigateButton{
-    background: rgb(159, 248, 248);
-    border-width: 0;
-    border-radius: 30px;
-    height: 3rem;
-    width: 3rem;
-    font-weight: bolder;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 1.8rem;
-    align-items: center;
-    padding-left: 1%;
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
 
-  }
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.day {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+}
+
+.empty {
+  background-color: transparent;
+}
+
+.has-meeting {
+  color: black;    
+  font-weight: bolder;
+  background-color: rgba(0, 99, 199, 0.932);
+}
+
+.navigateButton{
+  background: rgb(159, 248, 248);
+  border-width: 0;
+  border-radius: 30px;
+  height: 3rem;
+  width: 3rem;
+  font-weight: bolder;
+  font-size: 1.8rem;
+  align-items: center;
+  padding-left: 1%;
+
+}
+
+
+.daysNames{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.dayBlock{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
