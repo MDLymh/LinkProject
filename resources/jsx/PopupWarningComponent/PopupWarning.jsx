@@ -1,8 +1,6 @@
 import React from 'react'
-import Proptypes from "prop-types"
 import "./PopupWarning.css"
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
 
 //alerta generica
 export default function PopupWarning(props){

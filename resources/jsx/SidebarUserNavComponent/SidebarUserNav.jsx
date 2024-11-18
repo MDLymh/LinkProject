@@ -1,6 +1,6 @@
 import React from "react"
 import './SidebarUserNav.css'
-import Notifications from '../NotificationsComponent/Notifications'
+import Notifications from '../NotificationComponent/NotificationComponent'
 
 export default function SidebarUserNav(){
 

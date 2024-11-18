@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import './SignIn.css'
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
+import { ProjectsviewerComponent } from "./../";
 
 export default function SignIn(){
+
+    const initialData = window.__INITIAL_DATA__;
+    console.log(initialData);
     const studentDomain = "@educa.udg.mx";
     const assesorDomain = "@educa.udg.mx";
 
@@ -13,7 +16,7 @@ export default function SignIn(){
 
     const handleSubmit = (event) => {
       event.preventDefault();
-      if(username = ""){
+      if(username == ""){
         //to do
         return;
       }

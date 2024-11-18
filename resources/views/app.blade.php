@@ -6,9 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield("Title")</title>
 </head>
+<script>
+    window.__INITIAL_DATA__ = @json($pageData);
+</script>
 <body>
     <div id="root"></div>
 
-    @vite('resources/js/Modules/Index/Index.jsx')
+    @vite($viewJsx);
 </body>
 </html>

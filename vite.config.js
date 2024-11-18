@@ -7,7 +7,7 @@ export default defineConfig({
     plugins: [
         [react()],
         laravel({
-            input: [...glob.sync('resources/css/**/*.css'), ...glob.sync('resources/js/**/*.js'),...glob.sync('resources/js/**/*.jsx')],
+            input: [...glob.sync('resources/css/**/*.css'), ...glob.sync('resources/js/**/*.js'),...glob.sync('resources/jsx/**/*.jsx')],
             refresh: true,
         }),
 
