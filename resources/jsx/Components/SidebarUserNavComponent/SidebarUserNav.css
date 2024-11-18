@@ -3,38 +3,49 @@
     font-size: 2rem;
 }
 
+.notificationsContainer{
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.notificationsContainer>label{
+    font-size: 20px;
+    font-weight: bolder;
+    color: black; 
+    letter-spacing: 3px;
+}
+
 .filtersContainer{
     width: 100%;
-    height: 100px;
-    background: transparent;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    height: 200px;
+    background-color: white;
     padding: 1%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-
+    margin-bottom: 120px;
 }
+
 .filtersContainer>label{
     font-size: 1.2rem;
     font-weight: bold;
     word-spacing: 10px;;
 }
 
-.projectsContainer{
+.navigationContainer{
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    background-color: rgba(255, 255, 255, 0);
+    gap: 1.5rem;
+    background-color: rgb(255, 255, 255);
+    height: 100px;
     border-radius: 25px;
-    padding-top: .5rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    padding-bottom: 0.5rem;
+    margin-top: 120px;
 }
 
-.projectsContainer>button{
+.navigationContainer>button{
     padding: 10px;
     border-radius: 15px;
     background: rgba(233, 170, 44, 0.50);
@@ -43,7 +54,7 @@
     font-weight: bold;
 }
 
-.projectsContainer>button:hover{
+.navigationContainer>button:hover{
     padding: 10px;
     border-radius: 15px;
     background: rgba(250, 169, 7, 0.758);

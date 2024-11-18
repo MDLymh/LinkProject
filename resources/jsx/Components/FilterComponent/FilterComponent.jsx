@@ -27,6 +27,7 @@ export default function FilterComponent(){
             name: "Laboratorio 3"
         }
     ];
+
     const innovations = [
         {
             id: 1,
@@ -61,14 +62,21 @@ export default function FilterComponent(){
             <label>Filtrar</label>
             <div className="careersFilter" >
                 <select>
-                    {careers.map((item, index)=>{
-                        return (<option>{item.name}</option>);
+                    {careers.map((item, key)=>{
+                        return (<option key={item.id}>{item.name}</option>);
+                    })}
+                </select>
+           </div>
+           <div className="innovationsFilter" >
+                <select>
+                    {innovations.map((item, key)=>{
+                        return (<option key={item.id}>{item.name}</option>);
                     })}
                 </select>
            </div>
         </div>
         </>
-    )
+    );
 }
 
 ReactDOM.render(<FilterComponent/>, document.getElementById('root'));

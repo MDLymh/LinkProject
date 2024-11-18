@@ -23,20 +23,18 @@ export default function SidebarUserNav({user, current, notifications}){
             <h2 className="userProfileTitle">{currentView}</h2>
         </div>
         <div className="notificationsContainer">
+            <label>Notificaciones</label>
             <Notifications notificationsList={notificationsList}/>
         </div>
         {currentView == "Proyectos" ?
         (<div className="filtersContainer">
             <FilterComponent />
-        </div>) : null}
-        <div className="projectsContainer">
-            <button className="buttonViewTasks">Ver tareas</button>
-            <button className="buttonViewTeam">Ver reuniones</button>
-            <button className="buttonSearchProjects">Ver proyectos</button>
-            <button className="buttonCreateProject">Crear proyecto</button>
+        </div>) : (<div className="filtersContainer"></div>)}
+        <div className="navigationContainer">
+           
         </div>
     </div>
-    </>)
+    </>);
 }
 
 ReactDOM.render(<SidebarUserNav/>, document.getElementById('root'));

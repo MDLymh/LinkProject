@@ -1,17 +1,17 @@
 .notificationContainer {
     width: 100%;
+    max-height: 230px; /* Set a max height for scrolling */
     margin: 20px auto;
     border: 1px solid #ddd;
     border-radius: 4px;
     overflow-y: auto; /* Enable vertical scrolling */
-    max-height: 210px; /* Set a max height for scrolling */
     padding: 10px;
     background-color: #f9f9f9;
 }
 
 .notificationList {
-    list-style-type: decimal; /* Ordered list */
-    padding-left: 20px; /* Indent the list */
+    list-style-type: decimal; 
+    padding-left: 20px; 
     margin: 0;
 }
 

@@ -9,15 +9,22 @@ export default function CreateMeeting() {
         setDate(e.target.value);
     };
 
-  const handleTimeChange = (e) => {
+    const handleTimeChange = (e) => {
         setTime(e.target.value);
     };
-  
+
+    //cargar los proyectos del asesor para programar una nueva tarea
+    let assesorProjects = []
   
     return (
     <>
     <div className='datetimeContainer'>
         <label className='labelMeetings'>Agendar Reunion</label>
+        <div className='assesorProjects'>
+            <ol className='projectsList'>
+
+            </ol>
+        </div>
         <div className="datetime-picker">
                 <input
                 type="date"
@@ -36,7 +43,6 @@ export default function CreateMeeting() {
     </div>
     </>
     );
-
 }
 
 ReactDOM.render(<CreateMeeting/>, document.getElementById('root'));

@@ -9,6 +9,8 @@ import SidebarUserNav from "../SidebarUserNavComponent/SidebarUserNav";
 
 export default function ProjectsviewerComponent () {
     
+    //en cual vista se encuentra.
+    let currentView = "Perfil"
     //recibir el usuario loggeado
     const user = {
         user_name: "Pepito",
@@ -26,14 +28,23 @@ export default function ProjectsviewerComponent () {
         { message: 'Nueva reunion programada', timestamp: '2023-10-01 07:30 AM' },
     ];
 
+    const renderComponent = ()=>{
+        if(currentView == "Proyectos")
+            return <ProjectViewer/>
+        else if(currentView == "Perfil")
+            return <UserProfile/>
+        else
+            return null;
+    }
+
     return (<>
     <div className="main">
         <div className="appglass">
             <div className="leftmenu">
-                <SidebarUserNav user={user} current={"Proyectos"} notifications={notificacions}/>
+                <SidebarUserNav user={user} current={currentView} notifications={notificacions}/>
             </div>
             <div className="mainBoard">
-                <UserProfile/>
+                { renderComponent()}
             </div>
             <div className="rightmenu">
                 <label>Proximas reuniones</label>
