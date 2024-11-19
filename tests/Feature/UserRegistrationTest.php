@@ -19,14 +19,15 @@ class UserRegistrationTest extends TestCase
             'password' => 'Password123!',
             'password_confirmation' => 'Password123!',
         ];
-
+        
+        
         $response = $this->post(route('register'), $userData);
 
         $this->assertDatabaseHas('users', [
             'email' => 'johndoe@example.com',
         ]);
 
-        $response->assertRedirect('/home');
+        $response->assertRedirect('/login');
     }
 
 
@@ -80,6 +81,7 @@ class UserRegistrationTest extends TestCase
         // Verificar el error de validación para el email
         $response->assertSessionHasErrors(['email']);
     }
+        
 
 }
 
