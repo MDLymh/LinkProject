@@ -13,7 +13,6 @@ export default function TasksViewer({user}){
     //4:sin fecha de vencimiento
     let taskStatus = [1, 2, 3, 4];
 
-
     let projectTasks = [
         {
             id: 1,

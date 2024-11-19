@@ -5,17 +5,35 @@ import ReactDOM from "react-dom";
 import { Csrf } from "../../modelos/";
 
 
-export default function SidebarUserNav({user, current, notifications}){
-
-    let notificationsList = [];
-
-    if(notifications == null)
-        notificationsList = [];
-    else
-        notificationsList = notifications;
+export default function SidebarUserNav({user, currentView, notifications, careerFilter, innovationsFilter, labFilter}){
 
     let currentUser = user;
     let currentView = current;
+
+    const handleViewProfile = () =>{
+        currentView = "Perfil";
+
+    }
+
+    const handleViewTasks = () =>{
+        currentView = "Tareas";
+
+    }
+    
+    const handleViewMeetings = () =>{
+        currentView = "Reuniones";
+
+    }
+
+    const handleViewProjects = () =>{
+        //go to Projects
+        currentView = "Proyectos";
+    }
+
+    const handleViewCreateProject = () =>{
+        //popup form to be filled with project data
+    }
+
 
     return (<>
     <div className="sidebarNavContainer">
@@ -28,13 +46,14 @@ export default function SidebarUserNav({user, current, notifications}){
         </div>
         {currentView == "Proyectos" ?
         (<div className="filtersContainer">
-            <FilterComponent />
+            <FilterComponent careerFilter={careerFilter} innovationsFilter={innovationsFilter} labFilter={labFilter} />
         </div>) : (<div className="filtersContainer"></div>)}
         <div className="navigationContainer">
-            <button className="buttonViewTasks">Ver tareas</button>
-            <button className="buttonViewTeam">Ver reuniones</button>
-            <button className="buttonSearchProjects">Ver proyectos</button>
-            {user.id_project == -1 ? (<button className="buttonCreateProject">Crear proyecto</button>) : null}
+            <button className="buttonViewProfile" onClick={handleViewProfile}>Ver perfil</button>
+            <button className="buttonViewTasks" onClick={handleViewTasks}>Ver tareas</button>
+            <button className="buttonViewMeetings" onClick={handleViewMeetings}>Ver reuniones</button>
+            <button className="buttonSearchProjects" onClick={handleViewProjects}>Ver proyectos</button>
+            {user.id_project == -1 ? (<button className="buttonCreateProject" onClick={handleViewCreateProject}>Crear proyecto</button>) : null}
         </div>
     </div>
     </>);

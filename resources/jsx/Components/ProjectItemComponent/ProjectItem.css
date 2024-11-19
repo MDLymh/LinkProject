@@ -48,6 +48,8 @@
   }
 
   .buttonJoinProject{
+    height: 60px;
+    padding: 15px;
     font-family: Arial, sans-serif;
     background-color: #dd8f00c7;
     align-self: flex-end;

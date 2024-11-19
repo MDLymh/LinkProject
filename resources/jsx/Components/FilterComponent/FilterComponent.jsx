@@ -3,9 +3,9 @@ import './FilterComponent.css'
 import ReactDOM from "react-dom";
 import { Csrf } from "../../modelos/";
 
-export default function FilterComponent(){
+export default function FilterComponent({careerFilter, innovationsFilter, labFilter}){
 
-    //aqui usaria los valores para los filtros de la lista de proyectos 
+    //aqui necesito los valores de la tabla careers, dejo ejemplo
     const careers = [
         {
             id: 1,
@@ -16,19 +16,9 @@ export default function FilterComponent(){
             name: "Ing. Informatica"
         }
     ];
-    const laboratoryLevel = [
-        {
-            name: "Laboratorio 1"
-        },
-        {
-            name: "Laboratorio 2"
-        },
-        {
-            name: "Laboratorio 3"
-        }
-    ];
 
-    const innovations = [
+    //aqui de la tabla InnovationsTypes
+    const innovations = [        
         {
             id: 1,
             name: "Disruptivo"
@@ -44,7 +34,25 @@ export default function FilterComponent(){
 
     ];
 
-    const [selectedInnovations, setSelectedItems] = useState([]);
+    //este seria el equivalenete a un SELECT DISTINCT en la tabla Students para obtener el campo current_laboratory
+    //este campo creo lo puedo dejar fijo desde el Signin en un select para dejar fijos estos valores ''
+    const laboratories = [
+        {
+            currentLab: "Laboratorio Abierto 1"
+        },
+        {
+            currentLab: "Laboratorio Abierto 2"
+        },
+        {
+            currentLab: "Laboratorio Abierto 3"
+        }
+    ];
+
+
+    const [careerFilter, setSelectedCareer] = useState('');
+    const [innovationsFilter, setSelectedInnovations] = useState([]);
+    const [labFilter, setSelectedLab] = useState('');
+    
     const handleSelectionChange = (event) => {
         const options = event.target.options;
         const valueArray = [];
@@ -53,7 +61,7 @@ export default function FilterComponent(){
                 valueArray.push(options[i].value);
             }
         }
-        setSelectedItems(valueArray);
+        setSelectedInnovations(valueArray);
     };
 
     return (
@@ -67,10 +75,17 @@ export default function FilterComponent(){
                     })}
                 </select>
            </div>
-           <div className="innovationsFilter" >
-                <select>
+           <div className="innovationsFilter"  >
+                <select size={3} onChange={(e)=>{setSelectedItems(e.value)}}>
                     {innovations.map((item, key)=>{
                         return (<option key={item.id}>{item.name}</option>);
+                    })}
+                </select>
+           </div>
+           <div className="labsFilter" >
+                <select>
+                    {laboratories.map((item, key)=>{
+                        return (<option key={item}>{item}</option>);
                     })}
                 </select>
            </div>

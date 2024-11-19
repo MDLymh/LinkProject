@@ -5,13 +5,13 @@ import FilterComponent from "../FilterComponent/FilterComponent";
 
 
 export default function UserProfile({current}){
-    // Sample user data
     
+    // Yael: sacar la informacion del usuario actual.
     let user = {
         name: 'John Doe',
         email: 'john.doe@alumnos.udg.mx',
         about_me: 'Me dedico a desarrollar aplicaciones en React para sitios web y estudio mi posgrado.',
-        profilePicture: 'https://via.placeholder.com/150', // Placeholder image
+        profilePicture: 'https://via.placeholder.com/150', // default image
         career: 'Ing. Computacion',
         laboratory: 'Lab1',
         skills: [
