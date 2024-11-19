@@ -36,17 +36,7 @@ export default function FilterComponent({careerFilter, innovationsFilter, labFil
 
     //este seria el equivalenete a un SELECT DISTINCT en la tabla Students para obtener el campo current_laboratory
     //este campo creo lo puedo dejar fijo desde el Signin en un select para dejar fijos estos valores ''
-    const laboratories = [
-        {
-            currentLab: "Laboratorio Abierto 1"
-        },
-        {
-            currentLab: "Laboratorio Abierto 2"
-        },
-        {
-            currentLab: "Laboratorio Abierto 3"
-        }
-    ];
+    const laboratories = [ "Laboratorio Abierto 1", "Laboratorio Abierto 2", "Laboratorio Abierto 3"]
 
 
     [careerFilter, setSelectedCareer] = useState('');
@@ -84,7 +74,7 @@ export default function FilterComponent({careerFilter, innovationsFilter, labFil
            </div>
            <div className="labsFilter" >
                 <select>
-                    {laboratories.map((item, key)=>{
+                    {laboratories.map((item)=>{
                         return (<option key={item}>{item}</option>);
                     })}
                 </select>
