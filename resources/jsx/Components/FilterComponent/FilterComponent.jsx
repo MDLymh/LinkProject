@@ -49,9 +49,9 @@ export default function FilterComponent({careerFilter, innovationsFilter, labFil
     ];
 
 
-    const [careerFilter, setSelectedCareer] = useState('');
-    const [innovationsFilter, setSelectedInnovations] = useState([]);
-    const [labFilter, setSelectedLab] = useState('');
+    [careerFilter, setSelectedCareer] = useState('');
+    [innovationsFilter, setSelectedInnovations] = useState([]);
+    [labFilter, setSelectedLab] = useState('');
     
     const handleSelectionChange = (event) => {
         const options = event.target.options;
@@ -76,7 +76,7 @@ export default function FilterComponent({careerFilter, innovationsFilter, labFil
                 </select>
            </div>
            <div className="innovationsFilter"  >
-                <select size={3} onChange={(e)=>{setSelectedItems(e.value)}}>
+                <select size={3} onChange={(e)=>{setSelectedInnovations(e.value)}}>
                     {innovations.map((item, key)=>{
                         return (<option key={item.id}>{item.name}</option>);
                     })}
