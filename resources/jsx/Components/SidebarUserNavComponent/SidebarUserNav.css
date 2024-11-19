@@ -50,16 +50,15 @@
     border-radius: 15px;
     background: rgba(233, 170, 44, 0.50);
     color: black;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
+    width: 200px;
+    height: 60px;
 }
 
 .navigationContainer>button:hover{
-    padding: 10px;
-    border-radius: 15px;
     background: rgba(250, 169, 7, 0.758);
     color: black;
-    font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
 }

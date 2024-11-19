@@ -3,14 +3,16 @@ import "./ViewerComponent.css"
 import Sidebar from "../Sidebar/SidebarComponent";
 import UserProfile from "../UserProfileViewerComponent/UserProfile";
 import MeetingsCalendar from "../CalendarComponent/MeetingsCalendar";
-
 import Notifications from "../NotificationsComponent/Notifications";
 import SidebarUserNav from "../SidebarUserNavComponent/SidebarUserNav";
+
+import ReactDOM from "react-dom";
+import { Csrf } from "../../modelos/";
 
 export default function ProjectsviewerComponent () {
     
     //en cual vista se encuentra.
-    let currentView = "Perfil"
+    let currentView = "Tareas"
     //recibir el usuario loggeado
     const user = {
         user_name: "Pepito",
@@ -33,6 +35,8 @@ export default function ProjectsviewerComponent () {
             return <ProjectViewer/>
         else if(currentView == "Perfil")
             return <UserProfile/>
+        else if(currentView == "Tareas")
+            return <ViewTask/>
         else
             return null;
     }
@@ -59,4 +63,4 @@ export default function ProjectsviewerComponent () {
     </>);
 }
 
-ReactDOM.render(<ViewerComponent/>, document.getElementById('root'));
+ReactDOM.render(<ProjectsviewerComponent/>, document.getElementById('root'));

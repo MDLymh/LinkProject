@@ -31,7 +31,10 @@ export default function SidebarUserNav({user, current, notifications}){
             <FilterComponent />
         </div>) : (<div className="filtersContainer"></div>)}
         <div className="navigationContainer">
-           
+            <button className="buttonViewTasks">Ver tareas</button>
+            <button className="buttonViewTeam">Ver reuniones</button>
+            <button className="buttonSearchProjects">Ver proyectos</button>
+            {user.id_project == -1 ? (<button className="buttonCreateProject">Crear proyecto</button>) : null}
         </div>
     </div>
     </>);

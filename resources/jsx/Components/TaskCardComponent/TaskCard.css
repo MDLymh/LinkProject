@@ -1,0 +1,30 @@
+    
+.taskcardContainer{
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    border: 1px solid hsl(0, 0%, 80%);
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(18, 18, 18, 0.1);
+    padding: 20px;
+    margin: 10px;
+    width: 90%;    
+  }
+
+  .student{
+    font-weight: bold;
+    font-size: 24px;
+  }
+  
+  .starts{
+    font-size: 20px;
+  }
+
+  .scheduled{
+    font-size: 20px;
+  }
+
+  .content{
+    font-size: 1.2rem;
+    font-weight: 600;
+  }

@@ -1,5 +1,7 @@
 import './CreateMeeting.css'
 import React, { useState } from 'react';
+import ReactDOM from "react-dom";
+import { Csrf } from "../../modelos/";
 
 export default function CreateMeeting() {
     const [date, setDate] = useState('');
@@ -39,10 +41,11 @@ export default function CreateMeeting() {
                 className="time-input"
                 />
         </div>
-        <button>Guardar</button>
+        <button className='buttonSaveMeeting'>Guardar</button>
     </div>
     </>
     );
+
 }
 
 ReactDOM.render(<CreateMeeting/>, document.getElementById('root'));
