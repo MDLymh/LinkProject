@@ -24,7 +24,7 @@ export default function ProjectItem({project, user}){
                 <strong className='members'>{"Miembros:" + project.members + "/" + project.max_members}</strong>
            </div>
            <div className='membersContainer'>
-                {user.id_project === -1 && project.max_members != project.members ? 
+                {user.id_project === -1 && user.isStudent && project.max_members != project.members ? 
                 (<button className='buttonJoinProject'>Solicitar Unirse</button>) 
                 : null}
             </div>

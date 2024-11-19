@@ -8,6 +8,7 @@ export default function ProjectsView({careerFilter, innovationsFilter, labfilter
     let user = {
         id: 1,
         userName: "Pepito",
+        isStudent: true,
         isLeader: false,
         id_project: -1,
     }
