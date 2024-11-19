@@ -38,10 +38,9 @@ export default function FilterComponent({careerFilter, innovationsFilter, labFil
     //este campo creo lo puedo dejar fijo desde el Signin en un select para dejar fijos estos valores ''
     const laboratories = [ "Laboratorio Abierto 1", "Laboratorio Abierto 2", "Laboratorio Abierto 3"]
 
-
-    [careerFilter, setSelectedCareer] = useState('');
-    [innovationsFilter, setSelectedInnovations] = useState([]);
-    [labFilter, setSelectedLab] = useState('');
+    // [careerFilter, setSelectedCareer] = useState('');
+    // [innovationsFilter, setSelectedInnovations] = useState([]);
+    // [labFilter, setSelectedLab] = useState('');
     
     const handleSelectionChange = (event) => {
         const options = event.target.options;
@@ -59,14 +58,26 @@ export default function FilterComponent({careerFilter, innovationsFilter, labFil
         <div className="filtersContainer">
             <label>Filtrar</label>
             <div className="careersFilter" >
-                <select>
+                <select onSelect={(e) => { 
+                    console.log(e.target.value);
+                    setFilterCareer(e.target.value);}}>
                     {careers.map((item, key)=>{
                         return (<option key={item.id}>{item.name}</option>);
                     })}
                 </select>
            </div>
            <div className="innovationsFilter"  >
-                <select size={3} onChange={(e)=>{setSelectedInnovations(e.value)}}>
+                <select size={3} multiple onChange={(e)=>{
+                     const options = e.target.options;
+                     const valueArray = [];
+                     for (let i = 0; i < options.length; i++) {
+                         if (options[i].selected) {
+                             valueArray.push(options[i].value);
+                         }
+                     }
+                     console.log(valueArray);
+                     setFilterInnovations(valueArray);
+                }}>
                     {innovations.map((item, key)=>{
                         return (<option key={item.id}>{item.name}</option>);
                     })}
