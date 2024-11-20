@@ -7,7 +7,7 @@
     <title>@yield("Title")</title>
 </head>
 <script>
-    window.__INITIAL_DATA__ = @json($pageData);
+    window.__INITIAL_DATA__ = @json(initialData)
 </script>
 <body>
     <div id="root"></div>

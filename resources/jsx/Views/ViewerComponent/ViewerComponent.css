@@ -1,0 +1,51 @@
+
+.main{
+  background: linear-gradient(
+  105deg,
+  #ffe1bc 30%,
+  #ffcfd1 52%,
+  #f3c6f1 91%
+);
+font-family: "Open Sans", sans-serif;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+
+.appglass{
+  display: grid;
+  height: 95%;
+  width: 95%;
+  border-radius: 2rem;
+  background-color: rgba(255, 255, 255, 0.54);;
+  overflow: hidden;
+  grid-template-columns: 16rem auto 25rem;
+}
+
+.leftmenu{
+margin-right: 10px;
+}
+
+.mainBoard{
+width: 95%;
+padding-right: 10px;
+align-items: center;
+}
+
+.rightmenu{
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 100%; 
+padding-top: 1.5rem;
+background-color: transparent;  
+padding-left: 10px;
+padding-right: 10px;
+}
+
+.rightmenu>label{
+font-weight: bolder;
+font-size: 2rem;
+}
