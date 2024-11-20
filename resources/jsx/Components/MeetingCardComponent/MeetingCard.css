@@ -1,0 +1,54 @@
+
+.card{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 10px;
+    border: 1px solid hsl(0, 0%, 80%);
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(18, 18, 18, 0.1);
+    padding: 20px;
+    margin: 10px;
+    width: 90%;    
+  }
+
+.card .card-data{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-size: 1.2rem;
+}
+
+
+  .card .card-title{
+    font-family: Arial, sans-serif;
+    font-size: 2.1rem;
+    margin: 0;
+    color: black
+  }
+
+  .meeting-data{
+    letter-spacing: 2px;
+}
+
+  
+  .buttonCancel{
+    height: 60px;
+    padding: 15px;
+    font-family: Arial, sans-serif;
+    color:black;
+    background-color: #bb530eeb;
+    align-self: flex-end;
+    font-size: 1.5rem;
+    border-radius: 25px;
+    align-self: flex-end;
+    margin-left: 45px;
+  }
+  
+  .buttonCancel:hover{
+    font-family: Arial, sans-serif;
+    background-color: rgba(255, 7, 7, 0.708);
+    color:white;
+    width: 140px;
+    height: 60px;
+  }

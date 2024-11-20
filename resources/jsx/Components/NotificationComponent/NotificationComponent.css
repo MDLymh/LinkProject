@@ -1,0 +1,41 @@
+.notificationContainer {
+    width: 100%;
+    max-height: 230px; /* Set a max height for scrolling */
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.notificationList {
+    list-style-type: decimal; 
+    padding-left: 20px; 
+    margin: 0;
+}
+
+.notificationItem {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.notificationItem:last-child {
+    border-bottom: none; 
+}
+
+.notificationMessage {
+    display: block; 
+}
+
+.notificationTimestamp {
+    font-size: 0.8em;
+    color: #888; 
+}
+
+.notificationTitle {
+    font-size: 20px;
+    font-weight: bolder;
+    color: black; 
+    letter-spacing: 3px;
+}

@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import react from '@vitejs/plugin-react';
 import * as glob from 'glob';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
     plugins: [
@@ -10,5 +10,6 @@ export default defineConfig({
             input: [...glob.sync('resources/css/**/*.css'), ...glob.sync('resources/js/**/*.js'),...glob.sync('resources/jsx/**/*.jsx')],
             refresh: true,
         }),
+
     ],
 });
