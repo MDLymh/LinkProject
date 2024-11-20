@@ -25,8 +25,8 @@ class Consultant extends Model
     public function meetings(){
         return $this->belongsToMany(Meeting::class, 'meeting_consultant', 'id_consultant', 'id_meeting');
     }
-
+    // En caso de que tenga varios proyectos, de no ser el caso hasOne
     public function projects(){
-        return $this->hasOne(Project::class, 'id_consultant');
+        return $this->hasMany(Project::class, 'id_consultant');
     }
 }

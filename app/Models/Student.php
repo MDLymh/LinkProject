@@ -28,7 +28,7 @@ class Student extends Model
     }
 
     public function course(){
-        return $this->hasOne(Course::class, 'id_course');
+        return $this->belongsTo(Course::class, 'id_course');
     }
 
     public function project(){

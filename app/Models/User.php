@@ -21,11 +21,11 @@ class User extends Model
     ];
 
     public function consultant(){
-        return $this->hasMany(Consultant::class, 'id_user');
+        return $this->hasOne(Consultant::class, 'id_user');
     }
 
     public function student(){
-        return $this->hasMany(Student::class, 'id_user');
+        return $this->hasOne(Student::class, 'id_user');
     }
 
     public function notificationsSent(){
