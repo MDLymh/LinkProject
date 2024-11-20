@@ -6,6 +6,7 @@ import { Csrf } from "../../modelos/";
 export default function CreateMeeting() {
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
+    const [projectId, setProjectId] = useState('');
 
     const handleDateChange = (e) => {
         setDate(e.target.value);
@@ -36,13 +37,15 @@ export default function CreateMeeting() {
     <div className='datetimeContainer'>
         <label className='labelMeetings'>Agendar Reunion</label>
         <div className='assesorProjects'>
-            <ol className='projectsList'>
+            <select className='projectsList' onChange={(e)=>{
+                setProjectId(e.target.key);
+            }}>
                 {assesorProjects.map((item, index) => 
                 {
                     return(<option key={item.id_project}>{item.project_name}</option>);
                 })
                 }
-            </ol>
+            </select>
         </div>
         <div className="datetime-picker">
                 <input

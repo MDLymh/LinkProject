@@ -62,3 +62,8 @@
 background: rgba(250, 169, 7, 0.758);
 cursor: pointer;
 }
+
+
+.projectsList{
+  height: 40px;
+}
