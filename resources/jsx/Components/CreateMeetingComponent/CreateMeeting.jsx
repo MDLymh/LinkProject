@@ -15,8 +15,21 @@ export default function CreateMeeting() {
         setTime(e.target.value);
     };
 
-    //cargar los proyectos del asesor para programar una nueva tarea
-    let assesorProjects = []
+    //cargar los proyectos del asesor para que pueda seleccionarlo para programar una nueva reunion
+    let assesorProjects = [
+        {
+            id_project: 1,
+            project_name: "Proyecto 1"
+        },
+        {
+            id_project: 2,
+            project_name: "Proyecto 1"
+        },
+        {
+            id_project: 3,
+            project_name: "Proyecto 1"
+        },
+    ]
   
     return (
     <>
@@ -24,7 +37,11 @@ export default function CreateMeeting() {
         <label className='labelMeetings'>Agendar Reunion</label>
         <div className='assesorProjects'>
             <ol className='projectsList'>
-
+                {assesorProjects.map((item, index) => 
+                {
+                    return(<option key={item.id_project}>{item.project_name}</option>);
+                })
+                }
             </ol>
         </div>
         <div className="datetime-picker">
@@ -45,7 +62,6 @@ export default function CreateMeeting() {
     </div>
     </>
     );
-
 }
 
 ReactDOM.render(<CreateMeeting/>, document.getElementById('root'));
