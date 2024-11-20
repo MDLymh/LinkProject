@@ -36,27 +36,33 @@ export default function SidebarUserNav({user, currentView, notifications, career
 
 
     return (<>
-    <div className="sidebarNavContainer">
-        <div className="header">
-            <h2 className="userProfileTitle">{currentView}</h2>
+        <div className="sidebarNavContainer">
+            <div className="header">
+                <h2 className="userProfileTitle">{currentView}</h2>
+            </div>
+            <div className="notificationsContainer">
+                <label>Notificaciones</label>
+                <Notifications notificationsList={notificationsList}/>
+            </div>
+            {currentView == "Proyectos" ?
+            (<div className="filtersContainer">
+                <FilterComponent setFilterCareer={setFilterCareer} setFilterInnovations={setFilterInnovations} setFilterLab={setFilterLab}/>
+                {/* <FilterComponent /> */}
+            </div>) : (<div className="filtersContainer"></div>)}
+            <div className="navigationContainer">
+                <button className="buttonViewProfile"  onClick={() => {setCurrentView("Perfil")}}>Ver perfil</button>
+                <button className="buttonViewTasks" onClick={() => {setCurrentView("Tareas")}}>Ver tareas</button>
+                <button className="buttonViewTeam" onClick={() => {setCurrentView("Reuniones")}}>Ver reuniones</button>
+                {user.id_project == -1 ? (
+                                <button className="buttonSearchProjects" onClick={() =>{setCurrentView("Proyectos")}}>Ver proyectos</button>
+    
+                ) : (
+                    <button className="buttonSearchProjects" onClick={() =>{setCurrentView("Proyecto")}}>Ver proyecto</button>
+                )}
+                {user.id_project == -1 ? (<button className="buttonCreateProject" onClick={handleViewCreateProject}>Crear proyecto</button>) : null}
+            </div>
         </div>
-        <div className="notificationsContainer">
-            <label>Notificaciones</label>
-            <Notifications notificationsList={notificationsList}/>
-        </div>
-        {currentView == "Proyectos" ?
-        (<div className="filtersContainer">
-            <FilterComponent careerFilter={careerFilter} innovationsFilter={innovationsFilter} labFilter={labFilter} />
-        </div>) : (<div className="filtersContainer"></div>)}
-        <div className="navigationContainer">
-            <button className="buttonViewProfile" onClick={handleViewProfile}>Ver perfil</button>
-            <button className="buttonViewTasks" onClick={handleViewTasks}>Ver tareas</button>
-            <button className="buttonViewMeetings" onClick={handleViewMeetings}>Ver reuniones</button>
-            <button className="buttonSearchProjects" onClick={handleViewProjects}>Ver proyectos</button>
-            {user.id_project == -1 ? (<button className="buttonCreateProject" onClick={handleViewCreateProject}>Crear proyecto</button>) : null}
-        </div>
-    </div>
-    </>);
+        </>);
 }
 
 ReactDOM.render(<SidebarUserNav/>, document.getElementById('root'));

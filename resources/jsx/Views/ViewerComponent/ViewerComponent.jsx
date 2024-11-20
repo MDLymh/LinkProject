@@ -5,6 +5,10 @@ import UserProfile from "../UserProfileViewerComponent/UserProfile";
 import MeetingsCalendar from "../CalendarComponent/MeetingsCalendar";
 import Notifications from "../NotificationsComponent/Notifications";
 import SidebarUserNav from "../SidebarUserNavComponent/SidebarUserNav";
+import CreateMeeting from "../CreateMeetingComponent/CreateMeeting";
+import ProjectViewer from "../ProjectViewer/ProjectViewer"
+import ViewTask from "../ViewTasks/ViewTask";
+import ViewerOwnProject from "../ViewerOwnProjectComponent/ViewerOwnProject";
 
 import ReactDOM from "react-dom";
 import { Csrf } from "../../modelos/";
@@ -49,13 +53,16 @@ export default function ProjectsviewerComponent () {
         return () => clearInterval(interval); 
     }, []);
 
-    const renderComponent = () => {
+    
+    const renderComponent = () =>{
         if(currentView == "Proyectos")
             return <ProjectViewer />
         else if(currentView == "Perfil")
             return <UserProfile/>
         else if(currentView == "Tareas")
             return <ViewTask/>
+        else if(currentView == "Proyecto")
+            return <ViewerOwnProject user={user}/>;
         else
             return null;
     }
@@ -64,14 +71,15 @@ export default function ProjectsviewerComponent () {
     <div className="main">
         <div className="appglass">
             <div className="leftmenu">
-                <SidebarUserNav user={user} currentView={currentView} careerFilter={careerFilter} notifications={notificacions} labFilter={labFilter}/>
+                <SidebarUserNav user={user} currentView={currentView} notifications={notificacions} careerFilter={careerFilter} innovationsFilter={innovationsFilter} labFilter={labFilter}/>
+                {/* <SidebarUserNav user={user} currentView={currentView} notifications={notificacions} /> */}
             </div>
             <div className="mainBoard">
                 { renderComponent()}
             </div>
             <div className="rightmenu">
                 <label>Proximas reuniones</label>
-                <MeetingsCalendar currentDate={currentDate}/>
+                <MeetingsCalendar/>
                 {!user.isStudent ?
                     (<div className="programMeeting">
                         <CreateMeeting/>
