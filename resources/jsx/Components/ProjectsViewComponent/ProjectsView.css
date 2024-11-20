@@ -3,9 +3,10 @@
     margin-left: 3rem;
     max-height: 1100px; /* Set a fixed height */
     overflow-y: auto; /* Enable vertical scrolling */
-    border: 1px solid #ccc; /* Optional: Add a border */
-    padding: 10px; /* Optional: Add some padding */
+    border: 1px solid #ccc; 
+    padding: 10px; 
 }
+
 
 
 .filteredProjects {

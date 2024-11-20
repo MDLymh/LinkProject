@@ -1,7 +1,6 @@
+import { useState } from 'react'
 import './MeetingsViewer.css'
 import MeetingCard from '../MeetingCardComponent/MeetingCard'
-import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
 
 
 export default function MeetingsViewer(){
@@ -43,7 +42,5 @@ export default function MeetingsViewer(){
                     })}
             </ol>
         </div>
-    </>);
+    </>)
 }
-
-ReactDOM.render(<MeetingsViewer/>, document.getElementById('root'));

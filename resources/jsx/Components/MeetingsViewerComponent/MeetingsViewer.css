@@ -1,0 +1,14 @@
+.meetingsContainer{
+    background-color: white;
+    margin-left: 3rem;
+    max-height: 1100px; /* Set a fixed height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 2px solid #ccc; /* Optional: Add a border */
+    padding: 10px; 
+}
+
+.meetingsList {
+    list-style-type: none; 
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
