@@ -2,49 +2,57 @@
 
 namespace App\Models;
 
+<<<<<<< HEAD
 use App\Notifications\VerifyEmailNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+=======
+>>>>>>> PalmaDB
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
+<<<<<<< HEAD
 class User extends Authenticatable implements MustVerifyEmail
+=======
+class User extends Model
+>>>>>>> PalmaDB
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    protected $table = 'users';
+    protected $primaryKey = 'id_user';
+    
     protected $fillable = [
+        'code',
         'name',
+<<<<<<< HEAD
         'email',
         'password',
         'remember_token'
+=======
+        'is_active',
+        'user_type',
+        'profile_picture'
+>>>>>>> PalmaDB
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    public function consultant(){
+        return $this->hasOne(Consultant::class, 'id_user');
+    }
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+    public function student(){
+        return $this->hasOne(Student::class, 'id_user');
+    }
+
+    public function notificationsSent(){
+        return $this->hasMany(Notification::class, 'id_user_request');
+    }
+
+    public function notificationsReceived(){
+        return $this->hasMany(Notification::class, 'id_user_leader');
+    }
+
+    public function skills(){
+        return $this->belongsToMany(Skill::class, 'student_skills', 'id_user', 'id_skill');
     }
 
 
@@ -52,3 +60,4 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new VerifyEmailNotification($this));
     }
 }
+
