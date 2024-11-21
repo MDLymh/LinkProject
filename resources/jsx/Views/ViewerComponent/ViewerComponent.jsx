@@ -73,7 +73,7 @@ export default function ProjectsviewerComponent () {
     <div className="main">
         <div className="appglass">
             <div className="leftmenu">
-                <SidebarUserNav user={user} currentView={currentView} notifications={notificacions} setFilterCareer={setFilterCareer} setFilterInnovations={setFilterInnovations} setFilterLab={setFilterLab}/>
+                <SidebarUserNav user={user} currentView={currentView} setCurrentView={setCurrentView} notifications={notificacions} setFilterCareer={setFilterCareer} setFilterInnovations={setFilterInnovations} setFilterLab={setFilterLab}/>
             </div>
             <div className="mainBoard">
                 { renderComponent()}

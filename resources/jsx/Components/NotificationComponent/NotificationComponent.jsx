@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 export default function NotificationComponent({ notifications }){
 
-    const [notifications, setNotifications] = useState([]);
+    // const [notifications, setNotifications] = useState([]);
     const [isPending, startTransition] = useTransition();//tablero se actualiza en segundo plano
  
 
@@ -12,7 +12,7 @@ export default function NotificationComponent({ notifications }){
 
             <label className='notificationTitle'>Recientes</label>
             <ol className="notificationList">
-                {notificationsList.map((notification, index) => (
+                {notifications.map((notification, index) => (
                     <li key={index} className="notificationItem">
                         <span className="notificationMessage">{notification.message}</span>
                         <span className="notificationTimestamp">{notification.timestamp}</span>
