@@ -1,7 +1,7 @@
-import React from "react"
-import Notifications from '../Components/NotificationComponent/NotificationComponent'
+import React from "react";
+import {NotificationComponent} from '../';
 
-export default function SidebarUserNav(){
+export const SidebarUserNav=()=>{
 
     const notificationsList = [
         { message: 'Solicitud a unirse', timestamp: '2023-10-01 10:00 AM' },
@@ -11,14 +11,14 @@ export default function SidebarUserNav(){
         { message: 'Nueva tarea', timestamp: '2023-10-01 08:00 AM' },
         { message: 'Nueva reunion programada', timestamp: '2023-10-01 07:30 AM' },
     ];
-    
+
     return (<>
     <div className="sidebarNavContainer">
         <div className="header">
             <h2 className="userProfileTitle">Perfil de usuario</h2>
         </div>
         <div className="notificationsContainer">
-            <Notifications notificationsList={notificationsList}/>
+            <NotificationComponent notificationsList={notificationsList}/>
         </div>
         <div className="projectsContainer">
             <button className="buttonViewTasks">Ver tareas</button>

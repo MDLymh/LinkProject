@@ -1,8 +1,6 @@
-import './StudentCard.css'
-import ReactDOM from "react-dom";
-import { Csrf } from "../../";
+import './StudentCard.css';
 
-export default function StudentCard({student}){
+export const StudentCard=({student})=>{
 
     return(<>
         <div className="card">

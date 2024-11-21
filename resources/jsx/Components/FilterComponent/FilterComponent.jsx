@@ -1,9 +1,5 @@
-import { useState } from "react";
-import './FilterComponent.css'
-import ReactDOM from "react-dom";
-import { Csrf } from "../../";
-
-export default function FilterComponent({careerFilter, innovationsFilter, labFilter}){
+import './FilterComponent.css';
+export const FilterComponent = ({careerFilter, innovationsFilter, labFilter})=>{
 
     //aqui necesito los valores de la tabla careers, dejo ejemplo
     const careers = [

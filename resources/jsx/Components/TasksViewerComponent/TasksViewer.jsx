@@ -1,11 +1,7 @@
 import { useState } from 'react';
-import './TasksViewer.css'
-import TaskCard from '../TaskCardComponent/TaskCard';
-import Popup from '../PopupCreateTaskComponent/PopupCreateTask';
-import ReactDOM from "react-dom";
-import { Csrf } from "../../";
-
-export default function TasksViewer({user}){
+import './TasksViewer.css';
+import { TaskCard,PopupCreateTask } from '../../';
+export const TasksViewer=({user})=>{
 
     //1:programada
     //2:finalizada
@@ -68,7 +64,7 @@ export default function TasksViewer({user}){
             })}
 
             {isPopupOpen && (
-                <Popup
+                <PopupCreateTask
                     onClose={() => setIsPopupOpen(false)}
                     onSubmit={handleCreateTask}
                 />

@@ -1,7 +1,6 @@
-import './ProjectsView.css'
-import ReactDOM from "react-dom";
+import './ProjectsView.css';
 
-export default function ProjectsView({careerFilter, innovationsFilter, labfilter}){
+export const ProjectsView =({careerFilter, innovationsFilter, labfilter})=>{
 
     //Yael: recibir usuario logeado
     let user = {

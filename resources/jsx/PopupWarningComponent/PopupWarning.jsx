@@ -1,8 +1,7 @@
 import React from 'react'
-import ReactDOM from "react-dom";
 
 //alerta generica
-export default function PopupWarning(props){
+export const PopupWarning=(props)=>{
 
     return(
     <>

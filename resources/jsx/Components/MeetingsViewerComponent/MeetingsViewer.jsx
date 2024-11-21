@@ -1,11 +1,9 @@
 import './MeetingsViewer.css'
-import MeetingCard from '../MeetingCardComponent/MeetingCard'
-import ReactDOM from "react-dom";
+//import {MeetingCard} from '../../';
 import React, {useState} from 'react';
-import { Csrf } from "../../";
 
 
-export default function MeetingsViewer(){
+export const MeetingsViewer = ()=>{
 
     //Yael: aqui necesito el usuario loggeado.
     let user = {
@@ -40,7 +38,7 @@ export default function MeetingsViewer(){
             <ol className='meetingsList'>
                 {meetings.map((item, key)=>
                     {
-                        return(<MeetingCard key={item.id} meeting={item} setMeetings={setMeetings}/>);
+                        return;//(<MeetingCard key={item.id} meeting={item} setMeetings={setMeetings}/>);
                     })}
             </ol>
         </div>

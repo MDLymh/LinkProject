@@ -1,10 +1,8 @@
 import "./plantilla.css";
 
 import React from "react";
-import ReactDOM from "react-dom";
-import { Csrf } from "../../";
 
-export default function Plantilla(){
+export const Plantilla =()=>{
 
     return(
         <>

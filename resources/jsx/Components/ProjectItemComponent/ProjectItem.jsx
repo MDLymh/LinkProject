@@ -1,7 +1,6 @@
-import './ProjectItem.css'
-import ReactDOM from "react-dom";
+import './ProjectItem.css';
 
-export default function ProjectItem({project, user}){
+export const ProjectItem=({project, user})=>{
 
     let hasProject = user.id_project != -1 ? true : false;
 

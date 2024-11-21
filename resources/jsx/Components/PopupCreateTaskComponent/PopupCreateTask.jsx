@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import './PopupCreateTask.css';
-import ReactDOM from "react-dom";
-import { Csrf } from "../../";
 
-export default function PopupCreateTask({ onClose, onSubmit }) {
+export const PopupCreateTask=({ onClose, onSubmit }) =>{
     const [formData, setFormData] = useState({
         content: '',
         student: '',

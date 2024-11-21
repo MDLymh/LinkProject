@@ -1,10 +1,8 @@
 // MultiSelect.js
 import React, { useState } from 'react';
 import './MultiSelect.css';
-import ReactDOM from "react-dom";
-import { Csrf } from "../../";
 
-export default function MultiSelect ({ options }) {
+export const MultiSelect = ({ options }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleChange = (event) => {

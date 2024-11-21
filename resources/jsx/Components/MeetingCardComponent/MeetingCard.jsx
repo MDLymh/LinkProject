@@ -1,9 +1,8 @@
-import { useState } from 'react'
-import './MeetingCard.css'
-import MeetingCard from '../MeetingCardComponent/MeetingCard'
+import { useState } from 'react';
+import './MeetingCard.css';
 
 
-export default function MeetingsViewer(){
+export const MeetingsViewer = ()=>{
 
     //Yael: aqui necesito el usuario loggeado.
     let user = {
@@ -13,7 +12,7 @@ export default function MeetingsViewer(){
 
     //Yael: aqui necesito las reuniones, si puedes ordenadas por fecha de mas proxima hacia atras.
     let [meetings, setMeetings] = useState([]);
-    
+
     meetings = [
         {
             id: 1,

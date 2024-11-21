@@ -1,9 +1,7 @@
 import React from "react";
-import UserProfile from "../UserProfileComponent/UserProfile";
-import MeetingsCalendar from "../Components/CalendarComponent/MeetingsCalendar";
-import SidebarUserNav from "../SidebarUserNavComponent/SidebarUserNav";
+import {UserProfile,MeetingsCalendar,SidebarUserNav} from "../";
 
-const ProjectsviewerComponent = () =>{
+export const ProjectsviewerComponent = () =>{
     const notifications = [
         { message: 'New message from John', timestamp: '2023-10-01 10:00 AM' },
         { message: 'Your order has been shipped', timestamp: '2023-10-01 09:30 AM' },
@@ -32,4 +30,3 @@ const ProjectsviewerComponent = () =>{
     </>);
 }
 
-export default ProjectsviewerComponent

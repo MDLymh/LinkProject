@@ -1,7 +1,7 @@
 import './ViewerOwnProject.css'
-import StudentCard from '../StudentCardComponent/StudentCard';
+import { StudentCard } from '../../';
 
-export default function ViewerOwnProject ({user}){
+export const ViewerOwnProject =({user})=>{
 
 
     //Yael: aqui necesito la informacion del proyecto al que pertenece el usuario.
@@ -34,15 +34,15 @@ export default function ViewerOwnProject ({user}){
               <label className="titleInfo"> Nombre de proyecto:
                     </label>
                     <p className="contentInfo">{projectInfo.project_name}</p>
-                    
+
                 <label className="titleInfo"> Asesor:
                     </label>
                     <p className="contentInfo">{projectInfo.assesor}</p>
-    
+
                 <label className="titleInfo"> Innovacion:
                     </label>
                     <p className="contentInfo">{projectInfo.innovation}</p>
-                
+
                 <label className="membersInfo"> Miembros:</label>
                <div className='membersContainer'>
                     <li className='membersList'>

@@ -6,7 +6,7 @@ import { Csrf } from "../../";
 export const  SignIn =() =>{
   const studentDomain = "@educa.udg.mx";
   const assesorDomain = "@educa.udg.mx";
-
+  let csrf = document.querySelector("meta[name='csrf']").getAttribute('content');
   const [name, setName] = useState('');
   const [surname1, setSurname1] = useState('');
   const [surname2, setSurname2] = useState('');
@@ -73,7 +73,7 @@ const laboratories = [ "NA", "Laboratorio Abierto 1", "Laboratorio Abierto 2", "
       <h1> LinkProject </h1>
     </div>
     <h2>Registrarse</h2>
-    <form onSubmit={handleSubmit}>
+    <form action='/register' method="post">
       <div className="form-group">
         <label>Nombre:</label>
         <input
@@ -82,6 +82,7 @@ const laboratories = [ "NA", "Laboratorio Abierto 1", "Laboratorio Abierto 2", "
           name="name"
           onChange={(event) => setName(event.target.value)}
           placeholder=""/>
+        <input type="hidden" name="_token" value={csrf} autocomplete="off"></input>
         <label>Apellido Paterno:</label>
         <input
           type="text"

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import ReactDOM from "react-dom";
 
-export default function SignIn(){
+export const SignIn=()=>{
 
     const initialData = window.__INITIAL_DATA__;
     console.log(initialData);

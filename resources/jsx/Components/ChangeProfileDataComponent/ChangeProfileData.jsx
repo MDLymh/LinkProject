@@ -1,10 +1,7 @@
-import { useState } from 'react'
 import './ChangeProfileData.css'
-import ReactDOM from "react-dom";
-import { Csrf } from "../../";
 
 
-export default function ChangeProfile(){
+export const ChangeProfile = () =>{
 
     const onSubmit = (event) =>{
 

@@ -2,8 +2,8 @@ import { useState } from "react"
 import "./UserProfile.css"
 
 
-export default function UserProfile({current}){
-    
+export const UserProfile=({current})=>{
+
     // Yael: aqui necesitaria los datos del usuario actual loggeado
 let user = {
     name: 'John Doe',
@@ -60,12 +60,12 @@ let user = {
                 <p className="userEmail">{user.email}</p>
 
                 <input className=""
-                    type="file" 
-                    accept="image/*" 
-                    onChange={handleImageChange} 
-                    style={{ display: 'none' }} 
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    style={{ display: 'none' }}
                     id="fileInput"  />
-                <button className="changePicture" 
+                <button className="changePicture"
                         onClick={() => document.getElementById('fileInput').click()} >
                         Cambiar</button>
                 </div>
@@ -82,6 +82,6 @@ let user = {
                 </span> </p>
             </div>
         </div>
-    ); 
+    );
 }
-    
+

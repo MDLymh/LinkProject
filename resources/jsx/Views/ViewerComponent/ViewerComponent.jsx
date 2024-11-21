@@ -1,17 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./ViewerComponent.css"
-import UserProfile from "../../Components/UserProfileComponent/UserProfile";
-import MeetingsCalendar from "../../Components/CalendarComponent/MeetingsCalendar";
-import SidebarUserNav from "../../Components/SidebarUserNavComponent/SidebarUserNav";
-import CreateMeeting from "../../Components/CreateMeetingComponent/CreateMeeting";
-import ProjectViewer from "../../Components/ProjectsViewComponent/ProjectsView";
-//import ViewTask from "../../Components/ViewTasks/ViewTask";
-import ViewerOwnProject from "../../Components/ViewerOwnProjectComponent/ViewerOwnProject";
+import {UserProfile,MeetingsCalendar,SidebarUserNav,CreateMeeting,
+        ViewerOwnProject} from "../../";
 
-import ReactDOM from "react-dom";
-import { Csrf } from "../../";
-
-export default function ProjectsviewerComponent () {
+export const ProjectsviewerComponent =() => {
 
     //La uso como bandera para indicar en cual vista se encuentra, y renderizar componentes.
     //banderas: Perfil, Tareas, Proyectos, Editar Perfil, Reuniones
@@ -54,7 +46,7 @@ export default function ProjectsviewerComponent () {
 
     const renderComponent = () =>{
         if(currentView == "Proyectos")
-            return <ProjectViewer />
+            return;// <ProjectViewer />
         else if(currentView == "Perfil")
             return <UserProfile/>
         else if(currentView == "Tareas")

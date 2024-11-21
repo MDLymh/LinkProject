@@ -1,9 +1,7 @@
 import './NotificationComponent.css';
-import ReactDOM from "react-dom";
 import React,{useState, useTransition} from 'react';
-import { Csrf } from "../../";
 
-export default function NotificationComponent({}){
+export const NotificationComponent =({})=>{
 
     const [notifications, setNotifications] = useState([]);
     const [isPending, startTransition] = useTransition();//tablero se actualiza en segundo plano

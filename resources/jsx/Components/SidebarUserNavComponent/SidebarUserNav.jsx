@@ -1,11 +1,7 @@
 import './SidebarUserNav.css'
-import Notifications from '../NotificationComponent/NotificationComponent';
-import FilterComponent from "../FilterComponent/FilterComponent";
-import ReactDOM from "react-dom";
-import { Csrf } from "../../";
+import {NotificationComponent,FilterComponent} from '../../';
 
-
-export default function SidebarUserNav({user, currentView, notifications, careerFilter, innovationsFilter, labFilter}){
+export const SidebarUserNav=({user, currentView, notifications, careerFilter, innovationsFilter, labFilter})=>{
 
     let currentUser = user;
     currentView = "";
@@ -42,7 +38,7 @@ export default function SidebarUserNav({user, currentView, notifications, career
             </div>
             <div className="notificationsContainer">
                 <label>Notificaciones</label>
-                <Notifications notificationsList={notificationsList}/>
+                <NotificationComponent notificationsList={notificationsList}/>
             </div>
             {currentView == "Proyectos" ?
             (<div className="filtersContainer">

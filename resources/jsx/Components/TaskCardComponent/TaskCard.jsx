@@ -1,8 +1,6 @@
-import './TaskCard.css'
-import ReactDOM from "react-dom";
-import { Csrf } from "../../";
+import './TaskCard.css';
 
-export default function TaskCard({_task}){
+export const TaskCard=({_task})=>{
 
 
     return (<>

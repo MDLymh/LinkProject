@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import NotificationComponent from "../Components/NotificationComponent/NotificationComponent";
+import {NotificationComponent} from "../";
 
-const Sidebar = (props) => {
+export const Sidebar = (props) => {
 
 
     const CareersNames = [
@@ -54,34 +54,34 @@ const Sidebar = (props) => {
             id: 5,
             career: "Ingeniería en Electrónica y Sistemas Inteligentes"
         },
-        
+
     ];
 
 
     const innovations = [
         {
             id: 1,
-            skill: "Radical",    
+            skill: "Radical",
         },
         {
             id: 2,
-            skill: "Incremental",    
+            skill: "Incremental",
         },
         {
             id: 3,
-            skill: "Disruptiva",    
+            skill: "Disruptiva",
         },
         {
             id: 4,
-            skill: "De productos / servicios",    
+            skill: "De productos / servicios",
         },
         {
             id: 5,
-            skill: "En los procesos de produccion",    
+            skill: "En los procesos de produccion",
         },
         {
             id: 6,
-            skill: "Tecnologica",    
+            skill: "Tecnologica",
         },
     ];
 
@@ -116,4 +116,3 @@ const Sidebar = (props) => {
     </>);
 }
 
-export default Sidebar

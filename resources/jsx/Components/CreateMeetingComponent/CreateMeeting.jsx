@@ -1,9 +1,7 @@
 import './CreateMeeting.css'
 import React, { useState } from 'react';
-import ReactDOM from "react-dom";
-import { Csrf } from "../../";
 
-export default function CreateMeeting() {
+export const CreateMeeting =() =>{
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [projectId, setProjectId] = useState('');
