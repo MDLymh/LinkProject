@@ -2,59 +2,39 @@
 
 namespace App\Models;
 
-<<<<<<< HEAD
 use App\Notifications\VerifyEmailNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-=======
->>>>>>> PalmaDB
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-<<<<<<< HEAD
-class User extends Authenticatable implements MustVerifyEmail
-=======
-class User extends Model
->>>>>>> PalmaDB
-{
-    use HasFactory;
+class User extends Authenticatable implements MustVerifyEmail{
 
-    protected $table = 'users';
-    protected $primaryKey = 'id_user';
-    
+    use HasFactory, Notifiable;
+
     protected $fillable = [
         'code',
         'name',
-<<<<<<< HEAD
         'email',
         'password',
-        'remember_token'
-=======
+        'remember_token',
         'is_active',
         'user_type',
         'profile_picture'
->>>>>>> PalmaDB
     ];
 
-    public function consultant(){
-        return $this->hasOne(Consultant::class, 'id_user');
-    }
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
-    public function student(){
-        return $this->hasOne(Student::class, 'id_user');
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
     }
-
-    public function notificationsSent(){
-        return $this->hasMany(Notification::class, 'id_user_request');
-    }
-
-    public function notificationsReceived(){
-        return $this->hasMany(Notification::class, 'id_user_leader');
-    }
-
-    public function skills(){
-        return $this->belongsToMany(Skill::class, 'student_skills', 'id_user', 'id_skill');
-    }
-
 
     public function sendEmailVerificationNotification(){
         $this->notify(new VerifyEmailNotification($this));

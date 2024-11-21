@@ -12,9 +12,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->id('id_project');
+            $table->id();
             $table->unsignedBigInteger('id_consultant');
-            $table->foreign('id_consultant')->references('id_consultant')->on('consultants')->onDelete('cascade');
+            $table->foreign('id_consultant')->references('id')->on('consultants')->onDelete('cascade');
             $table->string('area');
             $table->integer('max_members');
             $table->text('required_knowledge');
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-    
+
 
     /**
      * Reverse the migrations.
