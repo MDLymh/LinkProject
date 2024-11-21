@@ -20,6 +20,11 @@
 </head>
 <body style="padding: 0">
     <div style="height: 100vh;min-width: 600px;" id="root"></div>
+    @if(session('message'))
+        @php
+            $initialData['message'] = session('message')
+        @endphp
+    @endif
     @if($errors->any())
         @php
             $initialData['errors'] = $errors->all();
@@ -32,6 +37,6 @@
     <script>
         window.__INITIAL_DATA__ = @json($initialData);
     </script>
-    @vite("resources/jsx/modulos/".$moduloJSX) 
+    @vite($viewJsx)
 </body>
 </html>

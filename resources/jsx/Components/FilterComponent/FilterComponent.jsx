@@ -1,7 +1,7 @@
 import { useState } from "react";
 import './FilterComponent.css'
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
+import { Csrf } from "../../";
 
 export default function FilterComponent({careerFilter, innovationsFilter, labFilter}){
 
@@ -18,7 +18,7 @@ export default function FilterComponent({careerFilter, innovationsFilter, labFil
     ];
 
     //aqui de la tabla InnovationsTypes
-    const innovations = [        
+    const innovations = [
         {
             id: 1,
             name: "Disruptivo"
@@ -41,7 +41,7 @@ export default function FilterComponent({careerFilter, innovationsFilter, labFil
     // [careerFilter, setSelectedCareer] = useState('');
     // [innovationsFilter, setSelectedInnovations] = useState([]);
     // [labFilter, setSelectedLab] = useState('');
-    
+
     const handleSelectionChange = (event) => {
         const options = event.target.options;
         const valueArray = [];
@@ -58,7 +58,7 @@ export default function FilterComponent({careerFilter, innovationsFilter, labFil
         <div className="filtersContainer">
             <label>Filtrar</label>
             <div className="careersFilter" >
-                <select onSelect={(e) => { 
+                <select onSelect={(e) => {
                     console.log(e.target.value);
                     setFilterCareer(e.target.value);}}>
                     {careers.map((item, key)=>{
@@ -94,5 +94,3 @@ export default function FilterComponent({careerFilter, innovationsFilter, labFil
         </>
     );
 }
-
-ReactDOM.render(<FilterComponent/>, document.getElementById('root'));

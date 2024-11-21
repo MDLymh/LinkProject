@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './MeetingsViewer.css'
+import './MeetingCard.css'
 import MeetingCard from '../MeetingCardComponent/MeetingCard'
 
 

@@ -1,7 +1,8 @@
 import './MeetingsViewer.css'
 import MeetingCard from '../MeetingCardComponent/MeetingCard'
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
+import React, {useState} from 'react';
+import { Csrf } from "../../";
 
 
 export default function MeetingsViewer(){
@@ -14,7 +15,7 @@ export default function MeetingsViewer(){
 
     //Yael: aqui necesito las reuniones, si puedes ordenadas por fecha de mas proxima hacia atras.
     let [meetings, setMeetings] = useState([]);
-    
+
     meetings = [
         {
             id: 1,
@@ -45,5 +46,3 @@ export default function MeetingsViewer(){
         </div>
     </>);
 }
-
-ReactDOM.render(<MeetingsViewer/>, document.getElementById('root'));

@@ -1,6 +1,6 @@
 import './StudentCard.css'
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
+import { Csrf } from "../../";
 
 export default function StudentCard({student}){
 
@@ -15,4 +15,3 @@ export default function StudentCard({student}){
     </>);
 }
 
-ReactDOM.render(<SidebarUserNav/>, document.getElementById('root'));

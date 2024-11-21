@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import './TasksViewer.css'
-import TaskCard from '../TaskCard/TaskCard';
-import Popup from '../PopupCreateTask/PopupCreateTask'; 
+import TaskCard from '../TaskCardComponent/TaskCard';
+import Popup from '../PopupCreateTaskComponent/PopupCreateTask';
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
+import { Csrf } from "../../";
 
 export default function TasksViewer({user}){
-    
+
     //1:programada
     //2:finalizada
     //3:vencida
@@ -62,20 +62,18 @@ export default function TasksViewer({user}){
         <>
         <div className='viewtaskContainer'>
             <button className='buttonCreate'  onClick={() => setIsPopupOpen(true)}> Nueva tarea</button>
-            
+
             {projectTasks.map((item) =>{
                 return(<TaskCard key={item.id} _task={item}/>);
             })}
 
             {isPopupOpen && (
-                <Popup 
-                    onClose={() => setIsPopupOpen(false)} 
-                    onSubmit={handleCreateTask} 
+                <Popup
+                    onClose={() => setIsPopupOpen(false)}
+                    onSubmit={handleCreateTask}
                 />
             )}
         </div>
         </>
     );
 }
-
-ReactDOM.render(<TasksViewer/>, document.getElementById('root'));

@@ -1,7 +1,7 @@
 import './CreateMeeting.css'
 import React, { useState } from 'react';
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
+import { Csrf } from "../../";
 
 export default function CreateMeeting() {
     const [date, setDate] = useState('');
@@ -31,7 +31,7 @@ export default function CreateMeeting() {
             project_name: "Proyecto 1"
         },
     ]
-  
+
     return (
     <>
     <div className='datetimeContainer'>
@@ -40,7 +40,7 @@ export default function CreateMeeting() {
             <select className='projectsList' onChange={(e)=>{
                 setProjectId(e.target.key);
             }}>
-                {assesorProjects.map((item, index) => 
+                {assesorProjects.map((item, index) =>
                 {
                     return(<option key={item.id_project}>{item.project_name}</option>);
                 })
@@ -66,5 +66,3 @@ export default function CreateMeeting() {
     </>
     );
 }
-
-ReactDOM.render(<CreateMeeting/>, document.getElementById('root'));

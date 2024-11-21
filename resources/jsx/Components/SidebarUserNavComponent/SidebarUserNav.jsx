@@ -1,14 +1,14 @@
 import './SidebarUserNav.css'
-import Notifications from '../NotificationsComponent/NotificationComponent'
+import Notifications from '../NotificationComponent/NotificationComponent';
 import FilterComponent from "../FilterComponent/FilterComponent";
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
+import { Csrf } from "../../";
 
 
 export default function SidebarUserNav({user, currentView, notifications, careerFilter, innovationsFilter, labFilter}){
 
     let currentUser = user;
-    let currentView = current;
+    currentView = "";
 
     const handleViewProfile = () =>{
         currentView = "Perfil";
@@ -19,7 +19,7 @@ export default function SidebarUserNav({user, currentView, notifications, career
         currentView = "Tareas";
 
     }
-    
+
     const handleViewMeetings = () =>{
         currentView = "Reuniones";
 
@@ -55,7 +55,7 @@ export default function SidebarUserNav({user, currentView, notifications, career
                 <button className="buttonViewTeam" onClick={() => {setCurrentView("Reuniones")}}>Ver reuniones</button>
                 {user.id_project == -1 ? (
                                 <button className="buttonSearchProjects" onClick={() =>{setCurrentView("Proyectos")}}>Ver proyectos</button>
-    
+
                 ) : (
                     <button className="buttonSearchProjects" onClick={() =>{setCurrentView("Proyecto")}}>Ver proyecto</button>
                 )}
@@ -64,5 +64,3 @@ export default function SidebarUserNav({user, currentView, notifications, career
         </div>
         </>);
 }
-
-ReactDOM.render(<SidebarUserNav/>, document.getElementById('root'));

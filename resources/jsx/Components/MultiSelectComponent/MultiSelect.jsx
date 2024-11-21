@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './MultiSelect.css';
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
+import { Csrf } from "../../";
 
 export default function MultiSelect ({ options }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -29,5 +29,3 @@ export default function MultiSelect ({ options }) {
     </div>
   );
 }
-
-ReactDOM.render(<MultiSelect/>, document.getElementById('root'));

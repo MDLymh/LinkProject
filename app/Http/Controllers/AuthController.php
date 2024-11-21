@@ -13,9 +13,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 use App\Models\Password_reset_token;
 use Carbon\Carbon;
+use PhpParser\Node\Expr\FuncCall;
 
 class AuthController extends Controller
 {
+    public function showLogin(){
+        $data=[
+            'viewJsx'=> 'resources/jsx/Views/LoginComponent/Login.jsx'
+        ];
+        return view('base',$data);
+    }
+
+
     public function register(Request $request){
         $validateData = $request->validate([
             'name'=> 'min:3|max:255|string',
@@ -27,80 +36,80 @@ class AuthController extends Controller
         ]);
 
 
-        
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'remember_token' => Str::random(60)
         ]);
-        
+
         event(new Registered($user));
 
-        
+
         return redirect()->route('login')->with('message', 'Por favor, revisa tu correo para verificar tu cuenta.');
     }
 
 
     public function verify($id, $token){
-        
+
         $user = User::find($id);
-        
-        
+
+
         if (!$user || $user->remember_token !== $token) {
             return redirect('/login')->with('error', 'Token de verificación inválido o expirado.');
         }
 
-        
+
         if ($user->email_verified_at) {
             return redirect('/login')->with('message', 'Tu cuenta ya ha sido verificada.');
         }
 
-        
+
         $user->email_verified_at = now();
         $user->remember_token = null;
         $user->save();
 
-        
+
         return redirect()->route('login')->with('message', 'Tu cuenta ha sido verificada con éxito. Ahora puedes iniciar sesión.');
     }
 
 
     public function login(Request $request){
-        
-        
+
+
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string|min:8',
         ]);
 
-        
+
         $user = User::where('email', $request->email)->first();
-        
+
         if (!$user) {
             throw ValidationException::withMessages([
                 'email' => ['No podemos encontrar un usuario con ese correo electrónico.'],
             ]);
         }
 
-        
+
         if (!$user->email_verified_at) {
             throw ValidationException::withMessages([
                 'email' => ['Por favor, verifica tu correo electrónico antes de iniciar sesión.'],
             ]);
         }
 
-        
+
         if (!Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'password' => ['La contraseña es incorrecta.'],
             ]);
         }
 
-        
+
         Auth::login($user);
 
-        
+
         return redirect()->route('login')->with('message', 'Bienvenido, estás logueado correctamente!');
     }
 
@@ -123,8 +132,8 @@ class AuthController extends Controller
     }
 
     public function resetPassword(Request $request){
-        
-        
+
+
         $validateData = $request->validate([
             'email' => 'max:255|email',
             'password' => ['required','string','min:8','regex:/[a-z]/','regex:/[A-Z]/',
@@ -134,8 +143,8 @@ class AuthController extends Controller
 
         $token = Password_reset_token::where('email',$validateData['email'])->orderBy('created_at','DESC')->first();
         $expiration = config('auth.passwords.users.expire');
-        
-        
+
+
         if( !$token){
             return back()->withErrors(['token' => 'Token Invalido o ya expiro'])->withInput();
         }
@@ -143,7 +152,7 @@ class AuthController extends Controller
         if($isExpired || !(Hash::check($validateData['token'],$token->token))){
             return back()->withErrors(['token' => 'Token Invalido o ya expiro'])->withInput();
         }
-        
+
         $user = User::where('email',$validateData['email'])->first();
         $user->password = bcrypt($validateData['password']);
         $user->save();
@@ -162,4 +171,10 @@ class AuthController extends Controller
         return view('test.password-reset-form',$data);
     }
 
+    public function showRegister(){
+        $data=[
+            'viewJsx'=> 'resources/jsx/Views/SignInComponent/SignIn.jsx'
+        ];
+        return view('base',$data);
+    }
 }

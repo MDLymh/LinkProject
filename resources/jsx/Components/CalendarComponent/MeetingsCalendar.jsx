@@ -2,11 +2,11 @@ import {useState} from "react";
 import { startOfMonth, endOfMonth, eachDayOfInterval, format, isSameDay } from 'date-fns';
 import "./MeetingsCalendar.css"
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
+import { Csrf } from "../../";
 
 
-export default function MeetingsCalendar({currentDate}){
-   
+export default function MeetingsCalendar({}){
+
   //Yael: pasarme las reuniones de a cuerdo al mes seleccionado. Dejo el ejemplo de los valores.
    const meetings = [
     { id:1, date: '2024-11-01', time: '10:00 AM'},
@@ -73,4 +73,3 @@ return (
     </div>
   );
 }
-ReactDOM.render(<MeetingsCalendar/>, document.getElementById('root'));

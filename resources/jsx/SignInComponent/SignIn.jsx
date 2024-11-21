@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import './SignIn.css'
 import ReactDOM from "react-dom";
-import { ProjectsviewerComponent } from "./../";
 
 export default function SignIn(){
 
@@ -69,4 +67,3 @@ export default function SignIn(){
     </>);
 }
 
-ReactDOM.render(<SignIn/>, document.getElementById('root'));

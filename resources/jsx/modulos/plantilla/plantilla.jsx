@@ -2,7 +2,7 @@ import "./plantilla.css";
 
 import React from "react";
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
+import { Csrf } from "../../";
 
 export default function Plantilla(){
 
@@ -14,4 +14,3 @@ export default function Plantilla(){
         </>
     )
 }
-ReactDOM.render(<Plantilla/>, document.getElementById('root'));

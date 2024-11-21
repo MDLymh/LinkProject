@@ -1,6 +1,6 @@
 import "./PopupWarning.css"
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
+import { Csrf } from "../../";
 
 //alerta generica
 export default function PopupWarning({title, message}){
@@ -16,5 +16,3 @@ export default function PopupWarning({title, message}){
     </>)
 }
 
-
-ReactDOM.render(<PopupWarning/>, document.getElementById('root'));

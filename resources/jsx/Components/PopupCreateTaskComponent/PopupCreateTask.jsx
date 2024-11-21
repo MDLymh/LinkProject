@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './PopupCreateTask.css'; 
+import './PopupCreateTask.css';
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
+import { Csrf } from "../../";
 
 export default function PopupCreateTask({ onClose, onSubmit }) {
     const [formData, setFormData] = useState({
@@ -86,5 +86,3 @@ export default function PopupCreateTask({ onClose, onSubmit }) {
         </div>
     );
 }
-
-ReactDOM.render(<PopupCreateTask/>, document.getElementById('root'));

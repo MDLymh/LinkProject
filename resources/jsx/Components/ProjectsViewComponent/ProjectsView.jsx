@@ -1,6 +1,5 @@
 import './ProjectsView.css'
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
 
 export default function ProjectsView({careerFilter, innovationsFilter, labfilter}){
 
@@ -44,11 +43,10 @@ export default function ProjectsView({careerFilter, innovationsFilter, labfilter
     <div className="projectViewerContainer">
         <ul className='filteredProjects'>
             {projects.map((item, key)=>{
-                return(<ProjectItem key={key} project={item} user={user}/>)
+                // return(<ProjectItem key={key} project={item} user={user}/>)
             })}
         </ul>
     </div>
     </>)
 }
 
-ReactDOM.render(<ProjectsView/>, document.getElementById('root'));

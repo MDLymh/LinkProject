@@ -1,10 +1,9 @@
-import './NotificationManager.css'
+import './NotificationsManager.css'
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
+import { Csrf } from "../../";
 
 export default function NotificationManager(){
 
 }
 
 
-ReactDOM.render(<NotificationManager/>, document.getElementById('root'));

@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./ViewerComponent.css"
-import Sidebar from "../Sidebar/SidebarComponent";
-import UserProfile from "../UserProfileViewerComponent/UserProfile";
-import MeetingsCalendar from "../CalendarComponent/MeetingsCalendar";
-import Notifications from "../NotificationsComponent/Notifications";
-import SidebarUserNav from "../SidebarUserNavComponent/SidebarUserNav";
-import CreateMeeting from "../CreateMeetingComponent/CreateMeeting";
-import ProjectViewer from "../ProjectViewer/ProjectViewer"
-import ViewTask from "../ViewTasks/ViewTask";
-import ViewerOwnProject from "../ViewerOwnProjectComponent/ViewerOwnProject";
+import UserProfile from "../../Components/UserProfileComponent/UserProfile";
+import MeetingsCalendar from "../../Components/CalendarComponent/MeetingsCalendar";
+import SidebarUserNav from "../../Components/SidebarUserNavComponent/SidebarUserNav";
+import CreateMeeting from "../../Components/CreateMeetingComponent/CreateMeeting";
+import ProjectViewer from "../../Components/ProjectsViewComponent/ProjectsView";
+//import ViewTask from "../../Components/ViewTasks/ViewTask";
+import ViewerOwnProject from "../../Components/ViewerOwnProjectComponent/ViewerOwnProject";
 
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
+import { Csrf } from "../../";
 
 export default function ProjectsviewerComponent () {
-    
+
     //La uso como bandera para indicar en cual vista se encuentra, y renderizar componentes.
     //banderas: Perfil, Tareas, Proyectos, Editar Perfil, Reuniones
     let [currentView, setCurrentView] = useState("Perfil");
@@ -33,7 +31,7 @@ export default function ProjectsviewerComponent () {
     let [careerFilter, setFilterCareer] = useState('')
     let [innovationsFilter, setFilterInnovations] = useState([])
     let [labFilter, setFilterLab] = useState([])
-    
+
     //manejar el estado de seleccion del mes para ver reuniones
     let [currentDate, setCurrentDate] = useState(new Date())
 
@@ -50,17 +48,17 @@ export default function ProjectsviewerComponent () {
     useEffect(() => {
         fetchNotifications(); // Initial fetch
         const interval = setInterval(fetchNotifications, 60000); // Fetch every minute
-        return () => clearInterval(interval); 
+        return () => clearInterval(interval);
     }, []);
 
-    
+
     const renderComponent = () =>{
         if(currentView == "Proyectos")
             return <ProjectViewer />
         else if(currentView == "Perfil")
             return <UserProfile/>
         else if(currentView == "Tareas")
-            return <ViewTask/>
+            return;//<ViewTask/>
         else if(currentView == "Proyecto")
             return <ViewerOwnProject user={user}/>;
         else
@@ -90,4 +88,3 @@ export default function ProjectsviewerComponent () {
     </>);
 }
 
-ReactDOM.render(<ProjectsviewerComponent/>, document.getElementById('root'));

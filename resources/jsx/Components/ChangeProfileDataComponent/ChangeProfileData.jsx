@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './ChangeProfileData.css'
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
+import { Csrf } from "../../";
 
 
 export default function ChangeProfile(){
@@ -17,10 +17,9 @@ export default function ChangeProfile(){
     return (<>
         <div className="changeProfileContainer">
             <form>
-                
+
             </form>
         </div>
     </>);
 }
-ReactDOM.render(<MeetingsCalendar/>, document.getElementById('root'));
 

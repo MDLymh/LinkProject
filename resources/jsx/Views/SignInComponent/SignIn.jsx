@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import './SignIn.css'
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
+import { Csrf } from "../../";
 
-export default function SignIn(){
+export const  SignIn =() =>{
   const studentDomain = "@educa.udg.mx";
   const assesorDomain = "@educa.udg.mx";
 
   const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
+  const [surname1, setSurname1] = useState('');
+  const [surname2, setSurname2] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmpassword, setConfirmPassword] = useState('');
@@ -78,21 +79,31 @@ const laboratories = [ "NA", "Laboratorio Abierto 1", "Laboratorio Abierto 2", "
         <input
           type="text"
           value={name}
+          name="name"
           onChange={(event) => setName(event.target.value)}
           placeholder=""/>
-        <label>Apellido:</label>
+        <label>Apellido Paterno:</label>
         <input
           type="text"
-          value={surname}
-          onChange={(event) => setSurname(event.target.value)}
+          value={surname1}
+          name="surname1"
+          onChange={(event) => setSurname1(event.target.value)}
+          placeholder=""/>
+          <label>Apellido Materno:</label>
+        <input
+          type="text"
+          value={surname2}
+          name="surname2"
+          onChange={(event) => setSurname2(event.target.value)}
           placeholder=""/>
         <label>Carrera:</label>
         <select className='select_career' size={1}
           type="text"
           value={username}
           onChange={(event) => setCareer(event.target.value)}
+          name='degree'
           placeholder="">
-            {careers.map((item, key) => { 
+            {careers.map((item, key) => {
               return(<option key={item.id}>{item.career_name}</option>);
             })}
         </select>
@@ -102,7 +113,7 @@ const laboratories = [ "NA", "Laboratorio Abierto 1", "Laboratorio Abierto 2", "
           value={lab}
           onChange={(event) => setLab(event.target.value)}
           placeholder="">
-            {laboratories.map((item, key) => { 
+            {laboratories.map((item, key) => {
               return(<option key={item}>{item}</option>);
             })}
         </select>
@@ -110,6 +121,7 @@ const laboratories = [ "NA", "Laboratorio Abierto 1", "Laboratorio Abierto 2", "
         <input
           type="text"
           value={username}
+          name='email'
           onChange={(event) => setUsername(event.target.value)}
           placeholder="my_username@domainname.udg.mx"/>
       </div>
@@ -118,6 +130,7 @@ const laboratories = [ "NA", "Laboratorio Abierto 1", "Laboratorio Abierto 2", "
         <input
           type={type}
           value={password}
+          name='password'
           onChange={(event) => setPassword(event.target.value)}
           placeholder="nueva contraseña" />
       </div>
@@ -133,6 +146,7 @@ const laboratories = [ "NA", "Laboratorio Abierto 1", "Laboratorio Abierto 2", "
         <input
           type={typeConfirm}
           value={confirmpassword}
+          name='password_confirmation'
           onChange={(event) => setConfirmPassword(event.target.value)}
           placeholder="confirmar contraseña"
         />
@@ -151,5 +165,7 @@ const laboratories = [ "NA", "Laboratorio Abierto 1", "Laboratorio Abierto 2", "
   </div>
   </>);
 }
+
+
 
 ReactDOM.render(<SignIn/>, document.getElementById('root'));

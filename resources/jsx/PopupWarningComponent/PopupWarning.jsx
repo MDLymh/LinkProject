@@ -1,5 +1,4 @@
 import React from 'react'
-import "./PopupWarning.css"
 import ReactDOM from "react-dom";
 
 //alerta generica
@@ -26,4 +25,3 @@ Popup_warning.defaultProps = {
     message: ""
 }
 
-ReactDOM.render(<PopupWarning/>, document.getElementById('root'));

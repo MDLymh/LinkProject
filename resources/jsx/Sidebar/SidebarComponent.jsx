@@ -1,6 +1,5 @@
 import React, { useState } from "react"
-import "./SidebarComponent.css"
-import NotificationComponent from "../NotificationComponent/NotificationComponent"
+import NotificationComponent from "../Components/NotificationComponent/NotificationComponent";
 
 const Sidebar = (props) => {
 

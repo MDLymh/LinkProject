@@ -1,9 +1,6 @@
 import React from "react";
-import "./ViewerComponent.css"
-import Sidebar from "../Sidebar/SidebarComponent";
-import UserProfile from "./../UserProfileComponent/UserProfile";
-import MeetingsCalendar from "../CalendarComponent/MeetingsCalendar";
-import NotificationComponent from "../NotificationComponent/NotificationComponent";
+import UserProfile from "../UserProfileComponent/UserProfile";
+import MeetingsCalendar from "../Components/CalendarComponent/MeetingsCalendar";
 import SidebarUserNav from "../SidebarUserNavComponent/SidebarUserNav";
 
 const ProjectsviewerComponent = () =>{

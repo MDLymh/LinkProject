@@ -1,6 +1,6 @@
 import './TaskCard.css'
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
+import { Csrf } from "../../";
 
 export default function TaskCard({_task}){
 
@@ -11,12 +11,10 @@ export default function TaskCard({_task}){
         <label className="starts">{"Inicio: " + _task.created}</label>
         {_task.task_status != 4 ? (<label className="scheduled">{"Finaliza: " + _task.scheduled}</label>
             ) : (<label className="scheduled">Finaliza: NA</label>)}
-         
+
         <p className='content'>{_task.content}</p>
 
     </div>
 
     </>);
 }
-
-ReactDOM.render(<TaskCard/>, document.getElementById('root'));
