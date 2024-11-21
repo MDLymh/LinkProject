@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up()
 {
-    Schema::create('users', function (Blueprint $table) {
-        $table->id('id_user'); // PK, VARCHAR (ID will be auto-incremented)
-        $table->string('code');
+    Schema::create('courses', function (Blueprint $table) {
+        $table->id('id_course'); // PK
         $table->string('name');
-        $table->boolean('is_active');
-        $table->enum('user_type', ['advisor', 'student']);
-        $table->string('profile_picture')->nullable();
         $table->timestamps();
     });
 }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('courses');
     }
 };

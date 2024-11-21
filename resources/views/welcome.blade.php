@@ -17,6 +17,7 @@
     <ul>
         @foreach ($careers as $career)
             <li>{{ $career->name }}</li>  
+        @endforeach
     </ul>
 
     <h2>Innovations</h2>

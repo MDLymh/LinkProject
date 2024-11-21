@@ -12,8 +12,8 @@ return new class extends Migration
     public function up()
 {
     Schema::create('meeting_consultant', function (Blueprint $table) {
-        $table->unsignedBigInteger('id_consultant'); // FK to consultants
-        $table->unsignedBigInteger('id_meeting'); // FK to meetings
+        $table->unsignedBigInteger('id_consultant'); 
+        $table->unsignedBigInteger('id_meeting');
         $table->foreign('id_consultant')->references('id_consultant')->on('consultants')->onDelete('cascade');
         $table->foreign('id_meeting')->references('id_meeting')->on('meetings')->onDelete('cascade');
         $table->primary(['id_consultant', 'id_meeting']);

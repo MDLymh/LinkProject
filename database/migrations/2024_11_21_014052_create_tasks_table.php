@@ -1,3 +1,4 @@
+@ -1,35 +0,0 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -12,8 +13,8 @@ return new class extends Migration
     public function up()
 {
     Schema::create('tasks', function (Blueprint $table) {
-        $table->id('id_task'); // PK, AUTO
-        $table->unsignedBigInteger('id_project'); // FK to projects table
+        $table->id('id_task'); 
+        $table->unsignedBigInteger('id_project');
         $table->foreign('id_project')->references('id_project')->on('projects')->onDelete('cascade');
         $table->string('title');
         $table->text('description');

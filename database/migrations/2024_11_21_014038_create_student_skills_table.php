@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up()
 {
-    Schema::create('consultants', function (Blueprint $table) {
-        $table->id('id_consultant'); // Auto-incremented PK
-        $table->unsignedBigInteger('id_user'); // FK to users table
+    Schema::create('student_skills', function (Blueprint $table) {
+        $table->unsignedBigInteger('id_user'); 
+        $table->unsignedBigInteger('id_skill'); 
         $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
-        $table->string('school_division');
-        $table->text('short_experience_description');
-        $table->timestamps();
+        $table->foreign('id_skill')->references('id_skill')->on('skills')->onDelete('cascade');
+        $table->primary(['id_user', 'id_skill']);
     });
 }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('consultants');
+        Schema::dropIfExists('student_skills');
     }
 };

@@ -11,21 +11,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('meetings', function (Blueprint $table) {
-            $table->id('id_meeting'); // Auto-incremented PK
-            $table->unsignedBigInteger('id_project'); // FK to projects table
+        Schema::create('task_project', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_task'); 
+            $table->unsignedBigInteger('id_project');
+            $table->foreign('id_task')->references('id_task')->on('tasks')->onDelete('cascade');
             $table->foreign('id_project')->references('id_project')->on('projects')->onDelete('cascade');
-            $table->timestamp('schedule');
-            $table->timestamps();
+            $table->primary(['id_task', 'id_project']);
         });
     }
     
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('meetings');
+        Schema::dropIfExists('task_project');
     }
 };
