@@ -48,7 +48,7 @@ export default function SidebarUserNav({user, currentView, notifications, career
             (<div className="filtersContainer">
                 <FilterComponent setFilterCareer={setFilterCareer} setFilterInnovations={setFilterInnovations} setFilterLab={setFilterLab}/>
                 {/* <FilterComponent /> */}
-            </div>) : (<div className="filtersContainer"></div>)}
+            </div>) : (<div className=""></div>)}
             <div className="navigationContainer">
                 <button className="buttonViewProfile"  onClick={() => {setCurrentView("Perfil")}}>Ver perfil</button>
                 <button className="buttonViewTasks" onClick={() => {setCurrentView("Tareas")}}>Ver tareas</button>
@@ -59,7 +59,7 @@ export default function SidebarUserNav({user, currentView, notifications, career
                 ) : (
                     <button className="buttonSearchProjects" onClick={() =>{setCurrentView("Proyecto")}}>Ver proyecto</button>
                 )}
-                {user.id_project == -1 ? (<button className="buttonCreateProject" onClick={handleViewCreateProject}>Crear proyecto</button>) : null}
+                {user.id_project == -1 && user.isStudent ? (<button className="buttonCreateProject" onClick={handleViewCreateProject}>Crear proyecto</button>) : null}
             </div>
         </div>
         </>);
