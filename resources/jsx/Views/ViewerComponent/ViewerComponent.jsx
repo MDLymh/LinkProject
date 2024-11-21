@@ -63,6 +63,8 @@ export default function ProjectsviewerComponent () {
             return <ViewerOwnProject user={user}/>;
         else if(currentView == "Reuniones")
             return <MeetingsViewer user={user}/>;
+        else if(currentView == "Notificaciones")
+            return <NotificationsManager/>;
         else
             return null;
     }
