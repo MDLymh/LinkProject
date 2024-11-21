@@ -49,7 +49,10 @@ export default function CreateProject(){
       },
     ]
   
-  
+  //Realizar un post 
+  const createNewProject = ()=>{
+    
+  }
   
   return (<>
       <div className="createprojectContainer"> 

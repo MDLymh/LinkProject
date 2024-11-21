@@ -10,6 +10,7 @@ export default function Login(){
     const [password, setPassword] = useState('');
     const [type, setType] = useState('password');
   
+    //Realizar un post
     const handleSubmit = (event) => {
       event.preventDefault();
       // validate user credentials

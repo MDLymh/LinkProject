@@ -6,6 +6,7 @@ import { Csrf } from "../../modelos/";
 
 export default function ChangeProfile(){
 
+    //Realizar un post para actualizar info
     const onSubmit = (event) =>{
 
         let userName;
@@ -22,5 +23,5 @@ export default function ChangeProfile(){
         </div>
     </>);
 }
-ReactDOM.render(<MeetingsCalendar/>, document.getElementById('root'));
+ReactDOM.render(<ChangeProfile/>, document.getElementById('root'));
 

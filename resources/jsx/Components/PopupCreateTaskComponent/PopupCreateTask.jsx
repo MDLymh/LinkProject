@@ -4,21 +4,26 @@ import ReactDOM from "react-dom";
 import { Csrf } from "../../modelos/";
 
 export default function PopupCreateTask({ onClose, onSubmit }) {
-    const [formData, setFormData] = useState({
-        content: '',
-        student: '',
-        scheduled: '',
-        task_status: 1, // Default status
-    });
+    // const [formData, setFormData] = useState({
+    //     content: '',
+    //     student: '',
+    //     scheduled: '',
+    //     task_status: 1, // Default status
+    // });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
+    const [content, setContent] = useState('');
+    const [student, setStudent] = useState(0);
+    const [scheduled, setScheduled] = useState('');
+    const [task_status, setTaskStatus] = useState(1);
 
+    const members = [
+        {
+            id: 2,
+            memberName: "Pepito",
+        },
+    ]
+
+    //Realizar un post 
     const handleSubmit = (e) => {
         e.preventDefault();
         onSubmit(formData);
@@ -35,8 +40,8 @@ export default function PopupCreateTask({ onClose, onSubmit }) {
                         <input
                             type="text"
                             name="content"
-                            value={formData.content}
-                            onChange={handleChange}
+                            value={content}
+                            onChange={(e) =>{setContent(e.target.value)}}
                             required
                         />
                     </label>
@@ -46,11 +51,11 @@ export default function PopupCreateTask({ onClose, onSubmit }) {
                         <select
                             className='selectMember'
                             name="member"
-                            value={formData.task_status}
-                            onChange={handleChange} >
-                            <option value={1}>Juan</option>
-                            <option value={2}>Pepito</option>
-                            <option value={3}>Lissa</option>
+                            value={student}
+                            onChange={(e)=>{setStudent(e.target.value)}} >
+                            {members.map((item) =>{
+                                return (<option key={item.div} value={item.id}>{item.memberName}</option>)
+                                })}
                         </select>
                     </label>
                     <br></br>
@@ -60,9 +65,9 @@ export default function PopupCreateTask({ onClose, onSubmit }) {
                             className='taskSchedule'
                             type="date"
                             name="scheduled"
-                            value={formData.scheduled}
-                            onChange={handleChange}
+                            value={scheduled}
                             required
+                            onChange={(e)=>{setScheduled(e.target.value)}}
                         />
                     </label>
                     {/* <label>

@@ -18,6 +18,7 @@ export default function SignIn(){
   const [type, setType] = useState('password');
   const [typeConfirm, setTypeConfirm] = useState('password');
 
+  //Realizar un post
   const handleSubmit = (event) => {
     event.preventDefault();
     if(username == ""){

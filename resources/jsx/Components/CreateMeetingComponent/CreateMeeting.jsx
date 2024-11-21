@@ -16,7 +16,12 @@ export default function CreateMeeting() {
         setTime(e.target.value);
     };
 
-    //cargar los proyectos del asesor para que pueda seleccionarlo para programar una nueva reunion
+    //Realizar un post 
+    const createMeeting = ()=> {
+
+    }
+
+    //Yael: cargar los proyectos del asesor para que pueda seleccionarlo para programar una nueva reunion
     let assesorProjects = [
         {
             id_project: 1,

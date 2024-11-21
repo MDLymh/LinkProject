@@ -1,9 +1,8 @@
 import { useState } from "react";
 import './FilterComponent.css'
 import ReactDOM from "react-dom";
-import { Csrf } from "../../modelos/";
 
-export default function FilterComponent({careerFilter, innovationsFilter, labFilter}){
+export default function FilterComponent({setFilterCareer, setFilterInnovations, setFilterLab}){
 
     //aqui necesito los valores de la tabla careers, dejo ejemplo
     const careers = [
@@ -36,12 +35,9 @@ export default function FilterComponent({careerFilter, innovationsFilter, labFil
 
     //este seria el equivalenete a un SELECT DISTINCT en la tabla Students para obtener el campo current_laboratory
     //este campo creo lo puedo dejar fijo desde el Signin en un select para dejar fijos estos valores ''
-    const laboratories = [ "Laboratorio Abierto 1", "Laboratorio Abierto 2", "Laboratorio Abierto 3"]
+    const laboratories = [ "Laboratorio Abierto 1", "Laboratorio Abierto 2", "Laboratorio Abierto 3"];
 
-    // [careerFilter, setSelectedCareer] = useState('');
-    // [innovationsFilter, setSelectedInnovations] = useState([]);
-    // [labFilter, setSelectedLab] = useState('');
-    
+
     const handleSelectionChange = (event) => {
         const options = event.target.options;
         const valueArray = [];
@@ -52,15 +48,16 @@ export default function FilterComponent({careerFilter, innovationsFilter, labFil
         }
         setSelectedInnovations(valueArray);
     };
+    
 
     return (
         <>
         <div className="filtersContainer">
             <label>Filtrar</label>
             <div className="careersFilter" >
-                <select onSelect={(e) => { 
-                    console.log(e.target.value);
-                    setFilterCareer(e.target.value);}}>
+                <select onChange={(e) => { 
+                    console.log(e.target.option);
+                    setFilterCareer(e.target.option);}}>
                     {careers.map((item, key)=>{
                         return (<option key={item.id}>{item.name}</option>);
                     })}

@@ -4,6 +4,7 @@ import { Csrf } from "../../modelos/";
 
 export default function StudentCard({student}){
 
+    //Realizar un post 
     const handleClick = (student) =>{
         //quitar miembro de proyecto
         console.log(student.student_name + " " + student.id)

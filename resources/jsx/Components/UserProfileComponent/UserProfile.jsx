@@ -41,6 +41,7 @@ let user = {
         }
     };
 
+    //Realizar un post 
     const handleChangePicture = () => {
         // Update the profile picture with the selected image
         if (profilePicture) {

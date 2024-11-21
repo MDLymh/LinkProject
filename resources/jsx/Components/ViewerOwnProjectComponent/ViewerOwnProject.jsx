@@ -3,7 +3,6 @@ import StudentCard from '../StudentCardComponent/StudentCard';
 
 export default function ViewerOwnProject ({user}){
 
-
     //Yael: aqui necesito la informacion del proyecto al que pertenece el usuario.
     let projectInfo = {
         id_project: 1,
@@ -21,9 +20,10 @@ export default function ViewerOwnProject ({user}){
         assesor: "Mtro. Ulises Bonifacio",
         innovation: "Incremental"
     };
-
-    const handleAbandonClick = ()=> {
-        //Yael: aqui se desliga el usuario alumno del proyecto
+    
+    //Realizar un post
+    const handleAbandonClick = () => {
+        //Yael: aqui se desliga el usuario alumno del proyecto al que este
     }
 
     return(<>

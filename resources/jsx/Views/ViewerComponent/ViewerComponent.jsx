@@ -28,7 +28,6 @@ export default function ProjectsviewerComponent () {
         id_project: -1
     }
 
-
     //manejar estado de Seleccion de filtros
     let [careerFilter, setFilterCareer] = useState('')
     let [innovationsFilter, setFilterInnovations] = useState([])
@@ -41,7 +40,6 @@ export default function ProjectsviewerComponent () {
     const [notifications, setNotifications] = useState([])
 
     const fetchNotifications = async () => {
-        // Simulate fetching notifications from an API
         const newNotifications = //llamada al backend.
         setNotifications(prev => [...prev, ...newNotifications]);
         newNotifications.forEach(notification => toast(notification.message));
@@ -49,7 +47,7 @@ export default function ProjectsviewerComponent () {
 
     useEffect(() => {
         fetchNotifications(); // Initial fetch
-        const interval = setInterval(fetchNotifications, 60000); // Fetch every minute
+        const interval = setInterval(fetchNotifications, 60000); // Fetch cada minuto
         return () => clearInterval(interval); 
     }, []);
 
@@ -63,6 +61,8 @@ export default function ProjectsviewerComponent () {
             return <ViewTask/>
         else if(currentView == "Proyecto")
             return <ViewerOwnProject user={user}/>;
+        else if(currentView == "Reuniones")
+            return <MeetingsViewer user={user}/>;
         else
             return null;
     }
@@ -71,8 +71,7 @@ export default function ProjectsviewerComponent () {
     <div className="main">
         <div className="appglass">
             <div className="leftmenu">
-                <SidebarUserNav user={user} currentView={currentView} notifications={notificacions} careerFilter={careerFilter} innovationsFilter={innovationsFilter} labFilter={labFilter}/>
-                {/* <SidebarUserNav user={user} currentView={currentView} notifications={notificacions} /> */}
+                <SidebarUserNav user={user} currentView={currentView} notifications={notificacions} setFilterCareer={setFilterCareer} setFilterInnovations={setFilterInnovations} setFilterLab={setFilterLab}/>
             </div>
             <div className="mainBoard">
                 { renderComponent()}

@@ -12,6 +12,11 @@ export default function ProjectItem({project, user}){
     let projectMembers = project.members;
     let labLevel = project.current_lab;
 
+    //Realizar un post 
+    const handleClickRequestJoin {
+        //Se tiene le project.id a quien se solicita y user.id quien solicita
+    }
+
     return (<>
         <div className="card" 
         style={{backgroundColor: project.max_members === project.members ? '#FFAE7E' : ''}}>
@@ -25,7 +30,7 @@ export default function ProjectItem({project, user}){
            </div>
            <div className='membersContainer'>
                 {user.id_project === -1 && user.isStudent && project.max_members != project.members ? 
-                (<button className='buttonJoinProject'>Solicitar Unirse</button>) 
+                (<button className='buttonJoinProject' onClick={(e) => {handleClickRequestJoin}}>Solicitar Unirse</button>) 
                 : null}
             </div>
         </div>
