@@ -13,7 +13,7 @@ export default function ProjectItem({project, user}){
     let labLevel = project.current_lab;
 
     //Realizar un post 
-    const handleClickRequestJoin {
+    const handleClickRequestJoin = () => {
         //Se tiene le project.id a quien se solicita y user.id quien solicita
     }
 

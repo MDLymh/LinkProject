@@ -7,10 +7,23 @@
     padding: 10px; 
 }
 
-
-
 .filteredProjects {
     list-style-type: none; /* Remove bullet points */
     padding: 0; /* Remove default padding */
     margin: 0; /* Remove default margin */
 }
+
+.buttonCreateProject{
+    height: 60px;
+    width: 220px;
+    font-family: Arial, sans-serif;
+    background-color: #dd8f00c7;
+    align-self: flex-end;
+    font-size: 1.1rem;
+    border-radius: 20px;
+  }
+  
+  .buttonCreateProject:hover{
+    font-family: Arial, sans-serif;
+    background-color: rgba(255, 156, 7, 0.896);
+  }

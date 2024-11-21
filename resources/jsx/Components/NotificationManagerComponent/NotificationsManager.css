@@ -1,0 +1,16 @@
+
+.notificationsmanagerContainer{
+    background-color: white;
+    margin-left: 3rem;
+    max-height: 900px; /* Set a fixed height */
+    height: 900px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 2px solid #ccc; /* Optional: Add a border */
+    padding: 10px; 
+}
+
+.notificationsList {
+    list-style-type: none; 
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}

@@ -41,7 +41,7 @@ export default function SidebarUserNav({user, currentView, notifications, career
             </div>
             <div className="notificationsContainer">
                 <label>Notificaciones</label>
-                <Notifications notificationsList={notificationsList}/>
+                <Notifications notificationsList={notifications}/>
             </div>
             {currentView == "Proyectos" ?
             (<div className="filtersContainer">
@@ -58,7 +58,6 @@ export default function SidebarUserNav({user, currentView, notifications, career
                 ) : (
                     <button className="buttonSearchProjects" onClick={() =>{setCurrentView("Proyecto")}}>Ver proyecto</button>
                 )}
-                {user.id_project == -1 && user.isStudent ? (<button className="buttonCreateProject" onClick={handleViewCreateProject}>Crear proyecto</button>) : null}
             </div>
         </div>
         </>);
