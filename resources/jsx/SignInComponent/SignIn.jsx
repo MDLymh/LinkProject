@@ -1,44 +1,42 @@
-<<<<<<< HEAD:resources/jsx/LoginComponent/Login.jsx
 import React, { useState } from 'react';
-=======
->>>>>>> Sam_frontend:resources/jsx/Views/LoginComponent/Login.jsx
-import "./Login.css"
+import './SignIn.css'
 import ReactDOM from "react-dom";
+import { ProjectsviewerComponent } from "./../";
 
-export default function Login(){
+export default function SignIn(){
+
+    const initialData = window.__INITIAL_DATA__;
+    console.log(initialData);
+    const studentDomain = "@educa.udg.mx";
+    const assesorDomain = "@educa.udg.mx";
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [type, setType] = useState('password');
-  
+
     const handleSubmit = (event) => {
       event.preventDefault();
-      // validate user credentials
-      console.log(`Username: ${username}, Password: ${password}`);
+      if(username == ""){
+        //to do
+        return;
+      }
     };
 
-    const handleRegister = (event) =>{
-      //call to sign in
-    }
-
-    const handleResetPassword = (event) =>{
-
-    }
-    
     const handleToggleChanged = () => {
-      if(type == 'password')
-          setType('text')
-      else
-          setType('password')
-  };
+        if(type == 'password')
+            setType('text')
+        else
+            setType('password')
+    };
 
-  return (
-    <div className="login_container">
+    return(<>
+    <div className="login-container">
       <div className='div_h1_title'>
         <h1> LinkProject </h1>
       </div>
-      <h2>Iniciar Sesión</h2>
+      <h2>Registrarse</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form_group">
+        <div className="form-group">
           <label>Usuario:</label>
           <input
             type="text"
@@ -47,13 +45,13 @@ export default function Login(){
             placeholder="my_username@domainname.udg.mx"
           />
         </div>
-        <div className="form_group">
+        <div className="form-group">
           <label>Contraseña:</label>
           <input
-            type="password"
+            type={type}
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-            placeholder="ingrese contraseña"
+            placeholder="nueva contraseña"
           />
         </div>
         <div className='div_viewpassword' >
@@ -63,15 +61,12 @@ export default function Login(){
                 <span className="slider round"/>
             </label>
         </div>
-        <button type="submit" onClick={handleSubmit}>Iniciar</button>
-        <button className='button_register'>Registrarse</button>
-        <div className='div_reset'>
-          <a className='a_reset_password' onClick={handleResetPassword}>Olvido contraseña?</a>
-        </div>
+        <button type="submit">Registrarse</button>
+        <button type="submit">Regresar</button>
       </form>
       <br/>
     </div>
-  );
+    </>);
 }
 
-ReactDOM.render(<Login/>, document.getElementById('root'));
+ReactDOM.render(<SignIn/>, document.getElementById('root'));

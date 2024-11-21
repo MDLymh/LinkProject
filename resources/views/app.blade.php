@@ -12,6 +12,6 @@
 <body>
     <div id="root"></div>
 
-    @vite('resources/js/Modules/Index/Index.jsx')
+    @vite($viewJsx);
 </body>
 </html>
