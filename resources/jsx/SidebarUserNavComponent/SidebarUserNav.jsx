@@ -39,32 +39,32 @@ export default function SidebarUserNav({user, currentView, notifications, setFil
         //popup form to be filled with project data
     }
 
-
     return (<>
-    <div className="sidebarNavContainer">
-        <div className="header">
-            <h2 className="userProfileTitle">{currentView}</h2>
+        <div className="sidebarNavContainer">
+            <div className="header">
+                <h2 className="userProfileTitle">{currentView}</h2>
+            </div>
+            <div className="notificationsContainer">
+                <label>Notificaciones</label>
+                <Notifications notificationsList={notifications}/>
+            </div>
+            {currentView == "Proyectos" ?
+            (<div className="filtersContainer">
+                <FilterComponent setFilterCareer={setFilterCareer} setFilterInnovations={setFilterInnovations} setFilterLab={setFilterLab}/>
+                {/* <FilterComponent /> */}
+            </div>) : (<div className=""></div>)}
+            <div className="navigationContainer">
+                <button className="buttonViewProfile"  onClick={handleViewNotifications}>Ver notificaciones</button>
+                <button className="buttonViewProfile"  onClick={handleViewProfile}>Ver perfil</button>
+                <button className="buttonViewTasks" onClick={handleViewTasks}>Ver tareas</button>
+                <button className="buttonViewTeam" onClick={handleViewMeetings}>Ver reuniones</button>
+                {user.id_project == -1 ? (
+                                <button className="buttonSearchProjects" onClick={handleViewProjects}>Ver proyectos</button>
+    
+                ) : (
+                    <button className="buttonSearchProjects" onClick={handleViewOwnProject}>Ver proyecto</button>
+                )}
+            </div>
         </div>
-        <div className="notificationsContainer">
-            <label>Notificaciones</label>
-            <Notifications notificationsList={notificationsList}/>
-        </div>
-        {currentView == "Proyectos" ?
-        (<div className="filtersContainer">
-            <FilterComponent setFilterCareer={setFilterCareer} setFilterInnovations={setFilterInnovations} setFilterLab={setFilterLab}/>
-        </div>) : (<div className=""></div>)}
-        <div className="navigationContainer">
-            <button className="buttonViewProfile"  onClick={() => {setCurrentView("Perfil")}}>Ver perfil</button>
-            <button className="buttonViewTasks" onClick={() => {setCurrentView("Tareas")}}>Ver tareas</button>
-            <button className="buttonViewTeam" onClick={() => {setCurrentView("Reuniones")}}>Ver reuniones</button>
-            {user.id_project == -1 ? (
-                            <button className="buttonSearchProjects" onClick={() =>{setCurrentView("Proyectos")}}>Ver proyectos</button>
-
-            ) : (
-                <button className="buttonSearchProjects" onClick={() =>{setCurrentView("Proyecto")}}>Ver proyecto</button>
-            )}
-            {user.id_project == -1 && user.isStudent ? (<button className="buttonCreateProject" onClick={handleViewCreateProject}>Crear proyecto</button>) : null}
-        </div>
-    </div>
-    </>)
+        </>);
 }

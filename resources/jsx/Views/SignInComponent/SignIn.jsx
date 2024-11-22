@@ -66,41 +66,45 @@ let careers = [
 //Aqui defini los laboratorios
 const laboratories = [ "NA", "Laboratorio Abierto 1", "Laboratorio Abierto 2", "Laboratorio Abierto 3"];
 
-
-  return(<>
+//Realizar post
+return(<>
   <div className="login-container">
     <div className='div_h1_title'>
       <h1> LinkProject </h1>
     </div>
     <h2>Registrarse</h2>
-    <form onSubmit={handleSubmit}>
+    <form action='/signin' method='post'>
       <div className="form-group">
         <label>Nombre:</label>
         <input
           type="text"
           value={name}
+          name='firstName'//name: nombre(s) de la persona 
           onChange={(event) => setName(event.target.value)}
           placeholder=""/>
         <label>Apellido:</label>
         <input
           type="text"
           value={surname}
+          name='surname'//name: apellidos
           onChange={(event) => setSurname(event.target.value)}
           placeholder=""/>
         <label>Carrera:</label>
         <select className='select_career' size={1}
           type="text"
-          value={username}
+          value={career}
+          name='careerId'//name: Id de carrera
           onChange={(event) => setCareer(event.target.value)}
           placeholder="">
             {careers.map((item, key) => { 
-              return(<option key={item.id}>{item.career_name}</option>);
+              return(<option key={item.id} value={item.id}>{item.career_name}</option>);
             })}
         </select>
         <label>Laboratorio en curso:</label>
         <select className='select_career' size={1}
           type="text"
           value={lab}
+          name='labName'//name: laboratio actual
           onChange={(event) => setLab(event.target.value)}
           placeholder="">
             {laboratories.map((item, key) => { 
@@ -111,6 +115,7 @@ const laboratories = [ "NA", "Laboratorio Abierto 1", "Laboratorio Abierto 2", "
         <input
           type="text"
           value={username}
+          name='userName'//name: valor del correo institucional
           onChange={(event) => setUsername(event.target.value)}
           placeholder="my_username@domainname.udg.mx"/>
       </div>
@@ -119,6 +124,7 @@ const laboratories = [ "NA", "Laboratorio Abierto 1", "Laboratorio Abierto 2", "
         <input
           type={type}
           value={password}
+          name='password'//name: clave de cuenta
           onChange={(event) => setPassword(event.target.value)}
           placeholder="nueva contraseña" />
       </div>
@@ -134,9 +140,9 @@ const laboratories = [ "NA", "Laboratorio Abierto 1", "Laboratorio Abierto 2", "
         <input
           type={typeConfirm}
           value={confirmpassword}
+          name='passwordConfirm'//name: confirmacion de clave
           onChange={(event) => setConfirmPassword(event.target.value)}
-          placeholder="confirmar contraseña"
-        />
+          placeholder="confirmar contraseña"/>
         <div className='div_viewpasswordConfirm' >
           <label className='label_show_password'>Ver clave</label>
           <label className="switch" onChange={handleToggleChangedConfirm}>
@@ -146,7 +152,9 @@ const laboratories = [ "NA", "Laboratorio Abierto 1", "Laboratorio Abierto 2", "
       </div>
       </div>
       <button type="submit" onClick={(e) => {SubmitEvent}}>Registrarse</button>
-      <button type="submit" onClick={() => {console.log("Cancelado")}}>Regresar</button>
+      <button className='buttonCancelCreate' onClick={() => {
+        console.log("Cancelado")}}//necesito regresar al Login
+        >Regresar</button>
     </form>
     <br/>
   </div>

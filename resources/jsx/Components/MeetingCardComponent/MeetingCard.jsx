@@ -20,20 +20,26 @@ export default function MeetingCard({meeting, setMeetings}){
     }
 
     return (<>
-    <div className="card">
-            <div className='card-data' >
-                <strong className='card-title'>{"Fecha programada:  " + meeting.scheduled}</strong>
-                <strong className='meeting-data'>-Informacion:</strong>
-                <p className='card-data'>{meeting.description}</p>
-           </div>
-           <div>
-            {user.isStudent ? (null) : 
-            (
-                <button className='buttonCancel' onClick={handleCancelMeeting}>Cancelar</button>
-            )}
-           </div>
-        </div>
-    </>);
+        <form action='/cancel_meeting' method='post'>
+            <div className="card">
+                <div className='card-data' >
+                    <strong className='card-title'>{"Fecha programada:  " + meeting.scheduled}</strong>
+                    <strong className='meeting-data'>-Informacion:</strong>
+                    <p className='card-data'>{meeting.description}</p>
+               </div>
+               <div>
+                {user.isStudent ? (null) : 
+                (
+                    <button className='buttonCancel' 
+                            type='submit'
+                            value={meeting.id} 
+                            name='meetingId'//name: Id de la reunion por cancelar
+                            >Cancelar</button>
+                )}
+               </div>
+            </div>
+        </form>
+        </>);
 }
 
 ReactDOM.render(<MeetingCard/>, document.getElementById('root'));

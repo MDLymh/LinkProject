@@ -10,15 +10,21 @@ export default function StudentCard({student}){
         console.log(student.student_name + " " + student.id)
     }
 
+    //realizar post
     return(<>
-        <div className="card">
-            <img className="pictureProfile" src={student.picture}></img>
-            <div className='card-data' >
-                <strong className='card-title'>{"Miembro de equipo"}</strong>
-                <p className='card-data'>{student.student_name + "\n" + student.career + "\n" + student.lab}</p>
-                <button className='buttonKick' onClick={(e)=>{handleClick(student)}}> Expulsar </button>
-           </div>
-        </div>
+        <form action='/kick_from_project' method='post'>
+            <div className="card">
+                <img className="pictureProfile" src={student.picture}></img>
+                <div className='card-data' >
+                    <strong className='card-title'>{"Miembro de equipo"}</strong>
+                    <p className='card-data'>{student.student_name + "\n" + student.career + "\n" + student.lab}</p>
+                    <button className='buttonKick' 
+                    value={student.id}
+                    name='studentId'//name: id de estudiante por ser expulsado
+                    > Expulsar </button>
+                </div>
+            </div>
+        </form>
     </>);
 }
 

@@ -57,54 +57,60 @@ export default function CreateProject({ onClose, onSubmit }){
         onClose(); // Close the popup after submit
     };
   
-  
-  return (<>
+    //Realizar un post 
+    return (<>
       <div className='popupOverlay'>
-        <div className="createprojectContainer"> 
-            <form className='formNewProject' onSubmit={(e) =>
-              {
-                //e.preventDefault();
-                //evento para enviar la informacion y Crear el nuevo proyecto
-              }}>
-                <strong> Nuevo proyecto</strong>
-                <br></br>
-                <label> Nombre de proyecto:
-                <br></br>
-                    <input 
-                    placeholder='sistema de contadores'
-                    type='text'/>
-                </label>
-                <br></br>
-                <label> Descripcion de proyecto:
-                <br></br>
-                <textarea className='descriptionArea'
-                    placeholder='sistema de contadores'
-                    type='text'/>
-                </label>
-                <br></br>
-                <label> Tipo de innovacion: 
-                    <select className='selectInnovation' onChange={(e) => { setInnovation(e.target.value);}}>
-                      {innovations.map((item) => { return(<option key={item.id} value={item.id}>{item.innovation}</option>)})}
-                    </select>
-                </label>
-                <label> Maximo numero de miembros:
-                    <select className='selectMaxMembers' onChange={(e) => { setMaxMembers(e.target.value);}}>
-                      {membersNumber.map((item) => { return(<option key={item} value={item}>{item}</option>)})}
-                    </select>
-                </label>
-                <label> Seleccione asesor:
-                  <select className='selectAssesor' onChange={(e) => { setAssesor(e.target.value);}}>
-                      {assesors.map((item) => { return(<option key={item.id} value={item.id}>{item.assesor_name}</option>)})}
-                    </select>
-                </label>
-                <button className='buttonSubmit' 
-                type="submit" style={{fontWeight: 'bold', fontSize: '15px', letterSpacing: '1px', height:'50px', width:'300px', marginTop:'25px', alignSelf:'center'}}
-                onClick={handleSubmit(e)}>Crear proyecto</button>
-                <button className='cancel' 
-                type="submit" style={{fontWeight: 'bold', fontSize: '15px', letterSpacing: '1px', height:'50px', width:'300px', marginTop:'25px', alignSelf:'center'}} 
-                onClick={onClose}>Cancelar</button>
-            </form>
-        </div>
-      </div>
-  </>);
+            <div className="createprojectContainer"> 
+                <form className='formNewProject' action='/create_project' method='post'>
+                    <strong> Nuevo proyecto</strong>
+                    <br></br>
+                    <label> Nombre de proyecto:
+                    <br></br>
+                        <input 
+                        value={projectName}
+                        name='projectName'//name: nombre del proyecto
+                        placeholder='sistema de contadores'
+                        type='text'/>
+                    </label>
+                    <br></br>
+                    <label> Descripcion de proyecto:
+                    <br></br>
+                    <textarea className='descriptionArea'
+                        value={description}
+                        name='projectDescription'//name: detalle del proyecto
+                        placeholder='sistema de contadores'
+                        type='text'/>
+                    </label>
+                    <br></br>
+                    <label> Tipo de innovacion: 
+                        <select className='selectInnovation' onChange={(e) => { setInnovation(e.target.value);}}>
+                          {innovations.map((item) => { return(<option key={item.id} value={item.id}>{item.innovation}</option>)})}
+                        </select>
+                    </label>
+                    <label> Maximo numero de miembros:
+                        <select className='selectMaxMembers' 
+                        value={maxMembers}
+                        name='maxMembers'//name: miembros en total
+                        onChange={(e) => { setMaxMembers(e.target.value);}}>
+                          {membersNumber.map((item) => { return(<option key={item} value={item}>{item}</option>)})}
+                        </select>
+                    </label>
+                    <label> Seleccione asesor:
+                      <select className='selectAssesor'
+                              value={asessorId}
+                              name='assesorId'//name: ID del usuario asesor
+                              onChange={(e) => { setAssesor(e.target.value);}}>
+                                  {assesors.map((item) => { return(<option key={item.id} value={item.id}>{item.assesor_name}</option>)})}
+                      </select>
+                    </label>
+                    <button className='buttonSubmit' 
+                            type="submit" style={{fontWeight: 'bold', fontSize: '15px', letterSpacing: '1px', height:'50px', width:'300px', marginTop:'25px', alignSelf:'center'}}
+                            >Crear proyecto</button>
+                    <button className='cancel' 
+                             style={{fontWeight: 'bold', fontSize: '15px', letterSpacing: '1px', height:'50px', width:'300px', marginTop:'25px', marginBottom:'20px', alignSelf:'center', color:'white', backgroundColor:'rgba(52, 177, 52, 0.925)'}} 
+                             onClick={onClose}>Cancelar</button>
+                </form>
+            </div>
+          </div>
+    </>);
 }

@@ -3,17 +3,24 @@ import ReactDOM from "react-dom";
 import { Csrf } from "../../modelos/";
 
 //alerta generica
-export default function PopupWarning({title, message}){
+export default function PopupWarning({errors, setIsErrorPopup}){
 
     return(
-    <>
-    <div>
-        <label className="label_title">{title}</label>
-    </div>
-    <div>
-        <label className="label_message">{message}</label>
-    </div>
-    </>)
+        <>
+        <form onSubmit={setIsErrorPopup(false)}>
+            <div className="popupOverlay">
+                <div>
+                    <label className="labelTitle">{"Error"}</label>
+                </div>
+                <div>
+                    <ul className="errorsList">{errors.map((item) => {
+                            return (<option key={item}>{item}</option>);
+                        } )}</ul>
+                </div>
+                <button className="buttonClose" type="submit" >Cerrar</button>
+            </div>
+        </form>
+        </>);
 }
 
 

@@ -1,11 +1,25 @@
 
-.label_warning{
+.popupOverlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.labelTitle{
     align-items: center;
     font-size: 2em;
     color: brown;
 }
 
-.label_message{
+.errorsList{
+    align-self: flex-start;
     align-items:start;
     font-size: medium;
     color: black;

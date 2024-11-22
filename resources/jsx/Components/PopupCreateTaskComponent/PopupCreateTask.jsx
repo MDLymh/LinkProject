@@ -30,66 +30,68 @@ export default function PopupCreateTask({ onClose, onSubmit }) {
         onClose(); // Close the popup after submit
     };
 
-    return (
-        <div className="popupOverlay">
-            <div className="popupContent">
-                <h2>Crear tarea</h2>
-                <form onSubmit={handleSubmit}>
-                    <label className='taskContent'>
-                        Información de tarea:
-                        <input
-                            type="text"
-                            name="content"
-                            value={content}
-                            onChange={(e) =>{setContent(e.target.value)}}
-                            required
-                        />
-                    </label>
-                    <br></br>
-                    <label className='selectMemberLabel'>
-                        A signar a Miembro:
-                        <select
-                            className='selectMember'
-                            name="member"
-                            value={student}
-                            onChange={(e)=>{setStudent(e.target.value)}} >
-                            {members.map((item) =>{
-                                return (<option key={item.div} value={item.id}>{item.memberName}</option>)
-                                })}
-                        </select>
-                    </label>
-                    <br></br>
-                    <label>
-                        Fecha de entrega:
-                        <input
-                            className='taskSchedule'
-                            type="date"
-                            name="scheduled"
-                            value={scheduled}
-                            required
-                            onChange={(e)=>{setScheduled(e.target.value)}}
-                        />
-                    </label>
-                    {/* <label>
-                        Status:
-                        <select
-                            name="task_status"
-                            value={formData.task_status}
-                            onChange={handleChange}
-                        >
-                            <option value={1}>Programada</option>
-                            <option value={2}>Finalizada</option>
-                            <option value={3}>Vencida</option>
-                            <option value={4}>Sin fecha de vencimiento</option>
-                        </select>
-                    </label> */}
-                    <br></br>
-                    <button className='buttonSubmit' type="submit">Crear</button>
-                    <button type="submit" onClick={onClose}>Cancelar</button>
-                </form>
+  
+    return (<>
+        <form action='/create_task' method='post'>
+            <div className="popupOverlay">
+                <div className="popupContent">
+                    <h2>Crear tarea</h2>
+                    <form onSubmit={handleSubmit}>
+                        <label className='taskContent'>
+                            Información de tarea:
+                            <input
+                                type="text"
+                                value={content}
+                                name="content"//name: informacion de la tarea
+                                onChange={(e) =>{setContent(e.target.value)}}
+                                required/>
+                        </label>
+                        <br></br>
+                        <label className='selectMemberLabel'>
+                            A signar a Miembro:
+                            <select
+                                className='selectMember'
+                                value={student}
+                                name="member"//name: miembro al que se asigna
+                                onChange={(e)=>{setStudent(e.target.value)}} >
+                                {members.map((item) =>{
+                                    return (<option key={item.div} value={item.id}>{item.memberName}</option>)
+                                    })}
+                            </select>
+                        </label>
+                        <br></br>
+                        <label>
+                            Fecha de entrega:
+                            <input
+                                className='taskSchedule'
+                                type="date"
+                                value={scheduled}
+                                name="scheduled"//name: fecha programada que finaliza tarea
+                                required
+                                onChange={(e)=>{setScheduled(e.target.value)}}
+                            />
+                        </label>
+                        {/* <label>
+                            Status:
+                            <select
+                                name="task_status"
+                                value={formData.task_status}
+                                onChange={handleChange}
+                            >
+                                <option value={1}>Programada</option>
+                                <option value={2}>Finalizada</option>
+                                <option value={3}>Vencida</option>
+                                <option value={4}>Sin fecha de vencimiento</option>
+                            </select>
+                        </label> */}
+                        <br></br>
+                        <button className='buttonSubmit' type="submit">Crear</button>
+                        <button className='buttonCancelCreate'  onClick={onClose}>Cancelar</button>
+                    </form>
+                </div>
             </div>
-        </div>
-    );
+        </form>
+    </>);
 }
 
 ReactDOM.render(<PopupCreateTask/>, document.getElementById('root'));
