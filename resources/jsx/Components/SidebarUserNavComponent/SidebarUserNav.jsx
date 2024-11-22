@@ -9,6 +9,11 @@ export default function SidebarUserNav({user, currentView, setCurrentView, notif
     let currentUser = user;
     let currentView = current;
 
+    const handleViewNotifications = (e) =>{
+        setCurrentView("Notificaciones");
+
+    }
+
     const handleViewProfile = (e) =>{
         setCurrentView("Perfil");
 
@@ -48,6 +53,7 @@ export default function SidebarUserNav({user, currentView, setCurrentView, notif
                 {/* <FilterComponent /> */}
             </div>) : (<div className=""></div>)}
             <div className="navigationContainer">
+                <button className="buttonViewProfile"  onClick={handleViewNotifications}>Ver notificaciones</button>
                 <button className="buttonViewProfile"  onClick={handleViewProfile}>Ver perfil</button>
                 <button className="buttonViewTasks" onClick={handleViewTasks}>Ver tareas</button>
                 <button className="buttonViewTeam" onClick={handleViewMeetings}>Ver reuniones</button>
