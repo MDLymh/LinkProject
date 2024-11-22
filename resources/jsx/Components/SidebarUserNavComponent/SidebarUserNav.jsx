@@ -7,7 +7,6 @@ import ReactDOM from "react-dom";
 export default function SidebarUserNav({user, currentView, setCurrentView, notifications, careerFilter, innovationsFilter, labFilter}){
 
     let currentUser = user;
-    let currentView = current;
 
     const handleViewNotifications = (e) =>{
         setCurrentView("Notificaciones");

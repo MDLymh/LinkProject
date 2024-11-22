@@ -1,7 +1,7 @@
-<<<<<<< HEAD:resources/jsx/LoginComponent/Login.jsx
+// <<<<<<< HEAD:resources/jsx/LoginComponent/Login.jsx
+// =======
+// >>>>>>> Sam_frontend:resources/jsx/Views/LoginComponent/Login.jsx
 import React, { useState } from 'react';
-=======
->>>>>>> Sam_frontend:resources/jsx/Views/LoginComponent/Login.jsx
 import "./Login.css"
 import ReactDOM from "react-dom";
 

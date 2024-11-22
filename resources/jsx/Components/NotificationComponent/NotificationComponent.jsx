@@ -1,4 +1,5 @@
 import './NotificationComponent.css';
+import { useState } from 'react';
 import ReactDOM from "react-dom";
 
 export default function NotificationComponent({ notifications }){
