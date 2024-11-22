@@ -6,7 +6,7 @@ export default function NotificationComponent({ notifications }){
 
     // const [notifications, setNotifications] = useState([]);
     const [isPending, startTransition] = useTransition();//tablero se actualiza en segundo plano
- 
+    
 
     return (<>
         <div className="notificationContainer">

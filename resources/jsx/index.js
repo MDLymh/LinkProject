@@ -21,5 +21,6 @@ export * from "./Components/ViewerOwnProjectComponent/ViewerOwnProject"
 export * from "./Components/WarningComponent/PopupWarning"
 export * from "./Views/LoginComponent"
 export * from "./Views/PasswordResetComponent"
+export * from "./Views/PasswordResetComponent"
 export * from "./Views/SignInComponent"
 export * from "./Views/ViewerComponent"//desde aqui el usuario maneja para cambiar de componentes en la vista.
