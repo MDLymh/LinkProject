@@ -18,6 +18,7 @@ export default function CreateMeeting() {
 
     //Realizar un post 
     const createMeeting = ()=> {
+        const url = "localhost:80/crete_meeting.php/"
 
     }
 
@@ -66,7 +67,7 @@ export default function CreateMeeting() {
                 className="time-input"
                 />
         </div>
-        <button className='buttonSaveMeeting'>Guardar</button>
+        <button className='buttonSaveMeeting' onClick={()=>{}}>Guardar</button>
     </div>
     </>
     );

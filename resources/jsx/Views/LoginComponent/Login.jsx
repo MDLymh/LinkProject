@@ -15,6 +15,7 @@ export default function Login(){
       event.preventDefault();
       // validate user credentials
       console.log(`Username: ${username}, Password: ${password}`);
+      
     };
 
     const handleRegister = (event) =>{
