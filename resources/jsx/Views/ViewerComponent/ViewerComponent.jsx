@@ -39,6 +39,7 @@ export default function ProjectsviewerComponent () {
     //Yael: recibir notificaciones recientes (un arreglo de 10) cada 1 min haria el fetch
     const [notifications, setNotifications] = useState([])
 
+    // Palma
     const fetchNotifications = async () => {
         const newNotifications = //llamada al backend.
         setNotifications(prev => [...prev, ...newNotifications]);
