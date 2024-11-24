@@ -26,7 +26,7 @@ Route::get('/test-email', function () {
 
 Route::get('/reset',function(){
     return view('test.password-reset');
-})->name('password.emaiñ');
+})->name('password.email');
 
 
 
