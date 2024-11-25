@@ -5,6 +5,7 @@ import { Csrf } from "../../modelos/";
 //alerta generica
 export default function PopupWarning({errors, setIsErrorPopup}){
 
+    //cambio en el popup para mostrar errores.
     return(
         <>
         <form onSubmit={setIsErrorPopup(false)}>
