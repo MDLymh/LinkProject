@@ -27,7 +27,10 @@ export default function ProjectsviewerComponent () {
         isLeader: false,
         id_project: -1
     }
-
+    //manejo de errores desde la vista principal
+    let [isErrorPopup, setIsErrorPopup] = useState(false)
+    let [initErrors, setInitErrors] =  useState([])
+    
     //manejar estado de Seleccion de filtros
     let [careerFilter, setFilterCareer] = useState('')
     let [innovationsFilter, setFilterInnovations] = useState([])
@@ -78,6 +81,8 @@ export default function ProjectsviewerComponent () {
             </div>
             <div className="mainBoard">
                 { renderComponent()}
+                {isErrorPopup ? (
+                    <PopupWarning errors={initErrors} setIsErrorPopup={setIsErrorPopup(false)}/>) : null}
             </div>
             <div className="rightmenu">
                 <label>Proximas reuniones</label>
