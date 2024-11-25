@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './SignIn.css'
 import ReactDOM from "react-dom";
-import { Csrf } from "../../";
 
 export const  SignIn =() =>{
   const studentDomain = "@educa.udg.mx";
   const assesorDomain = "@educa.udg.mx";
+
+  const initialData = window.__INITIAL_DATA__;
   let csrf = document.querySelector("meta[name='csrf']").getAttribute('content');
   const [name, setName] = useState('');
   const [surname1, setSurname1] = useState('');
@@ -13,12 +14,11 @@ export const  SignIn =() =>{
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmpassword, setConfirmPassword] = useState('');
-  const [career, setCareer] = useState('');
-  const [lab, setLab] = useState('');
 
   const [type, setType] = useState('password');
   const [typeConfirm, setTypeConfirm] = useState('password');
 
+  //Realizar un post
   const handleSubmit = (event) => {
     event.preventDefault();
     if(username == ""){
@@ -47,78 +47,73 @@ export const  SignIn =() =>{
       setTypeConfirm('password')
 };
 
-//Yael: aqui cargaria las carreras para que se diera de alta al usuario. Dejo un ejemplod del arreglo
-let careers = [
-  {
-    id: 0,
-    career_name: "Seleccionar...",
-  },
-  {
-    id: 1,
-    career_name: "Ing. Computacion",
-  },
-  {
-    id: 2,
-    career_name: "Ing. Informatica",
-  },
-]
+let careers = typeof initialData.courses !== 'undefined'?initialData.courses:{};
 
-//Aqui defini los laboratorios
-const laboratories = [ "NA", "Laboratorio Abierto 1", "Laboratorio Abierto 2", "Laboratorio Abierto 3"];
+const laboratories = typeof initialData.laboratories !== 'undefined'?initialData.laboratories:{};
+const users_type = typeof initialData.users_type !== 'undefined'?initialData.users_type:{};
 
-
-  return(<>
+//Realizar post
+return(<>
   <div className="login-container">
     <div className='div_h1_title'>
       <h1> LinkProject </h1>
     </div>
     <h2>Registrarse</h2>
-    <form action='/register' method="post">
+    <form action='/register' method='post'>
       <div className="form-group">
-        <label>Nombre:</label>
-        <input
-          type="text"
-          value={name}
-          name="name"
-          onChange={(event) => setName(event.target.value)}
-          placeholder=""/>
-        <input type="hidden" name="_token" value={csrf} autocomplete="off"></input>
-        <label>Apellido Paterno:</label>
-        <input
-          type="text"
-          value={surname1}
-          name="surname1"
-          onChange={(event) => setSurname1(event.target.value)}
-          placeholder=""/>
-          <label>Apellido Materno:</label>
-        <input
-          type="text"
-          value={surname2}
-          name="surname2"
-          onChange={(event) => setSurname2(event.target.value)}
-          placeholder=""/>
-        <label>Carrera:</label>
-        <select className='select_career' size={1}
-          type="text"
-          value={username}
-          onChange={(event) => setCareer(event.target.value)}
-          name='degree'
-          placeholder="">
-            {careers.map((item, key) => {
-              return(<option key={item.id}>{item.career_name}</option>);
-            })}
-        </select>
-        <label>Laboratorio en curso:</label>
-        <select className='select_career' size={1}
-          type="text"
-          value={lab}
-          onChange={(event) => setLab(event.target.value)}
-          placeholder="">
-            {laboratories.map((item, key) => {
-              return(<option key={item}>{item}</option>);
-            })}
-        </select>
-        <label>Usuario:</label>
+        <div className='flex'>
+            <label>Nombre:</label>
+            <input
+            type="text"
+            value={name}
+            name="name"
+            onChange={(event) => setName(event.target.value)}
+            placeholder=""/>
+            <input type="hidden" name="_token" value={csrf} autocomplete="off"></input>
+        </div>
+        <div className="flex">
+            <label>Apellido Paterno:</label>
+            <input
+            type="text"
+            value={surname1}
+            name='surname1'//name: apellidos
+            onChange={(event) => setSurname1(event.target.value)}
+            placeholder=""/>
+            <label>Apellido Materno:</label>
+            <input
+            type="text"
+            value={surname2}
+            name='surname2'//name: apellidos
+            onChange={(event) => setSurname2(event.target.value)}
+            placeholder=""/>
+
+        </div>
+
+        <div className='flex'>
+            <label>Carrera:</label>
+            <select className='select_career' size={1}
+            type="text"
+            name='carrer'
+            required
+            onChange={(event) => setCareer(event.target.value)}
+            placeholder="">
+                <option disabled selected>Selecciona</option>
+                {Object.values(careers).map((carrer) => {
+                return(<option  value={carrer.id}>{carrer.name}</option>);
+                })}
+            </select>
+            <label>Laboratorio en curso:</label>
+            <select className='select_career' size={1}
+            type="text"
+            name='laboratory'//name: laboratio actual
+            onChange={(event) => setLab(event.target.value)}>
+                <option disabled selected>Selecciona</option>
+                {Object.values(laboratories).map((laboratory)=>(
+                    <option value={laboratory.id}>{laboratory.name}</option>
+                ))}
+            </select>
+        </div>
+        <label>Correo:</label>
         <input
           type="text"
           value={username}
@@ -126,6 +121,20 @@ const laboratories = [ "NA", "Laboratorio Abierto 1", "Laboratorio Abierto 2", "
           onChange={(event) => setUsername(event.target.value)}
           placeholder="my_username@domainname.udg.mx"/>
       </div>
+      <div className="form-group flex">
+        <label htmlFor="code">Codigo:</label>
+        <input type="num" name='code' placeholder='123456789' />
+        <label htmlFor="user-type">Tipo de usuario</label>
+        <select name="user-type" id="user-type">
+            <option selected disabled>selecciona</option>
+            {
+                Object.values(users_type).map((user_type)=>(
+                    <option value={user_type.id}>{user_type.name}</option>
+                ))
+            }
+        </select>
+      </div>
+
       <div className="form-group">
         <label>Contraseña:</label>
         <input
@@ -149,8 +158,7 @@ const laboratories = [ "NA", "Laboratorio Abierto 1", "Laboratorio Abierto 2", "
           value={confirmpassword}
           name='password_confirmation'
           onChange={(event) => setConfirmPassword(event.target.value)}
-          placeholder="confirmar contraseña"
-        />
+          placeholder="confirmar contraseña"/>
         <div className='div_viewpasswordConfirm' >
           <label className='label_show_password'>Ver clave</label>
           <label className="switch" onChange={handleToggleChangedConfirm}>
@@ -160,7 +168,9 @@ const laboratories = [ "NA", "Laboratorio Abierto 1", "Laboratorio Abierto 2", "
       </div>
       </div>
       <button type="submit" onClick={(e) => {SubmitEvent}}>Registrarse</button>
-      <button type="submit" onClick={() => {console.log("Cancelado")}}>Regresar</button>
+      <button className='buttonCancelCreate' onClick={(e) => {e.preventDefault();
+        window.location.href ="login"}}//necesito regresar al Login
+        >Iniciar sesion</button>
     </form>
     <br/>
   </div>

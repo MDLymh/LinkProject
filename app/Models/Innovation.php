@@ -10,7 +10,6 @@ class Innovation extends Model
     use HasFactory;
 
     protected $table = 'innovations';
-    protected $primaryKey = 'id_innovation';
 
     protected $fillable = [
         'innovation_name'

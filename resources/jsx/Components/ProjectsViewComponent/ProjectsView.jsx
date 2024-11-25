@@ -1,4 +1,6 @@
-import './ProjectsView.css';
+import './ProjectsView.css'
+import { useState } from 'react'
+import {CreateProject} from "../../";
 
 export const ProjectsView =({careerFilter, innovationsFilter, labfilter})=>{
 
@@ -38,14 +40,31 @@ export const ProjectsView =({careerFilter, innovationsFilter, labfilter})=>{
         },
     ]
 
+
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    //Realizar un post
+    const handleCreateProyect = (newProject) => {
+
+    };
+
+
     return (<>
     <div className="projectViewerContainer">
+    {user.id_project == -1 && user.isStudent ?
+            (<button className="buttonCreateProject" onClick={() => {setIsPopupOpen(true)}}>Crear proyecto
+            {isPopupOpen && (
+                <CreateProject
+                onClose={() => setIsPopupOpen(false)}
+                onSubmit={handleCreateProyect}  />
+            )}
+            </button>) : null}
+
         <ul className='filteredProjects'>
             {projects.map((item, key)=>{
                 // return(<ProjectItem key={key} project={item} user={user}/>)
             })}
         </ul>
     </div>
-    </>)
+    </>);
 }
 

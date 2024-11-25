@@ -1,5 +1,5 @@
 import React from "react";
-import {UserProfile,MeetingsCalendar,SidebarUserNav} from "../";
+import {UserProfile,MeetingsCalendar} from "../";
 
 export const ProjectsviewerComponent = () =>{
     const notifications = [
@@ -16,7 +16,6 @@ export const ProjectsviewerComponent = () =>{
     <div className="main">
         <div className="appglass">
             <div className="leftmenu">
-                {/* <Sidebar props/> */}
                 {SidebarUserNav}
             </div>
             <div className="projectsboard">

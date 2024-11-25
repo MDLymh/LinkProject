@@ -18,4 +18,8 @@ class Course extends Model{
     public function students(){
         return $this->hasMany(Student::class, 'id_course');
     }
+
+    public static function getCourses():array{
+        return Course::select('id','name')->get()->toArray();
+    }
 }

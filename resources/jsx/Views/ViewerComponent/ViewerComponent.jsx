@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 import "./ViewerComponent.css"
-import {UserProfile,MeetingsCalendar,SidebarUserNav,CreateMeeting,
-        ViewerOwnProject} from "../../";
+import {CreateMeeting,ViewerOwnProject,ProjectsView,TasksViewer,SidebarUserNav,MeetingsCalendar,UserProfile} from "../../";
 
 export const ProjectsviewerComponent =() => {
 
+    const user = typeof window.__INITIAL_DATA__.user!=='undefined'?window.__INITIAL_DATA__.user:{};
     //La uso como bandera para indicar en cual vista se encuentra, y renderizar componentes.
     //banderas: Perfil, Tareas, Proyectos, Editar Perfil, Reuniones
     let [currentView, setCurrentView] = useState("Perfil");
 
     //Yael: recibir el usuario loggeado
-    const user = {
-        id: 1,
-        userName: "Pepito",
-        isStudent: false,
-        isLeader: false,
-        id_project: -1
-    }
-
+    // const user = {
+    //     id: 1,
+    //     userName: "Pepito",
+    //     isStudent: false,
+    //     isLeader: false,
+    //     id_project: -1
+    // }
 
     //manejar estado de Seleccion de filtros
     let [careerFilter, setFilterCareer] = useState('')
@@ -30,29 +30,33 @@ export const ProjectsviewerComponent =() => {
     //Yael: recibir notificaciones recientes (un arreglo de 10) cada 1 min haria el fetch
     const [notifications, setNotifications] = useState([])
 
+
+    // Palma
     const fetchNotifications = async () => {
-        // Simulate fetching notifications from an API
-        const newNotifications = //llamada al backend.
+        const newNotifications = [];//llamada al backend.
         setNotifications(prev => [...prev, ...newNotifications]);
         newNotifications.forEach(notification => toast(notification.message));
       };
 
     useEffect(() => {
         fetchNotifications(); // Initial fetch
-        const interval = setInterval(fetchNotifications, 60000); // Fetch every minute
+        const interval = setInterval(fetchNotifications, 60000); // Fetch cada minuto
         return () => clearInterval(interval);
     }, []);
 
-
     const renderComponent = () =>{
         if(currentView == "Proyectos")
-            return;// <ProjectViewer />
+            return <ProjectsView/>;
         else if(currentView == "Perfil")
             return <UserProfile/>
         else if(currentView == "Tareas")
-            return;//<ViewTask/>
+            return <TasksViewer/>;
         else if(currentView == "Proyecto")
             return <ViewerOwnProject user={user}/>;
+        else if(currentView == "Reuniones")
+            return <MeetingsViewer user={user}/>;
+        else if(currentView == "Notificaciones")
+            return <NotificationsManager/>;
         else
             return null;
     }
@@ -61,8 +65,7 @@ export const ProjectsviewerComponent =() => {
     <div className="main">
         <div className="appglass">
             <div className="leftmenu">
-                <SidebarUserNav user={user} currentView={currentView} notifications={notificacions} careerFilter={careerFilter} innovationsFilter={innovationsFilter} labFilter={labFilter}/>
-                {/* <SidebarUserNav user={user} currentView={currentView} notifications={notificacions} /> */}
+                <SidebarUserNav user={user} currentView={currentView} setCurrentView={setCurrentView} notifications={notifications} setFilterCareer={setFilterCareer} setFilterInnovations={setFilterInnovations} setFilterLab={setFilterLab}/>
             </div>
             <div className="mainBoard">
                 { renderComponent()}
@@ -80,3 +83,4 @@ export const ProjectsviewerComponent =() => {
     </>);
 }
 
+ReactDOM.render(<ProjectsviewerComponent/>, document.getElementById('root'));

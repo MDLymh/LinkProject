@@ -1,33 +1,36 @@
 import './SidebarUserNav.css'
-import {NotificationComponent,FilterComponent} from '../../';
+import {NotificationComponent as Notifications,FilterComponent} from "../../";
 
-export const SidebarUserNav=({user, currentView, notifications, careerFilter, innovationsFilter, labFilter})=>{
+export const SidebarUserNav =({user, currentView, setCurrentView, notifications, careerFilter, innovationsFilter, labFilter})=>{
 
     let currentUser = user;
-    currentView = "";
 
-    const handleViewProfile = () =>{
-        currentView = "Perfil";
-
-    }
-
-    const handleViewTasks = () =>{
-        currentView = "Tareas";
+    const handleViewNotifications = (e) =>{
+        setCurrentView("Notificaciones");
 
     }
 
-    const handleViewMeetings = () =>{
-        currentView = "Reuniones";
+    const handleViewProfile = (e) =>{
+        setCurrentView("Perfil");
 
     }
 
-    const handleViewProjects = () =>{
+    const handleViewTasks = (e) =>{
+        setCurrentView("Tareas");
+    }
+
+    const handleViewMeetings = (e) =>{
+        setCurrentView("Reuniones");
+    }
+
+    const handleViewProjects = (e) =>{
         //go to Projects
-        currentView = "Proyectos";
+        setCurrentView("Proyectos");
     }
 
-    const handleViewCreateProject = () =>{
-        //popup form to be filled with project data
+    const handleViewOwnProject = (e) =>{
+        //go to Projects
+        setCurrentView("Proyectos");
     }
 
 
@@ -38,24 +41,24 @@ export const SidebarUserNav=({user, currentView, notifications, careerFilter, in
             </div>
             <div className="notificationsContainer">
                 <label>Notificaciones</label>
-                <NotificationComponent notificationsList={notificationsList}/>
+                <Notifications notificationsList={notifications}/>
             </div>
             {currentView == "Proyectos" ?
             (<div className="filtersContainer">
                 <FilterComponent setFilterCareer={setFilterCareer} setFilterInnovations={setFilterInnovations} setFilterLab={setFilterLab}/>
                 {/* <FilterComponent /> */}
-            </div>) : (<div className="filtersContainer"></div>)}
+            </div>) : (<div className=""></div>)}
             <div className="navigationContainer">
-                <button className="buttonViewProfile"  onClick={() => {setCurrentView("Perfil")}}>Ver perfil</button>
-                <button className="buttonViewTasks" onClick={() => {setCurrentView("Tareas")}}>Ver tareas</button>
-                <button className="buttonViewTeam" onClick={() => {setCurrentView("Reuniones")}}>Ver reuniones</button>
+                <button className="buttonViewProfile"  onClick={handleViewNotifications}>Ver notificaciones</button>
+                <button className="buttonViewProfile"  onClick={handleViewProfile}>Ver perfil</button>
+                <button className="buttonViewTasks" onClick={handleViewTasks}>Ver tareas</button>
+                <button className="buttonViewTeam" onClick={handleViewMeetings}>Ver reuniones</button>
                 {user.id_project == -1 ? (
-                                <button className="buttonSearchProjects" onClick={() =>{setCurrentView("Proyectos")}}>Ver proyectos</button>
+                                <button className="buttonSearchProjects" onClick={handleViewProjects}>Ver proyectos</button>
 
                 ) : (
-                    <button className="buttonSearchProjects" onClick={() =>{setCurrentView("Proyecto")}}>Ver proyecto</button>
+                    <button className="buttonSearchProjects" onClick={handleViewOwnProject}>Ver proyecto</button>
                 )}
-                {user.id_project == -1 ? (<button className="buttonCreateProject" onClick={handleViewCreateProject}>Crear proyecto</button>) : null}
             </div>
         </div>
         </>);

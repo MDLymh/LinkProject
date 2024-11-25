@@ -1,8 +1,7 @@
 import './ViewerOwnProject.css'
 import { StudentCard } from '../../';
 
-export const ViewerOwnProject =({user})=>{
-
+export const ViewerOwnProject  =({user})=>{
 
     //Yael: aqui necesito la informacion del proyecto al que pertenece el usuario.
     let projectInfo = {
@@ -22,36 +21,41 @@ export const ViewerOwnProject =({user})=>{
         innovation: "Incremental"
     };
 
-    const handleAbandonClick = ()=> {
-        //Yael: aqui se desliga el usuario alumno del proyecto
+    //Realizar un post
+    const handleAbandonClick = () => {
+        //Yael: aqui se desliga el usuario alumno del proyecto al que este
     }
 
     return(<>
-        <div className="ownprojectContainer">
-            <strong className='title'>Detalles del Proyecto</strong>
-            <button className='buttonExitProject' onClick={handleAbandonClick}>Abandonar Proyecto</button>
-            <div className="contentContainer">
-              <label className="titleInfo"> Nombre de proyecto:
-                    </label>
-                    <p className="contentInfo">{projectInfo.project_name}</p>
+        <form action='/abandon_project' method='post'>
+            <div className="ownprojectContainer">
+                <strong className='title'>Detalles del Proyecto</strong>
+                <button className='buttonExitProject'
+                    value={user.id}
+                    name='currentUserId'//name: usuario actualmente loggeado
+                >Abandonar Proyecto</button>
+                <div className="contentContainer">
+                <label className="titleInfo"> Nombre de proyecto:
+                        </label>
+                        <p className="contentInfo">{projectInfo.project_name}</p>
 
-                <label className="titleInfo"> Asesor:
-                    </label>
-                    <p className="contentInfo">{projectInfo.assesor}</p>
+                    <label className="titleInfo"> Asesor:
+                        </label>
+                        <p className="contentInfo">{projectInfo.assesor}</p>
+                    <label className="titleInfo"> Innovacion:
+                        </label>
+                        <p className="contentInfo">{projectInfo.innovation}</p>
 
-                <label className="titleInfo"> Innovacion:
-                    </label>
-                    <p className="contentInfo">{projectInfo.innovation}</p>
-
-                <label className="membersInfo"> Miembros:</label>
-               <div className='membersContainer'>
-                    <li className='membersList'>
-                        {projectInfo.members.map((item, index)=>{
-                            return <StudentCard key={item.id} student={item}/>
-                        })}
-                    </li>
-               </div>
+                    <label className="membersInfo"> Miembros:</label>
+                <div className='membersContainer'>
+                        <li className='membersList'>
+                            {projectInfo.members.map((item, index)=>{
+                                return <StudentCard key={item.id} student={item}/>
+                            })}
+                        </li>
+                </div>
+                </div>
             </div>
-        </div>
+        </form>
         </>);
 }

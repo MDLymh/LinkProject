@@ -1,7 +1,6 @@
 import "./Login.css"
 import ReactDOM from "react-dom";
 import React, { useState } from "react";
-import {Csrf} from "../../";
 
 
 export const Login  = () =>{
@@ -34,7 +33,7 @@ export const Login  = () =>{
       <h2>Iniciar Sesión</h2>
       <form action="/login" method="POST">
         <div className="form_group">
-          <label>Usuario:</label>
+          <label>Correo:</label>
           <input
             type="text"
             value={username}
@@ -64,7 +63,7 @@ export const Login  = () =>{
         <button type="submit" >Iniciar</button>
         <button className='button_register' onClick={handleRegister}>Registrarse</button>
         <div className='div_reset'>
-          <a className='a_reset_password' href="/reset">Olvido contraseña?</a>
+          <a className='a_reset_password' href="/password/reset">Olvido contraseña?</a>
         </div>
       </form>
       <br/>

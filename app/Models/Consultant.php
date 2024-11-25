@@ -10,7 +10,6 @@ class Consultant extends Model
     use HasFactory;
 
     protected $table = 'consultants';
-    protected $primaryKey = 'id_consultant';
 
     protected $fillable = [
         'id_user',

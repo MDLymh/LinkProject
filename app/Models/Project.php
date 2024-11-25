@@ -40,4 +40,9 @@ class Project extends Model
     public function notifications(){
         return $this->hasMany(Notification::class, 'id_project');
     }
+
+    public static function getLeader($projectId):int{
+        $result = Project::select('leader')->where('id')->first();
+        return $result->leader;
+    }
 }

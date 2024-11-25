@@ -46,10 +46,11 @@ export const TasksViewer=({user})=>{
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+    //Realizar un post
     const handleCreateTask = (newTask) => {
         setProjectTasks((prevTasks) => [
             prevTasks,
-            { id: prevTasks.length + 1, newTask }, // Assign a new ID
+            { id: prevTasks.length + 1, newTask }, //
         ]);
 
     };

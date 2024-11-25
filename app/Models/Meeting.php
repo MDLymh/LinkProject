@@ -10,7 +10,6 @@ class Meeting extends Model
     use HasFactory;
 
     protected $table = 'meetings';
-    protected $primaryKey = 'id_meeting';
 
     protected $fillable = [
         'id_project',

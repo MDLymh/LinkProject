@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
         SkillsTableSeeder::class,
         CourseTableSeeder::class,
         InnovationsTableSeeder::class,
+        Type_userSeeder::class,
+        LaboratoriesSeeder::class,
     ]);
 }
 }

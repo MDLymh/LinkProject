@@ -45,3 +45,13 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.buttonCancelCreate{
+    width: 100%;
+    height: 40px;
+    color: white;
+    background-color: rgba(52, 177, 52, 0.925);
+    letter-spacing: 2px;
+    font-weight: bold;
+    border-radius: 10px;
+}

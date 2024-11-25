@@ -3,6 +3,7 @@ import './ChangeProfileData.css'
 
 export const ChangeProfile = () =>{
 
+    //Realizar un post para actualizar info
     const onSubmit = (event) =>{
 
         let userName;

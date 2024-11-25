@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Consultant;
+use App\Models\Course;
+use App\Models\Laboratory;
 use App\Models\User;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Events\Registered;
@@ -12,8 +15,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 use App\Models\Password_reset_token;
+use App\Models\Student;
+use App\Models\Type_user;
 use Carbon\Carbon;
-use PhpParser\Node\Expr\FuncCall;
 
 class AuthController extends Controller
 {
@@ -23,57 +27,6 @@ class AuthController extends Controller
         ];
         return view('base',$data);
     }
-
-
-    public function register(Request $request){
-        $validateData = $request->validate([
-            'name'=> 'min:3|max:255|string',
-            'surname1'=> 'min:3|max:255|string',
-            'surname2'=> 'min:3|max:255|string|nullable',
-            'email' => 'max:255|email|unique:users,email',
-            'password' => ['required','string','min:8','regex:/[a-z]/','regex:/[A-Z]/',
-                            'regex:/[0-9]/','regex:/[@$!%*?&]/','confirmed'],
-        ]);
-
-
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'remember_token' => Str::random(60)
-        ]);
-
-        event(new Registered($user));
-
-
-        return redirect()->route('login')->with('message', 'Por favor, revisa tu correo para verificar tu cuenta.');
-    }
-
-
-    public function verify($id, $token){
-
-        $user = User::find($id);
-
-
-        if (!$user || $user->remember_token !== $token) {
-            return redirect('/login')->with('error', 'Token de verificación inválido o expirado.');
-        }
-
-
-        if ($user->email_verified_at) {
-            return redirect('/login')->with('message', 'Tu cuenta ya ha sido verificada.');
-        }
-
-
-        $user->email_verified_at = now();
-        $user->remember_token = null;
-        $user->save();
-
-
-        return redirect()->route('login')->with('message', 'Tu cuenta ha sido verificada con éxito. Ahora puedes iniciar sesión.');
-    }
-
 
     public function login(Request $request){
 
@@ -110,7 +63,96 @@ class AuthController extends Controller
         Auth::login($user);
 
 
-        return redirect()->route('login')->with('message', 'Bienvenido, estás logueado correctamente!');
+        return redirect()->route('index')->with('message', 'Bienvenido, estás logueado correctamente!');
+    }
+
+    public function showRegister(){
+        $initialData['users_type'] = Type_user::getUsersType();
+        $initialData['courses'] = Course::getCourses();
+        $initialData['laboratories'] = Laboratory::getLaboratories();
+        $data=[
+            'viewJsx'=> 'resources/jsx/Views/SignInComponent/SignIn.jsx',
+            'initialData' => $initialData
+        ];
+        return view('base',$data);
+    }
+
+
+    public function register(Request $request){
+        $validateData = $request->validate([
+            'name'=> 'min:3|max:255|string|required',
+            'surname1'=> 'min:3|max:255|string|required',
+            'surname2'=> 'min:3|max:255|string|nullable',
+            'email' => 'required|max:255|email|unique:users,email',
+            'carrer'=> 'required|integer|exists:courses,id',
+            'user-type'=> 'required|integer|exists:type_users,id',
+            'laboratory'=> 'required|integer|exists:laboratories,id',
+            'code'=>'required|integer|unique:students,id|unique:consultants,id',
+            'password' => ['required','string','min:8','regex:/[a-z]/','regex:/[A-Z]/',
+                            'regex:/[0-9]/','regex:/[@$!%*?&]/','confirmed'],
+        ]);
+
+
+
+        $user = User::create([
+            'name' => $validateData['name'],
+            'surname1'  => $validateData['surname1'],
+            'surname2'  => $validateData['surname2'],
+            'email'     => $request->email,
+            'is_active' => true,
+            'type'      => $validateData['user-type'],
+            'password'  => bcrypt($request->password),
+            'remember_token' => Str::random(60)
+        ]);
+
+        if($validateData['user-type'] == 1){
+            $consultant = Consultant::create([
+                'id'          => $validateData['code'],
+                'id_user'     => $user->id,
+            ]);
+            $consultant->save();
+        }
+        if($validateData['user-type'] == 2){
+            $student = Student::create([
+                'id'          => $validateData['code'],
+                'id_user'     => $user->id,
+                'id_course'   => $validateData['carrer'],
+                'current_lab' => $validateData['laboratory'],
+            ]);
+            $student->save();
+        }
+        event(new Registered($user));
+
+
+        return redirect()->route('login')->with('message', 'Por favor, revisa tu correo para verificar tu cuenta.');
+    }
+
+
+    public function verify($id, $token){
+
+        $user = User::find($id);
+
+
+        if (!$user || $user->remember_token !== $token) {
+            return redirect('/login')->with('error', 'Token de verificación inválido o expirado.');
+        }
+
+
+        if ($user->email_verified_at) {
+            return redirect('/login')->with('message', 'Tu cuenta ya ha sido verificada.');
+        }
+
+
+        $user->email_verified_at = now();
+        $user->remember_token = null;
+        $user->save();
+
+
+        return redirect()->route('login')->with('message', 'Tu cuenta ha sido verificada con éxito. Ahora puedes iniciar sesión.');
+    }
+
+    public function showResetSol(Request $request){
+        return view('test.password-reset');
     }
 
 
@@ -125,7 +167,7 @@ class AuthController extends Controller
         );
 
         if ($response == Password::RESET_LINK_SENT) {
-            return back()->with('status', 'Te hemos enviado un enlace para restablecer tu contraseña.');
+            return redirect()->route('login')->with('message', 'Te hemos enviado un enlace para restablecer tu contraseña.');
         } else {
             return back()->withErrors(['email' => 'No pudimos encontrar un usuario con ese correo.']);
         }
@@ -135,7 +177,7 @@ class AuthController extends Controller
 
 
         $validateData = $request->validate([
-            'email' => 'max:255|email',
+            'email' => 'max:255|email|exists:users,email',
             'password' => ['required','string','min:8','regex:/[a-z]/','regex:/[A-Z]/',
                             'regex:/[0-9]/','regex:/[@$!%*?&]/','confirmed'],
             'token' => 'required|string',
@@ -164,17 +206,16 @@ class AuthController extends Controller
     }
 
     public function showReset(Request $request,$token) {
-        $data =[
+        $initialData =[
             'email'=> $request->input('email'),
             'token'=> $token
         ];
-        return view('test.password-reset-form',$data);
-    }
-
-    public function showRegister(){
-        $data=[
-            'viewJsx'=> 'resources/jsx/Views/SignInComponent/SignIn.jsx'
+        $data =[
+            'viewJsx'=> 'resources/jsx/Views/PasswordResetComponent/PasswordReset.jsx',
+            'initialData'=>$initialData
         ];
         return view('base',$data);
     }
+
+
 }

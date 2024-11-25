@@ -1,6 +1,4 @@
-import './MeetingsViewer.css'
-//import {MeetingCard} from '../../';
-import React, {useState} from 'react';
+import './MeetingsViewer.css';
 
 
 export const MeetingsViewer = ()=>{
@@ -15,21 +13,21 @@ export const MeetingsViewer = ()=>{
     let [meetings, setMeetings] = useState([]);
 
     meetings = [
-        {
-            id: 1,
-            scheduled: "2024-11-29 12:00 p.m.",
-            description: "Reunion con asesor"
-        },
-        {
-            id: 2,
-            scheduled: "2024-12-01 2:00 p.m.",
-            description: "Revision de avance y correciones."
-        },
-        {
-            id: 3,
-            scheduled: "2024-12-05 2:00 p.m.",
-            description: "Revision de diagramas de flujo."
-        },
+        // {
+        //     id: 1,
+        //     scheduled: "2024-11-29 12:00 p.m.",
+        //     description: "Reunion con asesor"
+        // },
+        // {
+        //     id: 2,
+        //     scheduled: "2024-12-01 2:00 p.m.",
+        //     description: "Revision de avance y correciones."
+        // },
+        // {
+        //     id: 3,
+        //     scheduled: "2024-12-05 2:00 p.m.",
+        //     description: "Revision de diagramas de flujo."
+        // },
     ]
 
     return (<>

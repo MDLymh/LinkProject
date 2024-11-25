@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('project_name');
             $table->string('innovation_types');
+            $table->unsignedBigInteger('leader');
             $table->timestamps();
         });
     }

@@ -10,9 +10,9 @@ class Student extends Model
     use HasFactory;
 
     protected $table = 'students';
-    protected $primaryKey = 'id_student';
 
     protected $fillable = [
+        'id',
         'id_user',
         'id_course',
         'id_project',
@@ -20,7 +20,6 @@ class Student extends Model
         'is_leader',
         'available_schedule',
         'current_lab',
-        'school_cycle'
     ];
 
     public function user(){
@@ -37,5 +36,9 @@ class Student extends Model
 
     public function skills(){
         return $this->belongsToMany(Skill::class, 'student_skills', 'id_user', 'id_skill');
+    }
+
+    public static function isStudent($studentId){
+        return Student::where('id_user',$studentId)->first()?true:false;
     }
 }

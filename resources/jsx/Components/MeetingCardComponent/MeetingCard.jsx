@@ -1,45 +1,41 @@
-import { useState } from 'react';
 import './MeetingCard.css';
 
+export const MeetingCard=({meeting, setMeetings})=>{
 
-export const MeetingsViewer = ()=>{
-
-    //Yael: aqui necesito el usuario loggeado.
-    let user = {
-        id: 1,
+    //Yael: si el usuario no es estudiante, si renderiza el boton.
+    let user ={
+        id:1,
         isStudent: false,
     }
 
-    //Yael: aqui necesito las reuniones, si puedes ordenadas por fecha de mas proxima hacia atras.
-    let [meetings, setMeetings] = useState([]);
-
-    meetings = [
-        {
-            id: 1,
-            scheduled: "2024-11-29 12:00 p.m.",
-            description: "Reunion con asesor"
-        },
-        {
-            id: 2,
-            scheduled: "2024-12-01 2:00 p.m.",
-            description: "Revision de avance y correciones."
-        },
-        {
-            id: 3,
-            scheduled: "2024-12-05 2:00 p.m.",
-            description: "Revision de diagramas de flujo."
-        },
-    ]
+    //Realizar un post
+    const handleCancelMeeting =(e) => {
+        //Yael: aqui la llamada seria para un delete
+        console.log(e.target.value);
+        //refrescar contenido al padre
+        setMeetings(e.target.value);//id de la tabla meetings
+    }
 
     return (<>
-        <div className="meetingsContainer">
-            <strong>Proximas reuniones</strong>
-            <ol className='meetingsList'>
-                {meetings.map((item, key)=>
-                    {
-                        return(<MeetingCard key={item.id} meeting={item} setMeetings={setMeetings}/>);
-                    })}
-            </ol>
-        </div>
-    </>)
+        <form action='/cancel_meeting' method='post'>
+            <div className="card">
+                <div className='card-data' >
+                    <strong className='card-title'>{"Fecha programada:  " + meeting.scheduled}</strong>
+                    <strong className='meeting-data'>-Informacion:</strong>
+                    <p className='card-data'>{meeting.description}</p>
+               </div>
+               <div>
+                {user.isStudent ? (null) :
+                (
+                    <button className='buttonCancel'
+                            type='submit'
+                            value={meeting.id}
+                            name='meetingId'//name: Id de la reunion por cancelar
+                            >Cancelar</button>
+                )}
+               </div>
+            </div>
+        </form>
+        </>);
 }
+

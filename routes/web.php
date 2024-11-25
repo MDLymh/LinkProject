@@ -1,32 +1,18 @@
 <?php
-use App\Models\Skill;
-use App\Models\Course;
-use App\Models\Innovation;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Mail\TestEmail;
-use Illuminate\Support\Facades\Mail;
 
 
-Route::get('/', function () {
-    // Obtiene los registros de las tablas
-    $skills = Skill::all();
-    $careers = Course::all();
-    $innovations = Innovation::all();
 
-    // Pasa los datos a la vista
-    return view('welcome', compact('skills', 'careers', 'innovations'));
+
+Route::controller(Dashboard::class)->group(function(){
+    Route::get('/','index')->name('index');
 });
-
-
-Route::get('/test-email', function () {
-    Mail::to('test@example.com')->send(new TestEmail());
-    return 'Correo enviado';
+Route::controller(UserController::class)->group(function(){
+    Route::get('/getUserInfo','getInfo')->name('user.getInfo');
 });
-
-Route::get('/reset',function(){
-    return view('test.password-reset');
-})->name('password.email');
 
 
 
@@ -37,19 +23,8 @@ Route::controller(AuthController::class)->group(function(){
     Route::get('/register','showRegister')->name('register.show');
     Route::get('/email/verify/{id}/{token}','verify')->name('verification.verify');
     Route::get('/password/reset/{token}','showReset')->name('password.reset');
+    Route::get('/password/reset','showResetSol')->name('password.solReset');
     Route::post('/password/reset','resetPassword')->name('password.update');
     Route::post('/password/email','sendResetLinkEmail')->name('password.emailReset');
-});
-
-
-
-
-Route::get('/prueba',function(){
-    $data= [
-        'pageData' => ['nombre'=> "pepito"],
-        'viewJsx' => "resources/jsx/LoginComponent/Login.jsx"
-    ];
-    return view('app',$data);
-
 });
 

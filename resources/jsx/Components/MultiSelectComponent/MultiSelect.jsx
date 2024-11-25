@@ -1,4 +1,3 @@
-// MultiSelect.js
 import React, { useState } from 'react';
 import './MultiSelect.css';
 

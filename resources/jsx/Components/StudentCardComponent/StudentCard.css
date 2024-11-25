@@ -1,39 +1,59 @@
 
 .card{
-    display: flex;
-    align-items: flex-start;
-    flex-direction: row;
-    gap: 10px;
-    border: 1px solid hsl(0, 0%, 80%);
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px rgba(18, 18, 18, 0.1);
-    padding: 20px;
-    margin: 10px;
-    width: 90%;    
-  }
-
-.card .card-data{
-    display: flex;
-    flex-direction: column;
-    font-size: 0.9rem;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  gap: 10px;
+  border: 1px solid hsl(0, 0%, 80%);
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px rgba(18, 18, 18, 0.1);
+  padding: 20px;
+  margin: 10px;
+  width: 90%;    
 }
 
+.card .card-data{
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+}
 
-  .card .card-title{
-    font-family: Arial, sans-serif;
-    font-size: 1.1rem;
-    margin: 0;
-    color: black
-  }
+.card .card-title{
+  font-family: Arial, sans-serif;
+  font-size: 1.1rem;
+  margin: 0;
+  color: black
+}
 
-  .student-data{
-    letter-spacing: 2px;
+.student-data{
+  letter-spacing: 2px;
 }
 
 .pictureProfile {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #007bff;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #007bff;
+}
+
+.buttonKick{
+align-self: flex-end;
+height: 40px;
+width: 100px;
+text-align: center;
+font-family: Arial, sans-serif;
+font-weight: bold;
+background: rgba(233, 170, 44, 0.50);
+color:black;
+font-size: 15px;
+border-radius: 25px;
+align-self: flex-end;
+margin-left: 45px;
+}
+
+.buttonKick:hover{
+font-family: Arial, sans-serif;
+background-color: rgba(255, 7, 7, 0.708);
+color:white;
 }

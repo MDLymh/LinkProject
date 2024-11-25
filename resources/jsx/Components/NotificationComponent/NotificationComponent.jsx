@@ -1,14 +1,12 @@
 import './NotificationComponent.css';
-import React,{useState, useTransition} from 'react';
+import { useTransition,useState } from 'react';
 
 export const NotificationComponent =({})=>{
 
     const [notifications, setNotifications] = useState([]);
     const [isPending, startTransition] = useTransition();//tablero se actualiza en segundo plano
 
-    if(notifications.length== 0){
-        return null;
-    }
+
     return (<>
         <div className="notificationContainer">
 

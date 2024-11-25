@@ -17,13 +17,11 @@ return new class extends Migration
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('id_course');
             $table->foreign('id_course')->references('id')->on('courses')->onDelete('cascade');
-            $table->unsignedBigInteger('id_project');
+            $table->unsignedBigInteger('id_project')->nullable();
             $table->foreign('id_project')->references('id')->on('projects')->onDelete('cascade');
-            $table->integer('external_contact');
-            $table->boolean('is_leader');
-            $table->string('available_schedule');
-            $table->string('current_lab');
-            $table->enum('school_cycle', ['A', 'B']);
+            $table->integer('external_contact')->nullable();
+            $table->string('available_schedule')->nullable();
+            $table->unsignedInteger('current_lab');
             $table->timestamps();
         });
     }

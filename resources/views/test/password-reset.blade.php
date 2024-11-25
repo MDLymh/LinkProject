@@ -29,7 +29,7 @@
         @endif
 
         <!-- Formulario para ingresar el correo y solicitar el restablecimiento -->
-        <form method="POST" action="{{ route('password.emailReset') }}">
+        <form method="POST" action="{{ route('password.emailReset') }}" style="margin-bottom: 15px;">
             @csrf
             <div style="margin-bottom: 15px;">
                 <label for="email">Correo electrónico:</label>
@@ -37,6 +37,11 @@
             </div>
 
             <button type="submit" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">Enviar enlace de restablecimiento</button>
+        </form>
+
+        <!-- Botón para redirigir a /login -->
+        <form action="/login" method="GET">
+            <button type="submit" style="width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">Volver a iniciar sesión</button>
         </form>
     </div>
 </body>

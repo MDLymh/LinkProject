@@ -1,5 +1,6 @@
-import './FilterComponent.css';
-export const FilterComponent = ({careerFilter, innovationsFilter, labFilter})=>{
+import './FilterComponent.css'
+
+export const  FilterComponent=({setFilterCareer, setFilterInnovations, setFilterLab})=>{
 
     //aqui necesito los valores de la tabla careers, dejo ejemplo
     const careers = [
@@ -32,11 +33,11 @@ export const FilterComponent = ({careerFilter, innovationsFilter, labFilter})=>{
 
     //este seria el equivalenete a un SELECT DISTINCT en la tabla Students para obtener el campo current_laboratory
     //este campo creo lo puedo dejar fijo desde el Signin en un select para dejar fijos estos valores ''
-    const laboratories = [ "Laboratorio Abierto 1", "Laboratorio Abierto 2", "Laboratorio Abierto 3"]
+    const laboratories = [ "Laboratorio Abierto 1", "Laboratorio Abierto 2", "Laboratorio Abierto 3"];
 
-    // [careerFilter, setSelectedCareer] = useState('');
-    // [innovationsFilter, setSelectedInnovations] = useState([]);
-    // [labFilter, setSelectedLab] = useState('');
+    //   [careerFilter, setSelectedCareer] = useState('');
+    //   [innovationsFilter, setSelectedInnovations] = useState([]);
+    //   [labFilter, setSelectedLab] = useState('');
 
     const handleSelectionChange = (event) => {
         const options = event.target.options;
@@ -48,15 +49,14 @@ export const FilterComponent = ({careerFilter, innovationsFilter, labFilter})=>{
         }
         setSelectedInnovations(valueArray);
     };
-
     return (
         <>
         <div className="filtersContainer">
             <label>Filtrar</label>
             <div className="careersFilter" >
-                <select onSelect={(e) => {
-                    console.log(e.target.value);
-                    setFilterCareer(e.target.value);}}>
+                <select onChange={(e) => {
+                    console.log(e.target.option);
+                    setFilterCareer(e.target.option);}}>
                     {careers.map((item, key)=>{
                         return (<option key={item.id}>{item.name}</option>);
                     })}
