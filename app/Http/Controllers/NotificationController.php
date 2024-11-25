@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Notification;
 
 class NotificationController extends Controller {
-    public function send(Request $request) { 
+    public function send(Request $request) {
         $request->validate([
             'id_user_leader' => 'required|exists:users,id_user',
             'id_user_request' => 'required|exists:users,id_user',
@@ -19,20 +19,27 @@ class NotificationController extends Controller {
         return response()->json(['message' => 'Notificación enviada con éxito', 'notification' => $notification]);
     }
 
-    public function confirm($id) { 
+    public function confirm($id) {
         $notification = Notification::findOrFail($id);
-        $notification->status = 'confirmed'; // Cambiar el estado 
+        $notification->status = 'confirmed'; // Cambiar el estado
         $notification->save();
 
         return response()->json(['message' => 'Notificación confirmada', 'notification' => $notification]);
     }
 
-    public function reject($id) { 
+    public function reject($id) {
         $notification = Notification::findOrFail($id);
-        $notification->status = 'rejected'; // Cambiar el estado 
+        $notification->status = 'rejected'; // Cambiar el estado
         $notification->save();
 
         return response()->json(['message' => 'Notificación rechazada', 'notification' => $notification]);
+    }
+
+    public function getNotifications(Request $request){
+        $isLeader= $request->input('isLeader');
+        $userId= $request->input('userId');
+        $project= $request->input('project');
+        return json_encode(Notification::getNotifications($isLeader,$userId,$project));
     }
 }
 

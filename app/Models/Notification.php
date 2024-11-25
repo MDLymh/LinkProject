@@ -29,4 +29,20 @@ class Notification extends Model
     public function project(){
         return $this->belongsTo(Project::class, 'id_project');
     }
+
+    public static function getNotifications($isLeader,$userId,$projectId):array{
+        if($isLeader){
+            return Notification::select('id','content')
+                                 ->where('id_user_leader',$userId)
+                                 ->where('id_project',$projectId)
+                                 ->get()
+                                 ->toArray();
+        }else{
+            return Notification::select('id','content')
+                                 ->where('id_user_request',$userId)
+                                 ->where('id_project',$projectId)
+                                 ->get()
+                                 ->toArray();
+        }
+    }
 }

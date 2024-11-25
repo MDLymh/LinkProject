@@ -10,15 +10,6 @@ export const ProjectsviewerComponent =() => {
     //banderas: Perfil, Tareas, Proyectos, Editar Perfil, Reuniones
     let [currentView, setCurrentView] = useState("Perfil");
 
-    //Yael: recibir el usuario loggeado
-    // const user = {
-    //     id: 1,
-    //     userName: "Pepito",
-    //     isStudent: false,
-    //     isLeader: false,
-    //     id_project: -1
-    // }
-
     //manejar estado de Seleccion de filtros
     let [careerFilter, setFilterCareer] = useState('')
     let [innovationsFilter, setFilterInnovations] = useState([])
@@ -33,7 +24,19 @@ export const ProjectsviewerComponent =() => {
 
     // Palma
     const fetchNotifications = async () => {
-        const newNotifications = [];//llamada al backend.
+        const newNotifications = await fetch('/notifiactions/get',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                isLeader: user.isLeader,
+                userId: user.id,
+                project: user.id_project,
+            })
+        })
+        .then(response => response.JSON)
+        .catch(error => console.error('Error:', error));
         setNotifications(prev => [...prev, ...newNotifications]);
         newNotifications.forEach(notification => toast(notification.message));
       };
