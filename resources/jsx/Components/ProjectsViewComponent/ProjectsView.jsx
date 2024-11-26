@@ -1,70 +1,58 @@
 import './ProjectsView.css'
-import { useState } from 'react'
-import {CreateProject} from "../../";
+import { useState, useEffect } from 'react'
+import { CreateProject, ProjectItem } from "../../";
 
-export const ProjectsView =({careerFilter, innovationsFilter, labfilter})=>{
+export const ProjectsView = ({ careerFilter, labfilter }) => {
+    let user = window.__INITIAL_DATA__.user;
+    const [projects, setProjects] = useState([]);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);  // Añadir el estado aquí
 
-    //Yael: recibir usuario logeado
-    let user = {
-        id: 1,
-        userName: "Pepito",
-        isStudent: true,
-        isLeader: false,
-        id_project: -1,
-    }
+    useEffect(() => {
+        const getProjects = async () => {
+            const csrf = document.querySelector("meta[name='csrf']").getAttribute('content');
+            try {
+                let response = await fetch('/project/getAll', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrf
+                    },
+                })
+                if (!response.ok) {
+                    throw new Error('Error de conexion');
+                }
+                if (response.status == 200) {
+                    setProjects(await response.json());
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        getProjects();
+    }, []);
 
-    //Yael: recibir los proyectos que esten en el criterio de los filtros, sino hay ninguno entonces tomar todos.
-    //careerFilter: admite un valor
-    //innovationsFilter: admite mas de un valor
-    //labFilter: admite un valor
-    let projects = [
-        {
-            project_id: 1,
-            project_name: "proyecto 1",
-            project_description: "Este es un ejemplo de un proyecto",
-            current_lab: "Lab 1",//laboratorio del lider
-            innovation_type: 1,
-            request_knowledge: "Se requieren miembros con carreras afines a: Ing. Computacion, Ing. Software",
-            members: 2,
-            max_members: 4
-        },
-        {
-            project_id: 2,
-            project_name: "proyecto 2",
-            project_description: "Este es un ejemplo de un proyecto",
-            current_lab: "Lab 1",//laboratorio del lider
-            innovation_type: 1,
-            request_knowledge: "Se requieren miembros con carreras afines a: Ing. Computacion, Ing. Software",
-            members: 4,
-            max_members: 4
-        },
-    ]
+    return (
+        <>
+            <div className="projectViewerContainer">
+                {user.id_project == -1 && user.isStudent ?
+                    (<button className="buttonCreateProject" onClick={() => { setIsPopupOpen(true) }}>
+                        Crear proyecto
+                    </button>) : null}
 
+                {isPopupOpen && (
+                    <CreateProject
+                        setIsPopupOpen={setIsPopupOpen}  // Pasar la función correctamente
+                    />
+                )}
 
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
-    //Realizar un post
-    const handleCreateProyect = (newProject) => {
-
-    };
-
-
-    return (<>
-    <div className="projectViewerContainer">
-    {user.id_project == -1 && user.isStudent ?
-            (<button className="buttonCreateProject" onClick={() => {setIsPopupOpen(true)}}>Crear proyecto
-            {isPopupOpen && (
-                <CreateProject
-                onClose={() => setIsPopupOpen(false)}
-                onSubmit={handleCreateProyect}  />
-            )}
-            </button>) : null}
-
-        <ul className='filteredProjects'>
-            {projects.map((item, key)=>{
-                // return(<ProjectItem key={key} project={item} user={user}/>)
-            })}
-        </ul>
-    </div>
-    </>);
+                <ul className='filteredProjects'>
+                    {projects.map((project) => {
+                        if (project.labId == labfilter || labfilter == 0) {
+                            return (<ProjectItem project={project} user={user} />)
+                        }
+                    })}
+                </ul>
+            </div>
+        </>
+    );
 }
-

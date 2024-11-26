@@ -28,4 +28,9 @@ export * from "./Views/PasswordResetComponent/PasswordReset"
 export * from "./Views/SignInComponent/SignIn"
 export * from "./Views/LoginComponent/Login"
 export * from "./Components/csrf/csrf"
+export * from "./Components/SidebarUserNavComponent/SidebarUserNav"
+export * from "./Components/WarningComponent/PopupWarning";
+export * from "./Components/NotificationManagerComponent/NotificationsManager"
+export * from "./Components/NotificationCardComponent/NotificationCard"
+export * from "./Components/ProjectsViewComponent/ProjectsView"
 export * from "./Views/ViewerComponent/ViewerComponent"//desde aqui el usuario maneja para cambiar de componentes en la vista.

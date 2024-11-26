@@ -1,92 +1,89 @@
+import { useEffect, useState } from 'react';
 import './FilterComponent.css'
 
-export const  FilterComponent=({setFilterCareer, setFilterInnovations, setFilterLab})=>{
+export const FilterComponent = ({ setFilterCareer, setFilterLab }) => {
 
-    //aqui necesito los valores de la tabla careers, dejo ejemplo
-    const careers = [
-        {
-            id: 1,
-            name: "Ing. Computacion"
-        },
-        {
-            id: 2,
-            name: "Ing. Informatica"
-        }
-    ];
+    const [careers, setCareers] = useState([]);
+    const [laboratories, setLaboratories] = useState([]);
+    const [isLabsLoaded, setIsLabsLoaded] = useState(false);
 
-    //aqui de la tabla InnovationsTypes
-    const innovations = [
-        {
-            id: 1,
-            name: "Disruptivo"
-        },
-        {
-            id: 2,
-            name: "Radical"
-        },
-        {
-            id: 3,
-            name: "De productos/servicios"
-        },
+    useEffect(() => {
+        const getCourses = async () => {
+            const csrf = document.querySelector("meta[name='csrf']").getAttribute('content');
+            try {
+                let response = await fetch('/course/get', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrf
+                    },
+                })
 
-    ];
-
-    //este seria el equivalenete a un SELECT DISTINCT en la tabla Students para obtener el campo current_laboratory
-    //este campo creo lo puedo dejar fijo desde el Signin en un select para dejar fijos estos valores ''
-    const laboratories = [ "Laboratorio Abierto 1", "Laboratorio Abierto 2", "Laboratorio Abierto 3"];
-
-    //   [careerFilter, setSelectedCareer] = useState('');
-    //   [innovationsFilter, setSelectedInnovations] = useState([]);
-    //   [labFilter, setSelectedLab] = useState('');
-
-    const handleSelectionChange = (event) => {
-        const options = event.target.options;
-        const valueArray = [];
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].selected) {
-                valueArray.push(options[i].value);
+                if (!response.ok) {
+                    throw new Error('Error de conexion');
+                }
+                if (response.status == 200) {
+                    setCareers(await response.json());
+                }
+            } catch (error) {
+                console.error(error);
             }
+        };
+
+        const getLaboratories = async () => {
+            const csrf = document.querySelector("meta[name='csrf']").getAttribute('content');
+            try {
+                let response = await fetch('/laboratories/getAll', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrf
+                    },
+                })
+
+                if (!response.ok) {
+                    throw new Error('Error de conexion');
+                }
+                if (response.status == 200) {
+                    setLaboratories(await response.json());
+                    setIsLabsLoaded(true);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        getCourses();
+
+        if (!isLabsLoaded) {
+            getLaboratories();
         }
-        setSelectedInnovations(valueArray);
-    };
+    }, [isLabsLoaded]);
+
     return (
         <>
-        <div className="filtersContainer">
-            <label>Filtrar</label>
-            <div className="careersFilter" >
-                <select onChange={(e) => {
-                    console.log(e.target.option);
-                    setFilterCareer(e.target.option);}}>
-                    {careers.map((item, key)=>{
-                        return (<option key={item.id}>{item.name}</option>);
-                    })}
-                </select>
-           </div>
-           <div className="innovationsFilter"  >
-                <select size={3} multiple onChange={(e)=>{
-                     const options = e.target.options;
-                     const valueArray = [];
-                     for (let i = 0; i < options.length; i++) {
-                         if (options[i].selected) {
-                             valueArray.push(options[i].value);
-                         }
-                     }
-                     console.log(valueArray);
-                     setFilterInnovations(valueArray);
-                }}>
-                    {innovations.map((item, key)=>{
-                        return (<option key={item.id}>{item.name}</option>);
-                    })}
-                </select>
-           </div>
-           <div className="labsFilter" >
-                <select>
-                    {laboratories.map((item)=>{
-                        return (<option key={item}>{item}</option>);
-                    })}
-                </select>
-           </div>
-        </div>
+            <div className="filtersContainer">
+                <label>Filtrar</label>
+                <div className="careersFilter">
+                    <select onChange={(e) => {
+                        console.log(e.target.value);
+                        setFilterCareer(e.target.value);
+                    }}>
+                        <option value={0} selected disabled>Selecciona filtro</option>
+                        {careers.map((item) => {
+                            return (<option key={item.id} value={item.id}>{item.name}</option>);
+                        })}
+                    </select>
+                </div>
+                <div className="labsFilter">
+                    <select onChange={(e)=>setFilterLab(e.target.value)}>
+                        <option value={0} selected disabled>Selecciona filtro</option>
+                        {laboratories.map((laboratory) => {
+                            return (<option  value={laboratory.id}>{laboratory.name}</option>);
+                        })}
+                    </select>
+                </div>
+            </div>
         </>
     );
-}
+};

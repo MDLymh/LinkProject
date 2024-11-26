@@ -1,7 +1,6 @@
 import './ProjectItem.css';
 
 export const ProjectItem=({project, user})=>{
-
     let hasProject = user.id_project != -1 ? true : false;
 
     let projectKey = project.project_id;
@@ -16,8 +15,11 @@ export const ProjectItem=({project, user})=>{
 
 
     //Realizar un post
+    let csrf = document.querySelector("meta[name='csrf']").getAttribute('content');
     return (<>
-        <form>
+        <form action='/project/joinRequest' method='POST'>
+        <input type="hidden" name="_token" value={csrf} autocomplete="off"></input>
+        <input type="hidden" name="projectId" value={project.id} autocomplete="off"></input>
             <div className="card"
                 style={{backgroundColor: project.max_members === project.members ? '#FFAE7E' : ''}}>
                     {/* imagen del lider del proyecto */}
@@ -28,9 +30,10 @@ export const ProjectItem=({project, user})=>{
                     <label className='labLevel'>{labLevel}</label>
                     <strong className='members'>{"Miembros:" + project.members + "/" + project.max_members}</strong>
             </div>
-            {user.id_project === -1 && user.isStudent && project.max_members != project.members ?
+            {user.id_project === -1 && !project.requested && user.isStudent && project.max_members != project.members ?
                     (<button className='buttonJoinProject' type='submit'>Solicitar Unirse</button>)
                     : null}
+            {project.requested&& <button className='buttonJoinProject' type='submit' name='cancel'>Cancelar Solicitud</button>}
             </div>
         </form>
     </>);

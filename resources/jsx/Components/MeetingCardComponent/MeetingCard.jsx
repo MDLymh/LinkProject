@@ -15,12 +15,14 @@ export const MeetingCard=({meeting, setMeetings})=>{
         //refrescar contenido al padre
         setMeetings(e.target.value);//id de la tabla meetings
     }
+    let csrf = document.querySelector("meta[name='csrf']").getAttribute('content');
 
     return (<>
-        <form action='/cancel_meeting' method='post'>
+        <form action='/meeting/cancel' method='post'>
+        <input type="hidden" name="_token" value={csrf} autocomplete="off"></input>
             <div className="card">
                 <div className='card-data' >
-                    <strong className='card-title'>{"Fecha programada:  " + meeting.scheduled}</strong>
+                    <strong className='card-title'>{"Fecha programada:  " + meeting.schedule}</strong>
                     <strong className='meeting-data'>-Informacion:</strong>
                     <p className='card-data'>{meeting.description}</p>
                </div>

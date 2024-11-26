@@ -1,7 +1,6 @@
 import "./csrf.css"
 
 export const Csrf = ()=>{
-    console.log("as");
     let csrf = document.querySelector("meta[name='csrf']").getAttribute('content');
     return (
         <>

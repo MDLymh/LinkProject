@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {PopupWarning} from "../../"
 import './SignIn.css'
 import ReactDOM from "react-dom";
 
@@ -17,6 +18,9 @@ export const  SignIn =() =>{
 
   const [type, setType] = useState('password');
   const [typeConfirm, setTypeConfirm] = useState('password');
+
+    let [isErrorPopup, setIsErrorPopup] = useState(window.__INITIAL_DATA__.errors.length>0);
+    let [initErrors, setInitErrors] =  useState(window.__INITIAL_DATA__.errors)
 
   //Realizar un post
   const handleSubmit = (event) => {
@@ -172,6 +176,7 @@ return(<>
         window.location.href ="login"}}//necesito regresar al Login
         >Iniciar sesion</button>
     </form>
+    {isErrorPopup && <PopupWarning errors={initErrors} setIsErrorPopup={setIsErrorPopup}/> }
     <br/>
   </div>
   </>);

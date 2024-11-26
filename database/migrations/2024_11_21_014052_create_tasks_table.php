@@ -15,11 +15,12 @@ return new class extends Migration
         $table->id();
         $table->unsignedBigInteger('id_project');
         $table->foreign('id_project')->references('id')->on('projects')->onDelete('cascade');
+        $table->foreignId('id_Asigned_User')->constrained('users')->onDelete('cascade');
         $table->string('title');
         $table->text('description');
         $table->timestamp('start_date');
         $table->timestamp('end_date')->nullable();;
-        $table->enum('status', ['pending', 'completed', 'in-progress']);
+        $table->integer('status');
         $table->timestamps();
     });
 }

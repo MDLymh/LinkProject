@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('surname2');
             $table->boolean('is_active');
             $table->integer('type');
+            $table->text('about')->nullable();
             $table->string('profile_picture')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

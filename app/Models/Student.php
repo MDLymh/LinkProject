@@ -17,6 +17,7 @@ class Student extends Model
         'id_course',
         'id_project',
         'external_contact',
+        'laboratory_id',
         'is_leader',
         'available_schedule',
         'current_lab',

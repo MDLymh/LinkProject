@@ -1,54 +1,45 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './TasksViewer.css';
 import { TaskCard,PopupCreateTask } from '../../';
 export const TasksViewer=({user})=>{
-
+    const [task,setTask] = useState([]);
     //1:programada
     //2:finalizada
     //3:vencida
     //4:sin fecha de vencimiento
     let taskStatus = [1, 2, 3, 4];
 
-    let projectTasks = [
-        {
-            id: 1,
-            scheduled: "2024-11-20",
-            created: "2024-10-20",
-            content: "Diseño de vistas",
-            student: "Juan",
-            task_status: 1,
-        },
-        {
-            id: 2,
-            scheduled: "2024-11-20",
-            created: "2024-10-21",
-            content: "Diseño de entidad relacion",
-            student: "Juan",
-            task_status: 2,
-        },
-        {
-            id: 3,
-            scheduled: "2024-11-01",
-            created: "2024-10-29",
-            content: "Construccion de vistas",
-            student: "Pepito",
-            task_status: 3,
-        },
-        {
-            id: 4,
-            scheduled: "2024-11-20",
-            created: "2024-11-20",
-            content: "Integracion front-end con back-end",
-            student: "Pepito",
-            task_status: 4,
-        },
-    ]
+    useEffect(()=>{
+        let getTask = async()=>{
+            const csrf = document.querySelector("meta[name='csrf']").getAttribute('content');
+            try{
+                let response = await fetch('/task/getProjectTasks',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrf
+                    }
+                })
+                if(!response.ok){
+                    throw new Error('Error de conexion');
+                }
+                if(response.status ==200){
+                    setTask(await response.json());
+
+                }
+            }catch(error){
+                console.error(error);
+            }
+        }
+        getTask();
+    },[]);
+
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     //Realizar un post
     const handleCreateTask = (newTask) => {
-        setProjectTasks((prevTasks) => [
+        setTask((prevTasks) => [
             prevTasks,
             { id: prevTasks.length + 1, newTask }, //
         ]);
@@ -60,7 +51,7 @@ export const TasksViewer=({user})=>{
         <div className='viewtaskContainer'>
             <button className='buttonCreate'  onClick={() => setIsPopupOpen(true)}> Nueva tarea</button>
 
-            {projectTasks.map((item) =>{
+            {task.map((item) =>{
                 return(<TaskCard key={item.id} _task={item}/>);
             })}
 

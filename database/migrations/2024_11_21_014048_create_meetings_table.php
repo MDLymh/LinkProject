@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('meetings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_project');
+            $table->boolean('is_active');
+            $table->string('description');
             $table->foreign('id_project')->references('id')->on('projects')->onDelete('cascade');
             $table->timestamp('schedule');
             $table->timestamps();

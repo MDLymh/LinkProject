@@ -1,29 +1,30 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./UserProfile.css"
 
 
 export const UserProfile=({current})=>{
 
+    const [user,setUser] =  useState([]);
     // Yael: aqui necesitaria los datos del usuario actual loggeado
-let user = {
-    name: 'John Doe',
-    email: 'john.doe@alumnos.udg.mx',
-    about_me: 'Me dedico a desarrollar aplicaciones en React para sitios web y estudio mi posgrado.',
-    profilePicture: 'https://via.placeholder.com/150', // Placeholder image
-    career: 'Ing. Computacion',
-    laboratory: 'Lab1',
-    skills: [
-        {
-            id: 1,
-            skill: "Liderazgo",
-        },
-        {
-            id: 2,
-            skill: "Pensamiento critico",
+    const csrf = document.querySelector("meta[name='csrf']").getAttribute('content');
+    let getUser = async ()=>{
+        const response = await fetch('/getUserProfile',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrf
+            }
+        });
+        if(!response.ok){
+            throw new Error('Error de conexion');
         }
-    ]
-    };
-
+        if(response.status ==200){
+            setUser(await response.json());
+        }
+    }
+    useEffect(()=>{
+        getUser();
+    },[])
     //cambair estado imagen
     const [profilePicture, setSelectedImage] = useState('https://via.placeholder.com/150');
     const [about_me, setAboutMe] = useState('');
@@ -39,7 +40,7 @@ let user = {
         }
     };
 
-    //Realizar un post 
+    //Realizar un post
     const handleChangePicture = () => {
         // Update the profile picture with the selected image
         if (profilePicture) {
@@ -51,11 +52,17 @@ let user = {
         }
 
     };
-
     return (
         <div className="userProfile">
             <div className="headerProfile">
-                <img src={user.profilePicture} alt={`${user.name}'s profile`} className="pictureProfile" />
+                { user.profilePicture !== null &&
+                    <img src={user.profilePicture} alt={`${user.name}'s profile`} className="pictureProfile" />
+
+                }
+                { user.profilePicture === null &&
+                    <img src={'https://via.placeholder.com/150'} alt={`${user.name}'s profile`} className="pictureProfile" />
+
+                }
                 {/* <UploadImage/> */}
                 <h1 className="userName">{user.name}</h1>
                 <p className="userEmail">{user.email}</p>
@@ -73,12 +80,12 @@ let user = {
             <div className="detailsProfile">
                 <h2>Acerca de mi</h2>
                 <p>{user.about_me}</p>
-                <p><strong>Carrera:</strong> {user.career}</p>
+                <p><strong>Carrera:</strong> {user.carrer}</p>
                 <p><strong>Laboratorio actual:</strong> <span>{user.laboratory}</span> </p>
                 <p><strong>Mis Habilidades:</strong> <span>
-                    {user.skills.map((x, index) => {
-                    return (<li className="itemList" key={x.skill}>{x.skill}</li>)
-                        })
+                     {user.skills && Object.values(user.skills).map((x) => (
+                        <li className="itemList" id={x.id}>{x.skill}</li>
+                     ))
                 }
                 </span> </p>
             </div>

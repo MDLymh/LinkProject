@@ -1,19 +1,37 @@
-import {useState} from "react";
+import {useState,useEffect} from "react";
 import { startOfMonth, endOfMonth, eachDayOfInterval, format, isSameDay } from 'date-fns';
 import "./MeetingsCalendar.css";
 
 
 export const  MeetingsCalendar =() =>{
-   // Yael: pasarme las reuniones de a cuerdo al mes.
-  const meetings = [
-    { id:1, date: '2024-11-01', time: '10:00 AM'},
-    { id:2, date: '2024-11-02', time: '2:00 PM' },
-    { id:3, date: '2024-11-05', time: '1:00 PM' },
-    { id:4, date: '2024-11-10', time: '11:00 AM' },
-    { id:5, date: '2024-11-15', time: '3:00 PM' },
-    { id:6, date: '2024-11-20', time: '9:00 AM' },
-    { id:7, date: '2024-12-04', time: '9:00 AM' },
-];
+
+    let [meetings, setMeetings] = useState([]);
+
+    useEffect(()=>{
+        const getMeetings = async () => {
+
+            const csrf = document.querySelector("meta[name='csrf']").getAttribute('content');
+            try{
+                let response = await fetch('/meeting/get',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrf
+                    },
+                })
+
+                if(!response.ok){
+                    throw new Error('Error de conexion');
+                }
+                if(response.status ==200){
+                    setMeetings(await response.json());
+                }
+            }catch(error){
+                console.error(error);
+            }
+          };
+          getMeetings();
+    },[]);
 
 const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -44,7 +62,7 @@ const renderDaysInMonth = () => {
 
   for (let i = 1; i <= lastDay.getDate(); i++) {
     const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
-    const meeting = meetings.find(meeting => meeting.date === dateString);
+    const meeting = meetings.find(meeting => meeting.schedule.substr(0,10) === dateString);
     days.push(
       <div
         className={`day ${meeting ? 'has-meeting' : ''}`}

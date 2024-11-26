@@ -1,23 +1,27 @@
 import "./PopupWarning.css"
+import { useState } from "react";
 
 //alerta generica
-export const PopupWarning=({title, message})=>{
+export const PopupWarning =({errors, setIsErrorPopup})=>{
+    const [isVisible, setIsVisible] = useState(true);
 
-    return(
-        <>
-        <form onSubmit={setIsErrorPopup(false)}>
-            <div className="popupOverlay">
-                <div>
-                    <label className="labelTitle">{"Error"}</label>
-                </div>
-                <div>
-                    <ul className="errorsList">{errors.map((item) => {
-                            return (<option key={item}>{item}</option>);
-                        } )}</ul>
-                </div>
-                <button className="buttonClose" type="submit" >Cerrar</button>
-            </div>
-        </form>
-        </>);
-}
+    if (!isVisible || !errors || Object.keys(errors).length === 0) {
+      return null;
+    }
 
+    return (
+      <div className="errorAlert">
+        <div className="errorContent">
+          <strong>Aviso:</strong>
+          <ul>
+            {Object.entries(errors).map(([key, message], index) => (
+              <li key={index}>{message}</li>
+            ))}
+          </ul>
+        </div>
+        <button className="closeButton" onClick={() => setIsVisible(false)}>
+          ×
+        </button>
+      </div>
+    );
+  };

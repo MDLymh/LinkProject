@@ -13,7 +13,9 @@ class Meeting extends Model
 
     protected $fillable = [
         'id_project',
-        'schedule'
+        'schedule',
+        'is_active',
+        'description',
     ];
 
     public function project(){
@@ -22,5 +24,11 @@ class Meeting extends Model
 
     public function consultants(){
         return $this->belongsToMany(Consultant::class, 'meeting_consultant', 'id_meeting', 'id_consultant');
+    }
+
+    public static function getMeetings($userId):array{
+        $user = User::getInfo($userId);
+        $meetings = Meeting::where('id_project',$user['id_project'])->get()->toArray();
+        return $meetings;
     }
 }

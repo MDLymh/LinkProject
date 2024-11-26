@@ -1,12 +1,18 @@
 import "./Login.css"
 import ReactDOM from "react-dom";
 import React, { useState } from "react";
+import { PopupWarning } from "../../Components/WarningComponent/PopupWarning";
 
 
 export const Login  = () =>{
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [type, setType] = useState('password');
+
+    let [isErrorPopup, setIsErrorPopup] = useState(window.__INITIAL_DATA__.errors.length>0);
+    let [initErrors, setInitErrors] =  useState(window.__INITIAL_DATA__.errors)
+    let [isMessagePopup, setIsMessagePopup] = useState(window.__INITIAL_DATA__.message.length>0);
+    let [initMessages, setInitMessages] =  useState(window.__INITIAL_DATA__.message)
 
     const handleRegister = (event) => {
         event.preventDefault();
@@ -66,6 +72,8 @@ export const Login  = () =>{
           <a className='a_reset_password' href="/password/reset">Olvido contraseña?</a>
         </div>
       </form>
+      {isErrorPopup && <PopupWarning errors={initErrors} setIsErrorPopup={setIsErrorPopup}/> }
+      {isMessagePopup && <PopupWarning errors={initMessages} setIsErrorPopup={setInitMessages}/> }
       <br/>
     </div>
   );

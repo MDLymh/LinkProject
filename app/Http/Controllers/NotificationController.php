@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Notification;
+use App\Models\Project;
+use App\Models\User;
 
 class NotificationController extends Controller {
     public function send(Request $request) {
@@ -40,6 +42,10 @@ class NotificationController extends Controller {
         $userId= $request->input('userId');
         $project= $request->input('project');
         return json_encode(Notification::getNotifications($isLeader,$userId,$project));
+    }
+    public function updateC(Request $request){
+        Notification::updateC($request->input('notificationId'),$request->has('admited'));
+        return redirect()->route('index')->with(['currentView' => 'Notificaciones']);
     }
 }
 

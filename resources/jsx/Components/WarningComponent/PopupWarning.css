@@ -24,3 +24,64 @@
     font-size: medium;
     color: black;
 }
+
+.errorAlert {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(39, 24, 177, 0.9); /* Rojo suave */
+    color: white;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    max-width: 300px;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .errorContent {
+    margin-bottom: 8px;
+  }
+
+  .errorContent strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+  }
+
+  .errorContent ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .errorContent li {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .closeButton {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .closeButton:hover {
+    color: #ffd1d1;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

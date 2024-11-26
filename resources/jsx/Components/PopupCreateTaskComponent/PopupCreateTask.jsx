@@ -1,25 +1,49 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './PopupCreateTask.css';
 
-export const PopupCreateTask = ({ onClose, onSubmit }) => {
-    // const [formData, setFormData] = useState({
-    //     content: '',
-    //     student: '',
-    //     scheduled: '',
-    //     task_status: 1, // Default status
-    // });
-
+export const  PopupCreateTask=({ onClose, onSubmit }) =>{
+    const csrf = document.querySelector("meta[name='csrf']").getAttribute('content');
     const [content, setContent] = useState('');
     const [student, setStudent] = useState(0);
     const [scheduled, setScheduled] = useState('');
     const [task_status, setTaskStatus] = useState(1);
-
-    const members = [
+    const [members,setMembers]= useState([
         {
             id: 2,
             memberName: "Pepito",
         },
-    ]
+    ]);
+
+    useEffect(()=>{
+        const getMembers = async () => {
+
+
+            try{
+                let response = await fetch('/project/getMembers',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrf
+                    },
+                    body: JSON.stringify({
+                        projectId: window.__INITIAL_DATA__.user.id_project
+                    })
+                })
+
+                if(!response.ok){
+                    throw new Error('Error de conexion');
+                }
+                if(response.status ==200){
+                   setMembers(await response.json());
+                }
+            }catch(error){
+                console.error(error);
+            }
+          };
+          getMembers();
+    },[]);
+
+    console.log(members);
 
     //Realizar un post
     const handleSubmit = (e) => {
@@ -34,7 +58,7 @@ export const PopupCreateTask = ({ onClose, onSubmit }) => {
             <div className="popupOverlay">
                 <div className="popupContent">
                     <h2>Crear tarea</h2>
-                    <form onSubmit={handleSubmit}>
+                    <form action="/task/register" method='POST' onSubmit={handleSubmit}>
                         <label className='taskContent'>
                             Información de tarea:
                             <input
@@ -45,16 +69,17 @@ export const PopupCreateTask = ({ onClose, onSubmit }) => {
                                 required/>
                         </label>
                         <br></br>
+                        <input type="hidden" name="_token" value={csrf} autocomplete="off"></input>
                         <label className='selectMemberLabel'>
                             A signar a Miembro:
                             <select
                                 className='selectMember'
                                 value={student}
-                                name="member"//name: miembro al que se asigna
+                                name="memberId"//name: miembro al que se asigna
                                 onChange={(e)=>{setStudent(e.target.value)}} >
-                                {members.map((item) =>{
-                                    return (<option key={item.div} value={item.id}>{item.memberName}</option>)
-                                    })}
+                                {members.map((member)=>(
+                                    <option value={member.id}>{member.name}</option>
+                                ))}
                             </select>
                         </label>
                         <br></br>
@@ -69,19 +94,6 @@ export const PopupCreateTask = ({ onClose, onSubmit }) => {
                                 onChange={(e)=>{setScheduled(e.target.value)}}
                             />
                         </label>
-                        {/* <label>
-                            Status:
-                            <select
-                                name="task_status"
-                                value={formData.task_status}
-                                onChange={handleChange}
-                            >
-                                <option value={1}>Programada</option>
-                                <option value={2}>Finalizada</option>
-                                <option value={3}>Vencida</option>
-                                <option value={4}>Sin fecha de vencimiento</option>
-                            </select>
-                        </label> */}
                         <br></br>
                         <button className='buttonSubmit' type="submit">Crear</button>
                         <button className='buttonCancelCreate'  onClick={onClose}>Cancelar</button>

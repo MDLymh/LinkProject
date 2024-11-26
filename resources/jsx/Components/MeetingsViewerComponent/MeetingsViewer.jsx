@@ -1,34 +1,38 @@
 import './MeetingsViewer.css';
+import { useEffect, useState } from 'react';
+import { MeetingCard } from '../../';
 
 
 export const MeetingsViewer = ()=>{
 
-    //Yael: aqui necesito el usuario loggeado.
-    let user = {
-        id: 1,
-        isStudent: false,
-    }
-
     //Yael: aqui necesito las reuniones, si puedes ordenadas por fecha de mas proxima hacia atras.
     let [meetings, setMeetings] = useState([]);
 
-    meetings = [
-        // {
-        //     id: 1,
-        //     scheduled: "2024-11-29 12:00 p.m.",
-        //     description: "Reunion con asesor"
-        // },
-        // {
-        //     id: 2,
-        //     scheduled: "2024-12-01 2:00 p.m.",
-        //     description: "Revision de avance y correciones."
-        // },
-        // {
-        //     id: 3,
-        //     scheduled: "2024-12-05 2:00 p.m.",
-        //     description: "Revision de diagramas de flujo."
-        // },
-    ]
+    useEffect(()=>{
+        const getMeetings = async () => {
+
+            const csrf = document.querySelector("meta[name='csrf']").getAttribute('content');
+            try{
+                let response = await fetch('/meeting/get',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrf
+                    },
+                })
+
+                if(!response.ok){
+                    throw new Error('Error de conexion');
+                }
+                if(response.status ==200){
+                    setMeetings(await response.json());
+                }
+            }catch(error){
+                console.error(error);
+            }
+          };
+          getMeetings();
+    },[]);
 
     return (<>
         <div className="meetingsContainer">
@@ -36,7 +40,7 @@ export const MeetingsViewer = ()=>{
             <ol className='meetingsList'>
                 {meetings.map((item, key)=>
                     {
-                        return;//(<MeetingCard key={item.id} meeting={item} setMeetings={setMeetings}/>);
+                        return (<MeetingCard key={item.id} meeting={item} setMeetings={setMeetings}/>);
                     })}
             </ol>
         </div>

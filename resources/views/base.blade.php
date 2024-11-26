@@ -14,7 +14,7 @@
         @elseif (session()->has('title'))
             {{session('title')}}
         @else
-            Leila
+            Link Project
         @endif
     </title>
 </head>
@@ -22,7 +22,11 @@
     <div style="height: 100vh;min-width: 600px;" id="root"></div>
     @if(session('message'))
         @php
-            $initialData['message'] = session('message')
+            $initialData['message'] = [session('message')]
+        @endphp
+    @else
+        @php
+            $initialData['message'] = []
         @endphp
     @endif
     @if($errors->any())

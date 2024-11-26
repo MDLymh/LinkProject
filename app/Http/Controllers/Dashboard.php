@@ -12,6 +12,7 @@ class Dashboard extends Controller
     public function index(Request $request){
         $initialData=[
             'user' => User::getInfo(Auth::id()),
+            'currentView'=> $request->session()->get('currentView')?$request->session()->get('currentView'):'Perfil',
         ];
         $data =[
             'viewJsx'=> 'resources/jsx/Views/ViewerComponent/ViewerComponent.jsx',

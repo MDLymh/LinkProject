@@ -28,6 +28,19 @@ class AuthController extends Controller
         return view('base',$data);
     }
 
+    public function logout(Request $request)
+{
+        // Invalidar la sesión del usuario
+        Auth::logout();
+
+        // Regenerar la sesión para evitar problemas de seguridad como Session Fixation
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        // Redirigir al usuario después del logout
+        return redirect()->route('login')->with('message', 'Has cerrado sesión correctamente.');
+    }
+
     public function login(Request $request){
 
 
@@ -116,6 +129,7 @@ class AuthController extends Controller
             $student = Student::create([
                 'id'          => $validateData['code'],
                 'id_user'     => $user->id,
+                'laboratory_id'=> $validateData['laboratory'],
                 'id_course'   => $validateData['carrer'],
                 'current_lab' => $validateData['laboratory'],
             ]);
@@ -200,7 +214,7 @@ class AuthController extends Controller
         $user->save();
         Password_reset_token::where('email',$validateData['email'])->delete();
 
-        return redirect()->route('login')->with('status', '¡Tu contraseña ha sido actualizada correctamente!');
+        return redirect()->route('login')->with('message', '¡Tu contraseña ha sido actualizada correctamente!');
 
 
     }

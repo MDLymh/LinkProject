@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./PasswordReset.css"
 import ReactDOM from "react-dom";
+import { PopupWarning } from '../../Components/WarningComponent/PopupWarning';
 
 export const PasswordReset =() =>{
 
@@ -10,6 +11,10 @@ export const PasswordReset =() =>{
     const [confirm, setConfirm] = useState('');
     const [type, setType] = useState('password');
     const [typeConfirm, setTypeConfirm] = useState('password');
+    let [isErrorPopup, setIsErrorPopup] = useState(window.__INITIAL_DATA__.errors.length>0);
+    let [initErrors, setInitErrors] =  useState(window.__INITIAL_DATA__.errors)
+    let [isMessagePopup, setIsMessagePopup] = useState(window.__INITIAL_DATA__.message.length>0);
+    let [initMessages, setInitMessages] =  useState(window.__INITIAL_DATA__.message)
     const initialData = window.__INITIAL_DATA__;
 
     const handleSubmit = (event) => {
@@ -95,6 +100,8 @@ export const PasswordReset =() =>{
               <button type="submit" >Iniciar</button>
               <button className='button_register'>Regresar</button>
           </form>
+          {isErrorPopup && <PopupWarning errors={initErrors} setIsErrorPopup={setIsErrorPopup}/> }
+            {isMessagePopup && <PopupWarning errors={initMessages} setIsErrorPopup={setInitMessages}/> }
           <br/>
         </div>
       </>);

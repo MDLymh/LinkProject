@@ -18,6 +18,10 @@ class DatabaseSeeder extends Seeder
         InnovationsTableSeeder::class,
         Type_userSeeder::class,
         LaboratoriesSeeder::class,
+        UserSedeer::class,
+        UserTaskSeeder::class,
+        NotificationsSeeder::class,
+        MeetingsSeeder::class,
     ]);
 }
 }

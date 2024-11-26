@@ -1,31 +1,44 @@
 import './NotificationsManager.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { NotificationCard } from '../../';
 
 export const NotificationManager=()=>{
 
-//Yael: recibir el usuario loggeado.
-let user ={
-    id: 2,
-    isLeader: true,
-}
+    //Yael: recibir las notificaciones.
+    let [notifications, setNotifications] = useState([])
+    const user = window.__INITIAL_DATA__.user;
+    useEffect(()=>{
+        const fetchNotifications = async () => {
 
-//Yael: recibir las notificaciones.
-let [notifications, setNotifications] = useState([
-    {
-        id: 3,
-        content: "Alumno Pepito Carrera Ing. Computacion. \nSolicitar unirse a proyecto.",
-        notificationType: 1,
-        studentId: 5,
-        created: "2024-11-20"
-    },
-    {
-        id: 4,
-        content: "Reunion con asesor. Requiere ver la justificacion del proyecto.",
-        notificationType: 2,//el tipo me ayuda a definir si renderizo los botones de rechazar o admitir
-        studentId: 0,
-        created: "2024-11-18"
-    }
-])
+            const csrf = document.querySelector("meta[name='csrf']").getAttribute('content');
+            try{
+                let response = await fetch('/notifiactions/get',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrf
+                    },
+                    body: JSON.stringify({
+                        isLeader: user.isLeader,
+                        userId: user.id,
+                        project: user.id_project,
+                    })
+                })
+
+                if(!response.ok){
+                    throw new Error('Error de conexion');
+                }
+                if(response.status ==200){
+                    setNotifications(await response.json());
+                }
+            }catch(error){
+                console.error(error);
+            }
+          };
+        fetchNotifications();
+    },[]);
+
+
 
     return (<>
         <div className='notificationsmanagerContainer'>
