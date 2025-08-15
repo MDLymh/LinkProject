@@ -4,6 +4,7 @@ import * as glob from 'glob';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
+ 
     plugins: [
         [react()],
         laravel({
